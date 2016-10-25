@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QCPTitle</class>
+ <widget class="QWidget" name="QCPTitle">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>869</width>
+    <height>586</height>
+   </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>16777215</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>mLaser</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget#QCPTitle
+{
+	
+	background-color: rgb(57, 56, 61);
+}</string>
+  </property>
+  <widget class="QFrame" name="frameCent">
+   <property name="geometry">
+    <rect>
+     <x>26</x>
+     <y>10</y>
+     <width>817</width>
+     <height>521</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QFrame#frameCent
+{
+	border:none;	
+	background-color: rgb(68, 68, 68);
+}
+QFrame#frameTool
+{
+	border:none;
+	max-height:60px;
+	background-color: rgb(67, 66, 71);
+}
+QFrame#frameTool QPushButton:hover{
+	border:none;
+	background-color: rgb(87, 86, 91);
+	color: rgb(255, 255, 255);
+	font: 9pt &quot;微软雅黑&quot;;
+}
+QFrame#frameTool QPushButton:pressed{
+	border:none;
+	background-color: rgb(59, 58, 63);
+	color: rgb(255, 255, 255);
+	font: 9pt &quot;微软雅黑&quot;;
+}
+QFrame#frameTool QPushButton{
+	border:none;
+	background-color: rgb(67, 66, 71);
+	
+	color: rgb(243, 243, 243);
+	font: 9pt &quot;微软雅黑&quot;;
+}
+
+QFrame#frameView
+{
+	border:none;
+	background-color: rgb(255, 255, 255);
+}
+QFrame#framePan
+{
+    border:none;
+	max-width:280px;
+	background-color: rgb(100, 100, 109);
+}
+
+
+QMenu {
+	font: 10pt &quot;微软雅黑&quot;;
+	color: rgb(255, 255, 255);
+	background-color: rgb(97, 96, 101);	
+}
+
+QMenu::item {
+	
+	padding:20px;
+	height: 32px;
+	width:230px;
+    background-color: transparent;
+}
+
+QMenu::item:selected { 
+    
+	background-color: rgb(117, 116, 121);
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="frameTool">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>60</height>
+       </size>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <property name="spacing">
+        <number>1</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QPushButton" name="btnOpen">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>110</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>打开</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../icon.qrc">
+           <normaloff>:/Source/icon/open.png</normaloff>:/Source/icon/open.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnSave">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>110</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>保存</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../icon.qrc">
+           <normaloff>:/Source/icon/save.png</normaloff>:/Source/icon/save.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnText">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>110</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>文字</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../icon.qrc">
+           <normaloff>:/Source/icon/text.png</normaloff>:/Source/icon/text.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnDelet">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>110</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>删除</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../icon.qrc">
+           <normaloff>:/Source/icon/dele.png</normaloff>:/Source/icon/dele.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnSerial">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>110</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>串口</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../icon.qrc">
+           <normaloff>:/Source/icon/serial.png</normaloff>:/Source/icon/serial.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnQrcode">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>110</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>二维码</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../icon.qrc">
+           <normaloff>:/Source/icon/qrcode.png</normaloff>:/Source/icon/qrcode.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QMenuButoon" name="btnMenu">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>110</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../icon.qrc">
+           <normaloff>:/Source/icon/feature.png</normaloff>:/Source/icon/feature.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="frame">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="frameView">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="framePan">
+         <property name="minimumSize">
+          <size>
+           <width>280</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>280</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="BA_EasyForm" name="easy" native="true">
+          <property name="geometry">
+           <rect>
+            <x>9</x>
+            <y>9</y>
+            <width>262</width>
+            <height>143</height>
+           </rect>
+          </property>
+         </widget>
+         <widget class="BB_EasynForm" name="easyn" native="true">
+          <property name="geometry">
+           <rect>
+            <x>9</x>
+            <y>158</y>
+            <width>262</width>
+            <height>143</height>
+           </rect>
+          </property>
+         </widget>
+         <widget class="BC_ExpertForm" name="expert" native="true">
+          <property name="geometry">
+           <rect>
+            <x>9</x>
+            <y>307</y>
+            <width>262</width>
+            <height>143</height>
+           </rect>
+          </property>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <action name="zhAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>简体中文</string>
+   </property>
+  </action>
+  <action name="enAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>English</string>
+   </property>
+  </action>
+  <action name="gcodeAction">
+   <property name="text">
+    <string>Gcode模式</string>
+   </property>
+  </action>
+  <action name="firmwareAaction">
+   <property name="text">
+    <string>固件更新</string>
+   </property>
+  </action>
+  <action name="expertAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>高级模式</string>
+   </property>
+  </action>
+  <action name="coustomAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>简单模式</string>
+   </property>
+  </action>
+  <action name="mmAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>mm</string>
+   </property>
+  </action>
+  <action name="inchAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>inch</string>
+   </property>
+  </action>
+  <action name="downloadAction">
+   <property name="text">
+    <string>软件下载</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QMenuButoon</class>
+   <extends>QPushButton</extends>
+   <header>UICompment/qmenubutoon.h</header>
+  </customwidget>
+  <customwidget>
+   <class>BA_EasyForm</class>
+   <extends>QWidget</extends>
+   <header>UICompment/ba_easyform.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>BB_EasynForm</class>
+   <extends>QWidget</extends>
+   <header>UICompment/bb_easynform.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>BC_ExpertForm</class>
+   <extends>QWidget</extends>
+   <header>UICompment/bc_expertform.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../icon.qrc"/>
+ </resources>
+ <connections/>
+</ui>

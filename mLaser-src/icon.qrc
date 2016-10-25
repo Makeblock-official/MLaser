@@ -1,0 +1,34 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Source/icon/close.png</file>
+        <file>Source/icon/max.png</file>
+        <file>Source/icon/min.png</file>
+        <file>Source/icon/dele.png</file>
+        <file>Source/icon/open.png</file>
+        <file>Source/icon/save.png</file>
+        <file>Source/icon/serial.png</file>
+        <file>Source/icon/text.png</file>
+        <file>Source/icon/feature.png</file>
+        <file>Source/icon/text_b.png</file>
+        <file>Source/icon/text_itly.png</file>
+        <file>Source/icon/text_sublime.png</file>
+        <file>Source/icon/dropdown.png</file>
+        <file>Source/icon/print_begin.png</file>
+        <file>Source/icon/print_stop.png</file>
+        <file>Source/icon/title_text.png</file>
+        <file>Source/icon/print_cancle.png</file>
+        <file>Source/icon/logo.png</file>
+        <file>Source/gif/wait.gif</file>
+        <file>Source/gif/wait2.gif</file>
+        <file>Source/icon/gcode_clear.png</file>
+        <file>Source/icon/gcode_finish.png</file>
+        <file>Source/icon/gcode_load.png</file>
+        <file>Source/icon/gcode_ok.png</file>
+        <file>Source/icon/logo.jpg</file>
+        <file>Source/icon/scale_init.png</file>
+        <file>Source/icon/scale_zoomin.png</file>
+        <file>Source/icon/scale_zoomout.png</file>
+        <file>Source/icon/qrcode.png</file>
+        <file>Source/gif/M.gif</file>
+    </qresource>
+</RCC>
