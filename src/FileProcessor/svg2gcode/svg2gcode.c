@@ -407,8 +407,8 @@ int svgToGcode(char * file,char *outputfile,int be)
     width = g_width;
     w = fabs(bounds[0]-bounds[2]);
     float ws = fabs(bounds[1]-bounds[3]);
-    printf("bounds 0=%f 1=%f 2=%f 3=%f\n",bounds[0],bounds[1],bounds[2],bounds[3]);
     scale = width/w;
+    printf("ccbounds 0=%f 1=%f 2=%f 3=%f scale=%f\n",bounds[0],bounds[1],bounds[2],bounds[3],scale);
 #ifdef _WIN32
     seedrand((float)time(0));
 #endif

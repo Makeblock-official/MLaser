@@ -156,7 +156,19 @@ void BC_ExpertForm::on_comboMaterial_currentIndexChanged(const QString &arg1)
 {
     //每种材料对应了config中打印的参数
     QSettings* psetting = new QSettings("material.ini",QSettings::IniFormat);
-    psetting->beginGroup(arg1);
+    QString material;
+    switch(ui->comboMaterial->currentIndex())
+    {
+       case -1:
+       case 0: material = "Wood";
+           break;
+       case 1: material = "Leather";
+           break;
+       case 2: material = "Paper";
+           break;
+       defaut: break;
+    }
+    psetting->beginGroup(material);
     QString speed = psetting->value("laserSpeed").toString();
     QString travlspeed = psetting->value("laserTravelSpeed").toString();
     QString times = psetting->value("times").toString();
@@ -168,7 +180,7 @@ void BC_ExpertForm::on_comboMaterial_currentIndexChanged(const QString &arg1)
     ui->lineEditRepeat->setText(times);
     QSettings* confsetting = new QSettings("Config.ini",QSettings::IniFormat);
     confsetting->beginGroup("laser");
-    confsetting->setValue("material",arg1);
+    confsetting->setValue("material",material);
     confsetting->setValue("m_value",ui->comboMaterial->currentIndex());
     confsetting->endGroup();
 }
@@ -176,7 +188,18 @@ void BC_ExpertForm::on_comboMaterial_currentIndexChanged(const QString &arg1)
 void BC_ExpertForm::on_lineEditRepeat_returnPressed()
 {
     QSettings* psetting = new QSettings("material.ini",QSettings::IniFormat);
-    QString m = ui->comboMaterial->currentText();
+    QString m ;//= ui->comboMaterial->currentText();
+    switch(ui->comboMaterial->currentIndex())
+    {
+       case -1:
+       case 0: m = "Wood";
+           break;
+       case 1: m = "Leather";
+           break;
+       case 2: m = "Paper";
+           break;
+       defaut: break;
+    }
     psetting->beginGroup(m);
     QString times = ui->lineEditRepeat->text();
     psetting->setValue("times",times);
@@ -187,8 +210,18 @@ void BC_ExpertForm::on_lineEditRepeat_returnPressed()
 void BC_ExpertForm::on_lineEditPower_returnPressed()
 {
     QSettings* psetting = new QSettings("material.ini",QSettings::IniFormat);
-    QString m = ui->comboMaterial->currentText();
-
+    QString m ;//= ui->comboMaterial->currentText();
+    switch(ui->comboMaterial->currentIndex())
+    {
+       case -1:
+       case 0: m = "Wood";
+           break;
+       case 1: m = "Leather";
+           break;
+       case 2: m = "Paper";
+           break;
+       defaut: break;
+    }
     psetting->beginGroup(m);
     QString power = ui->lineEditPower->text();
     if(power.toInt()>100)
@@ -201,7 +234,18 @@ void BC_ExpertForm::on_lineEditPower_returnPressed()
 void BC_ExpertForm::on_lineEditPixSpeed_returnPressed()
 {
     QSettings* psetting = new QSettings("material.ini",QSettings::IniFormat);
-    QString m = ui->comboMaterial->currentText();
+    QString m ;//= ui->comboMaterial->currentText();
+    switch(ui->comboMaterial->currentIndex())
+    {
+       case -1:
+       case 0: m = "Wood";
+           break;
+       case 1: m = "Leather";
+           break;
+       case 2: m = "Paper";
+           break;
+       defaut: break;
+    }
     psetting->beginGroup(m);
     QString speed = ui->lineEditPixSpeed->text();
     psetting->setValue("laserSpeed",speed);
@@ -211,7 +255,18 @@ void BC_ExpertForm::on_lineEditPixSpeed_returnPressed()
 void BC_ExpertForm::on_lineEditSpaceSpeed_returnPressed()
 {
     QSettings* psetting = new QSettings("material.ini",QSettings::IniFormat);
-    QString m = ui->comboMaterial->currentText();
+    QString m ;//= ui->comboMaterial->currentText();
+    switch(ui->comboMaterial->currentIndex())
+    {
+       case -1:
+       case 0: m = "Wood";
+           break;
+       case 1: m = "Leather";
+           break;
+       case 2: m = "Paper";
+           break;
+       defaut: break;
+    }
     psetting->beginGroup(m);
     QString speed = ui->lineEditSpaceSpeed->text();
     psetting->setValue("laserTravelSpeed",speed);
