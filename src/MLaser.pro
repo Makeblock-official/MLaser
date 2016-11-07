@@ -10,7 +10,7 @@ QT       += svg opengl webkit webkitwidgets network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = mLaser
-VERSION = 2.1
+VERSION = 2.2
 TEMPLATE = app
 CONFIG += c++11
 

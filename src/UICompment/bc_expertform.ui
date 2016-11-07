@@ -345,7 +345,7 @@ QComboBox::down-arrow {
          <item row="5" column="1">
           <widget class="QLineEdit" name="lineEditSpaceSpeed">
            <property name="text">
-            <string>3000</string>
+            <string>2000</string>
            </property>
           </widget>
          </item>
@@ -359,7 +359,7 @@ QComboBox::down-arrow {
          <item row="3" column="1">
           <widget class="QLineEdit" name="lineEditPower">
            <property name="text">
-            <string>50</string>
+            <string>100</string>
            </property>
           </widget>
          </item>
@@ -387,14 +387,14 @@ QComboBox::down-arrow {
          <item row="2" column="1">
           <widget class="QLineEdit" name="lineEditRepeat">
            <property name="text">
-            <string>2</string>
+            <string>1</string>
            </property>
           </widget>
          </item>
          <item row="4" column="1">
           <widget class="QLineEdit" name="lineEditPixSpeed">
            <property name="text">
-            <string>500</string>
+            <string>200</string>
            </property>
           </widget>
          </item>

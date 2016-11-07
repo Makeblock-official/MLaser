@@ -39,6 +39,7 @@ public:
 private:
     QString m_fileName;
     QPointF last_pos;
+    float boundvalue;
     int cur_speed;  // 1:normal g1 speed 2:accerlte g1 speed
 };
 

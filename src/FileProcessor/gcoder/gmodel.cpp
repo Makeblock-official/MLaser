@@ -12,6 +12,7 @@
 
 GModel::GModel()
 {
+    boundvalue = 0.3;
 }
 //for render the picture
 void GModel::loadFile(QString filePath)
@@ -97,8 +98,6 @@ void GModel::filterGcode(QString filePath,QPointF pose,QPointF scope,QString out
     QVector3D _bounds(0,0,0);
     QVector<QVector3D> _points;
     double _scale = 1.0;
-
-
     QFile outfile(outfiles);
     if(!outfile.open(QIODevice::ReadWrite))
         return ;
@@ -153,6 +152,8 @@ void GModel::filterGcode(QString filePath,QPointF pose,QPointF scope,QString out
     QSettings* psetting = new QSettings("Config.ini",QSettings::IniFormat);
     psetting->beginGroup("laser");
     QString type = psetting->value("material").toString();
+    float mscale = psetting->value("scale").toFloat();
+    boundvalue = boundvalue * mscale;
     psetting->endGroup();
 
     QSettings* tpsetting = new QSettings("material.ini",QSettings::IniFormat);
@@ -162,12 +163,14 @@ void GModel::filterGcode(QString filePath,QPointF pose,QPointF scope,QString out
     int powerLow = tpsetting->value("laserPowerLow").toInt();
     int laserspeed =  tpsetting->value("laserSpeed").toInt();
     int laserTravelSpeed =  tpsetting->value("laserTravelSpeed").toInt();
+    powerHigh = powerHigh*2.4;
+    powerLow = powerLow*2.4;
     tpsetting->endGroup();
 
     QString powerH = "M4 P"+QString::number(powerHigh)+"\n";
     QString powerL = "M4 P"+QString::number(powerLow)+"\n";
     QString speedPrint = "G1 F"+QString::number(laserspeed)+"\n";
-    qDebug()<<type<<"HoghPower:"<<powerH<<"LowPower:"<<powerLow;
+    qDebug()<<"Mark--type:"<<type<<"HoghPower:"<<powerH<<"LowPower:"<<powerLow;
 
     QSettings* apsetting = new QSettings("mLaser.ini",QSettings::IniFormat);
     apsetting->beginGroup("mode");
@@ -213,7 +216,6 @@ void GModel::filterGcode(QString filePath,QPointF pose,QPointF scope,QString out
 
             QVector3D su(currentX,currentY,currentZ);
             su = (su - boundsMin)*_scale;
-
             //添加距离判断机制
             QPointF cur_pos(su.x(),su.y());
             QPointF d(cur_pos.x()-last_pos.x(),cur_pos.y()-last_pos.y());
@@ -223,25 +225,58 @@ void GModel::filterGcode(QString filePath,QPointF pose,QPointF scope,QString out
             {
                 if(cur_speed==1)    //当等于1，代表前面的速度是快速，即之前走的是圆弧路线
                 {
-                    out<<speedPrint;
-                    out<<powerH;
-                    cur_speed = 0;
+                    if(((su.x()+pos.x())<=(boundsMin.x()*_scale + boundvalue)) && ((su.y()+pos.y())<=(boundsMin.y()*_scale + boundvalue)))
+                    {
+                        out<<QObject::tr("M4 P0 \n");
+                    }
+                    else if(((su.x()+pos.x())>= (boundsMax.x()*_scale - boundvalue)) && ((su.y()+pos.y())>=(boundsMax.y()*_scale - boundvalue)))
+                    {
+                        out<<QObject::tr("M4 P0 \n");
+                    }
+                    else
+                    {
+                        out<<speedPrint;
+                        out<<powerH;
+                        cur_speed = 0;
+                    }
                 }
             }
             else
             {
                 if(cur_speed==0)    //当等于0，代表前面的速度是慢，即之前走的是直线，现在要求走曲线了
                 {
-                    out<<speedPrint;
-                    out<<powerH;       //降低照射功率
-                    cur_speed = 1;
+                    if(((su.x()+pos.x())<=(boundsMin.x()*_scale + boundvalue)) && ((su.y()+pos.y())<=(boundsMin.y()*_scale + boundvalue)))
+                    {
+                        out<<QObject::tr("M4 P0 \n");
+                    }
+                    else if(((su.x()+pos.x())>= (boundsMax.x()*_scale - boundvalue)) && ((su.y()+pos.y())>=(boundsMax.y()*_scale - boundvalue)))
+                    {
+                        out<<QObject::tr("M4 P0 \n");
+                    }
+                    else
+                    {
+                        out<<speedPrint;
+                        out<<powerL;       //降低照射功率
+                        cur_speed = 1;
+                    }
                 }
             }
             //距离判断极致结束
 
-
             {
-                out<<QObject::tr("G1 X%1 Y%2 \n").arg(su.x()+pos.x()).arg(su.y()+pos.y());
+                qDebug()<<"cc"<<"xmin"<<boundsMin.x()<<"xmax"<<boundsMax.x()<<"ymin"<<boundsMin.y()<<"ymax"<<boundsMax.y()<<"scale"<<_scale<<"boundvalue"<<boundvalue;
+                if(((su.x()+pos.x())<=(boundsMin.x()*_scale + boundvalue)) && ((su.y()+pos.y())<=(boundsMin.y()*_scale + boundvalue)))
+                {
+
+                }
+                else if(((su.x()+pos.x())>= (boundsMax.x()*_scale - boundvalue)) && ((su.y()+pos.y())>=(boundsMax.y()*_scale - boundvalue)))
+                {
+
+                }
+                else
+                {
+                    out<<QObject::tr("G1 X%1 Y%2 \n").arg(su.x()+pos.x()).arg(su.y()+pos.y());
+                }
             }
         }
         else

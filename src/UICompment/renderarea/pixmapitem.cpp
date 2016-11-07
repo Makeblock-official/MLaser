@@ -1,5 +1,6 @@
 #include <QDebug>
 #include "pixmapitem.h"
+#include "QSettings"
 
 PixmapItem::PixmapItem(QGraphicsItem *parent)
     :QGraphicsPixmapItem(parent)
@@ -13,6 +14,11 @@ PixmapItem::PixmapItem(QGraphicsItem *parent)
     m_cursor=new QCursor;
     direction=0;
     m_scale = 1.0;
+    rescale = 1.0;
+    QSettings *config = new QSettings("Config.ini",QSettings::IniFormat);
+    config->beginGroup("laser");
+    config->setValue("scale",1);
+    config->endGroup();
     this->setFlags(QGraphicsItem::ItemIsMovable |  QGraphicsItem::ItemIsSelectable );
 }
 
@@ -80,6 +86,8 @@ void PixmapItem::hoverMoveEvent(QGraphicsSceneHoverEvent *event)
 //    QPointF lb=this->scenePos()+QPointF(m_rect.x(),m_rect.y()+m_rect.height());
 //    QPointF rt=this->scenePos()+QPointF(m_rect.x()+m_rect.width(),m_rect.y());
     QPointF rb=this->scenePos()+QPointF(m_rect.x()+m_rect.width(),m_rect.y()+m_rect.height());
+    rescale = m_rect.width();
+    qDebug()<<"rescale"<<rescale;
     if((pos1.x()>(rb.x()-20)) && (pos1.x()<(rb.x()+20)) && (pos1.y()>(rb.y()-20)) && (pos1.y()<(rb.y()+20)))
     {
         m_cursor->setShape(Qt::SizeFDiagCursor);
@@ -162,7 +170,13 @@ void PixmapItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
         qDebug()<<"mouse release checked!";
         QPixmap nf = this->pixmap().scaled(m_rect.width(),m_rect.height(),Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
         this->setPixmap(nf);
-        emit Sig_HidePosTag();
+        QSettings *config = new QSettings("Config.ini",QSettings::IniFormat);
+        config->beginGroup("laser");
+        qDebug()<<"now"<<m_rect.width();
+        float _mscale = m_rect.width()/rescale;
+        config->setValue("scale",_mscale);
+        config->endGroup();
+        emit Sig_HidePosTag();        
 //        emit Sig_PosRect(m_rect,m_file);
     }
     QGraphicsItem::mouseReleaseEvent(event);

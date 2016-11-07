@@ -50,6 +50,7 @@ private:
     QPointF end;
     qreal m_scale;
     int direction;
+    float rescale;
 
 signals:
     void Sig_PosTag(QPointF,QString);
