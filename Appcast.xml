@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="2.2" encoding="utf-8"?>
 <rss
-    version="2.3"
-    xmlns:atom="http://www.w3.org/2005/Atom"
-    xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"
-    xmlns:fervor="https://github.com/pypt/fervor"
-    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    version="2.2"
+    xmlns:atom="http://learn.makeblock.com/"
+    xmlns:sparkle="http://www.makeblock.com/"
+    xmlns:fervor="https://github.com/Makeblock-official/mlaser_resources"
+    xmlns:dc="https://github.com/Makeblock-official/MLaser">
 
     <channel>
         <title>Your Great App's Changelog</title>
@@ -14,13 +14,13 @@
         <atom:link href="https://github.com/Makeblock-official/MLaser/blob/master/Appcast.xml" rel="self" type="application/rss+xml" />
 
         <item>
-            <title>Version 2.3 </title>
+            <title>Version 2.2 </title>
             <pubDate>Tues, 25 Oct 2016 19:20:11 +0000</pubDate>
-            <guid isPermaLink="true">https://github.com/Makeblock-official/MLaser/blob/master/RelNotes.html#v2.2</guid>
+            <guid isPermaLink="true">https://github.com/Makeblock-official/MLaser</guid>
 
             <!-- One of those (<link> is preferred by Fervor, <sparkle:releaseNotesLink> is used by Sparkle) -->
-            <link>https://github.com/Makeblock-official/MLaser/blob/master/RelNotes.html#v2.2</link> <!-- or -->
-            <sparkle:releaseNotesLink>https://github.com/Makeblock-official/MLaser/blob/master/RelNotes.html#v2.2</sparkle:releaseNotesLink>
+            <link>https://raw.githubusercontent.com/Makeblock-official/mlaser_resources/master/distribution/windows/readme.md</link> <!-- or -->
+            <sparkle:releaseNotesLink>https://raw.githubusercontent.com/Makeblock-official/mlaser_resources/master/distribution/windows/readme.md</sparkle:releaseNotesLink>
 
             <!--
                 See QtGlobal's QT_OS_* constants for valid platform versions.
@@ -29,15 +29,15 @@
             <!-- Windows version. -->
             <enclosure
                 url="https://codeload.github.com/Makeblock-official/mlaser_resources/zip/master"
-                fervor:version="2.3"
+                fervor:version="2.2"
                 fervor:platform="Q_OS_WIN32"
                 length="1656492"
                 type="application/octet-stream" />
 
             <!-- Linux version. -->
             <enclosure
-                url="http://you.com/app/Your%20Great%20App%202.0%20Linux.zip"
-                fervor:version="2.3"
+                url="https://codeload.github.com/Makeblock-official/mlaser_resources/zip/master"
+                fervor:version="2.2"
                 fervor:platform="Q_OS_LINUX"
                 length="1618935"
                 type="application/octet-stream" />
@@ -47,8 +47,8 @@
                  namespace just tells the updater that this is a download for OS X.
              -->
             <enclosure
-                url="https://codeload.github.com/Makeblock-official/mlaser_resources/zip/master"
-                sparkle:version="2.3"
+                url="https://codeload.github.com/Makeblock-official/Makeblock-Libraries/zip/master"
+                sparkle:version="2.2"
                 fervor:platform="Q_OS_MAC"
                 length="1623481"
                 type="application/octet-stream"
