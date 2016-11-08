@@ -54,7 +54,6 @@ void GcodeForm::on_btnInput_clicked()
 }
 void GcodeForm::on_btnFinish_clicked()
 {
-   this->close();
    emit Sig_Gcode(file);
 }
 void GcodeForm::languageUpdate()

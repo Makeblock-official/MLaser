@@ -783,9 +783,9 @@ void QCPTitle::on_btnSetHome_clicked()
 //打开按键
 void QCPTitle::on_btnOpen_clicked()
 {
-    QFile::remove("show.gcode");
-    on_btnDelet_clicked();
-	QString path = QCoreApplication::applicationDirPath(); 
+    QString path = QCoreApplication::applicationDirPath();
+    QFile::remove(path + "/show.gcode");
+    on_btnDelet_clicked(); 
 	QString name = "/Config.ini";
     QString allPath = QString("%1%2").arg(path).arg(name);
     QSettings* psetting = new QSettings(allPath,QSettings::IniFormat);
@@ -876,7 +876,7 @@ void QCPTitle::on_btnOpen_clicked()
                     int y = pset->value("y").toInt();
                     int width = pset->value("width").toInt();
                     int height = pset->value("height").toInt();
-                    QString filedir = _dspath + cFileName;
+                    QString filedir = _dspath + "/" + cFileName;
                     qDebug()<<"Get the file:"<<filedir;
                     if(bFont==0)
                     {

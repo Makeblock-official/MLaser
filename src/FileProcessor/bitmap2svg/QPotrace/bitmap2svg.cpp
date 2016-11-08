@@ -1,5 +1,6 @@
 #include <QDebug>
 #include "bitmap2svg.h"
+#include "QCoreApplication"
 
 Bitmap2Svg::Bitmap2Svg(QWidget *parent) :
     QWidget(parent)
@@ -11,6 +12,7 @@ void Bitmap2Svg::SetBintmap(QString path)
 {
 
     QImage tempImg(path);
+    QString s_path = QCoreApplication::applicationDirPath();
     qDebug()<<tr("format = %1").arg(tempImg.format());
     QRgb *pixels = (QRgb *)tempImg.scanLine(0);
     int w = tempImg.width();
@@ -29,7 +31,7 @@ void Bitmap2Svg::SetBintmap(QString path)
     }
 
     img = tempImg;
-    img.save("hg.jpg");
+    img.save(s_path + "/hg.jpg");
     if(!potrace.trace(img)|| potrace.polygons().isEmpty())
         return ;
 }

@@ -1,6 +1,8 @@
 #include "fileprocessthread.h"
 //#include <QDebug>
 
+#include "QCoreApplication"
+
 FileProcessThread::FileProcessThread(QObject *parent) :
     QObject(parent)
 {
@@ -15,7 +17,8 @@ FileProcessThread::FileProcessThread(QObject *parent) :
 //轮廓模式打印
 void FileProcessThread::slotCuttingFile(PGraphicsScene*pScene)
 {
-    QFile::remove("show.gcode");
+    QString path = QCoreApplication::applicationDirPath();
+    QFile::remove(path + "/show.gcode");
     QStringList filelist;
     for(int i=0;i<pScene->m_svgItems.size();i++)
     {
@@ -78,7 +81,8 @@ void FileProcessThread::slotCuttingFile(PGraphicsScene*pScene)
 //灰度雕刻模式打印
 void FileProcessThread::slotCarveFile(PGraphicsScene*pScene)
 {
-    QFile::remove("show.gcode");
+    QString path = QCoreApplication::applicationDirPath();
+    QFile::remove(path + "/show.gcode");
     QStringList filelist;
 //    ui->labelMovie->show();
     for(int j = 0;j<pScene->m_picItems.size();j++)

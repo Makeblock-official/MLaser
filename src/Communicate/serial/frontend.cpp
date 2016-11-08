@@ -170,7 +170,8 @@ void FrontEnd::gcodeMode(QString file)
 void FrontEnd::slotPrint()
 {
     sender->reset();
-    QString gcodefile = "show.gcode";
+    QString path = QCoreApplication::applicationDirPath();
+    QString gcodefile = path + "/show.gcode";
     sender->SetTargetFile(gcodefile);
     isStop = false;
     addToSender();
@@ -289,8 +290,9 @@ void FrontEnd::slotCombineFile(QStringList p)
     //将gcode进行多合一显示
     //    if(QFile("show.gcode").exists())
     sender->reset();
-    QFile::remove("show.gcode");
-    QFile file("show.gcode");
+    QString path = QCoreApplication::applicationDirPath();
+    QFile::remove(path + "/show.gcode");
+    QFile file(path + "/show.gcode");
 
     if(!file.open(QIODevice::ReadWrite))
     {
