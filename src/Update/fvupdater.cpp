@@ -13,9 +13,6 @@
 #ifndef FV_APP_NAME
 #	error "FV_APP_NAME is undefined (must have been defined by Fervor.pri)"
 #endif
-#ifndef FV_APP_VERSION
-#	error "FV_APP_VERSION is undefined (must have been defined by Fervor.pri)"
-#endif
 
 
 #ifdef FV_DEBUG
@@ -23,6 +20,8 @@
 #	include "fvversioncomparatortest.h"
 #endif
 
+
+QString FV_APP_VERSION = "2.0";
 
 FvUpdater* FvUpdater::m_Instance = 0;
 
@@ -237,6 +236,17 @@ void FvUpdater::UpdateInstallationNotConfirmed()
 
 bool FvUpdater::CheckForUpdates(bool silentAsMuchAsItCouldGet)
 {
+    QString path = QCoreApplication::applicationDirPath();
+    QString name = "/Config.ini";
+    QString allPath = QString("%1%2").arg(path).arg(name);
+    QSettings* pset = new QSettings(allPath,QSettings::IniFormat);
+    pset->beginGroup("update");
+    FV_APP_VERSION = pset->value("version").toString();
+    pset->endGroup();
+    if(FV_APP_VERSION.isEmpty())
+    {
+        FV_APP_VERSION = "2.0";
+    }
 	if (m_feedURL.isEmpty()) {
 		qCritical() << "Please set feed URL via setFeedURL() before calling CheckForUpdates().";
 		return false;
@@ -262,11 +272,11 @@ bool FvUpdater::CheckForUpdates(bool silentAsMuchAsItCouldGet)
 		QApplication::setApplicationName(appName);
 	}
 	if (QApplication::applicationVersion().isEmpty()) {
-		QString appVersion = QString::fromUtf8(FV_APP_VERSION);
+        QString appVersion = FV_APP_VERSION;//QString::fromStdString()
 		qWarning() << "QApplication::applicationVersion is not set, setting it to '" << appVersion << "'";
 		QApplication::setApplicationVersion(appVersion);
 	}
-    QString appVersion1 = QString::fromUtf8(FV_APP_VERSION);
+    QString appVersion1 = FV_APP_VERSION;
     qWarning() << "QApplication setting it to '" << appVersion1 << "'";
 	cancelDownloadFeed();
 	m_httpRequestAborted = false;

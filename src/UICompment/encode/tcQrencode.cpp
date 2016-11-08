@@ -1,10 +1,12 @@
 #include "tcQrencode.h"
 #include "qrencode.h"
 #include <QPainter>
+#include "QCoreApplication"
 
 QImage TcQrencode::encodeImage(const QString& s, int bulk)
 {
     QImage ret;
+	QString path = QCoreApplication::applicationDirPath(); 
     QRcode* qr = QRcode_encodeString(s.toUtf8(), 5, QR_ECLEVEL_H, QR_MODE_8, 1);
     if ( qr != nullptr )
     {
@@ -31,6 +33,6 @@ QImage TcQrencode::encodeImage(const QString& s, int bulk)
         }
         QRcode_free(qr);
     }
-    ret.save("qr.png");
+    ret.save(path + "/qr.png");
     return ret;
 }

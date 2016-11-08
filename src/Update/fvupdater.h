@@ -6,6 +6,9 @@
 #include <QNetworkAccessManager>
 #include <QUrl>
 #include <QXmlStreamReader>
+
+extern QString FV_APP_VERSION;
+
 class FvUpdateWindow;
 class FvUpdateConfirmDialog;
 class FvAvailableUpdate;

@@ -10,7 +10,6 @@ QT       += svg opengl webkit webkitwidgets network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = mLaser
-VERSION = 2.2
 TEMPLATE = app
 CONFIG += c++11
 
@@ -26,14 +25,6 @@ isEmpty(FV_APP_NAME) {
 } else {
         message("Fervor: building for application name '$$FV_APP_NAME'")
         DEFINES += FV_APP_NAME=\\\"$$FV_APP_NAME\\\"
-}
-
-isEmpty(FV_APP_VERSION) {
-        warning("Fervor: falling back to application version '$$VERSION'")
-        DEFINES += FV_APP_VERSION=\\\"$$VERSION\\\"
-} else {
-        message("Fervor: building for application version '$$FV_APP_VERSION'")
-        DEFINES += FV_APP_VERSION=\\\"$$FV_APP_VERSION\\\"
 }
 
 include(./FileProcessor/bitmap2svg/QPotrace/QxPotrace.pri)

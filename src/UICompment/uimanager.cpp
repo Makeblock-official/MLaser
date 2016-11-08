@@ -16,7 +16,10 @@ UIManager::UIManager(QObject *parent) :
     hexform     = new AH_HexForm();
     mwindow     = new QCPTitle();
     firstform   = new LoadForm();
-    QSettings* psetting = new QSettings("mLaser.ini",QSettings::IniFormat);
+	QString lpath = QCoreApplication::applicationDirPath(); 
+	QString lname = "/mLaser.ini";
+    QString lallPath = QString("%1%2").arg(lpath).arg(lname);
+    QSettings* psetting = new QSettings(lallPath,QSettings::IniFormat);
     psetting->beginGroup("mode");
     b_first = psetting->value("showserial").toBool();
     psetting->endGroup();
@@ -53,9 +56,8 @@ UIManager::UIManager(QObject *parent) :
 
     connect(this,SIGNAL(Sig_ProcessBar(bool,quint64)),mwindow,SLOT(slotProcessBar(bool,quint64)));
     connect(this,SIGNAL(Sig_ConnectFaile(bool)),mwindow,SLOT(slotConnectFaile(bool)));
-    connect(this,SIGNAL(Sig_ConnectFirstFaile(bool)),firstform,SLOT(slotConnectFaile(bool)));
-
-    QSettings* tsetting = new QSettings("mLaser.ini",QSettings::IniFormat);
+    connect(this,SIGNAL(Sig_ConnectFirstFaile(bool)),firstform,SLOT(slotConnectFaile(bool)));;
+    QSettings* tsetting = new QSettings(lallPath,QSettings::IniFormat);
     tsetting->beginGroup("mode");
     QString language = tsetting->value("language").toString();
     tsetting->endGroup();
@@ -136,7 +138,10 @@ void UIManager::slotAA(QString cmd)
     else if(cmd == "show")
     {
         loadform->hide();
-        QSettings* psetting = new QSettings("mLaser.ini",QSettings::IniFormat);
+		QString lpath = QCoreApplication::applicationDirPath(); 
+	    QString lname = "/mLaser.ini";
+        QString lallPath = QString("%1%2").arg(lpath).arg(lname);
+        QSettings* psetting = new QSettings(lallPath,QSettings::IniFormat);
         psetting->beginGroup("mode");
         QString mode = psetting->value("mode").toString();
         psetting->endGroup();

@@ -67,7 +67,10 @@ void PGraphicsScene::removeAllItems()
 
 void PGraphicsScene::drawAxis()
 {
-    QSettings* apsetting = new QSettings("mLaser.ini",QSettings::IniFormat);
+    QString mpath = QCoreApplication::applicationDirPath();
+    QString mname = "/mLaser.ini";
+    QString mallPath = QString("%1%2").arg(mpath).arg(mname);
+    QSettings* apsetting = new QSettings(mallPath,QSettings::IniFormat);
     apsetting->beginGroup("mode");
     QString uint = apsetting->value("unit").toString();
     int unit = 1;

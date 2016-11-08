@@ -53,18 +53,32 @@ FvUpdateWindow::~FvUpdateWindow()
 
 bool FvUpdateWindow::UpdateWindowWithCurrentProposedUpdate()
 {
+    QString path = QCoreApplication::applicationDirPath();
+    QString name = "/mLaser.ini";
+    QString allPath = QString("%1%2").arg(path).arg(name);
+    QSettings* psetting = new QSettings(allPath,QSettings::IniFormat);
+    psetting->beginGroup("mode");
+    QString language = psetting->value("language").toString();
+    psetting->endGroup();
 	FvAvailableUpdate* proposedUpdate = FvUpdater::sharedUpdater()->GetProposedUpdate();
 	if (! proposedUpdate) {
 		return false;
 	}
-
 	QString downloadString = m_ui->wouldYouLikeToDownloadLabel->text()
-			.arg(QString::fromUtf8(FV_APP_NAME), proposedUpdate->GetEnclosureVersion(), QString::fromUtf8(FV_APP_VERSION));
+            .arg(QString::fromUtf8(FV_APP_NAME), proposedUpdate->GetEnclosureVersion(), FV_APP_VERSION);
 	m_ui->wouldYouLikeToDownloadLabel->setText(downloadString);
-
 	m_ui->releaseNotesWebView->stop();
-    const QUrl url("http://learn.makeblock.com/cn/laserbot/#download-mlaser");
-    m_ui->releaseNotesWebView->load(url);
+    if(language == "zh")
+    {
+        const QUrl url1("http://learn.makeblock.com/cn/software/#mlaser");
+        m_ui->releaseNotesWebView->load(url1);
+    }
+    else
+    {
+        const QUrl url2("http://learn.makeblock.com/en/software/#mlaser");
+        m_ui->releaseNotesWebView->load(url2);
+    }
+
 	return true;
 }
 

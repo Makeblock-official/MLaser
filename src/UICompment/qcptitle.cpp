@@ -78,8 +78,10 @@ QCPTitle::QCPTitle(QWidget *parent) :
     //菜单的menu
     ////////////
     QMenu*toolMenu = ui->btnMenu->getMenu();
-
-    QSettings* psetting = new QSettings("mLaser.ini",QSettings::IniFormat);
+    QString lpath = QCoreApplication::applicationDirPath(); 
+	QString lname = "/mLaser.ini";
+    QString lallPath = QString("%1%2").arg(lpath).arg(lname);
+    QSettings* psetting = new QSettings(lallPath,QSettings::IniFormat);
     psetting->beginGroup("mode");
     QString mode = psetting->value("mode").toString();
     QString uint = psetting->value("unit").toString();
@@ -360,7 +362,10 @@ void QCPTitle::setMode(QString m)
 //切换到专家模式
 void QCPTitle::slotExpert()
 {
-    QSettings* psetting = new QSettings("mLaser.ini",QSettings::IniFormat);
+    QString lpath = QCoreApplication::applicationDirPath(); 
+	QString lname = "/mLaser.ini";
+    QString lallPath = QString("%1%2").arg(lpath).arg(lname);
+    QSettings* psetting = new QSettings(lallPath,QSettings::IniFormat);
     psetting->beginGroup("mode");
     psetting->setValue("mode",QString("expert"));
     psetting->endGroup();
@@ -374,12 +379,17 @@ void QCPTitle::slotExpert()
 //切换到普通模式
 void QCPTitle::slotCoustom()
 {
-    QSettings* psetting = new QSettings("mLaser.ini",QSettings::IniFormat);
+    QString lpath = QCoreApplication::applicationDirPath(); 
+	QString lname = "/mLaser.ini";
+    QString lallPath = QString("%1%2").arg(lpath).arg(lname);
+    QSettings* psetting = new QSettings(lallPath,QSettings::IniFormat);
     psetting->beginGroup("mode");
     psetting->setValue("mode",QString("normal"));
     psetting->endGroup();
-
-    QSettings* confsetting = new QSettings("Config.ini",QSettings::IniFormat);
+    QString path = QCoreApplication::applicationDirPath(); 
+	QString name = "/Config.ini";
+    QString allPath = QString("%1%2").arg(path).arg(name);
+    QSettings* confsetting = new QSettings(allPath,QSettings::IniFormat);
     confsetting->beginGroup("laser");
     confsetting->setValue("carv_type",1);
     confsetting->endGroup();
@@ -393,7 +403,10 @@ void QCPTitle::slotCoustom()
 }
 void QCPTitle::slotZhAction()
 {
-    QSettings* psetting = new QSettings("mLaser.ini",QSettings::IniFormat);
+    QString lpath = QCoreApplication::applicationDirPath(); 
+	QString lname = "/mLaser.ini";
+    QString lallPath = QString("%1%2").arg(lpath).arg(lname);
+    QSettings* psetting = new QSettings(lallPath,QSettings::IniFormat);
     psetting->beginGroup("mode");
     psetting->setValue("language",QString("zh"));
     psetting->endGroup();
@@ -417,7 +430,10 @@ void QCPTitle::slotZhAction()
 }
 void QCPTitle::slotEnAction()
 {
-    QSettings* psetting = new QSettings("mLaser.ini",QSettings::IniFormat);
+    QString lpath = QCoreApplication::applicationDirPath(); 
+	QString lname = "/mLaser.ini";
+    QString lallPath = QString("%1%2").arg(lpath).arg(lname);
+    QSettings* psetting = new QSettings(lallPath,QSettings::IniFormat);
     psetting->beginGroup("mode");
     psetting->setValue("language",QString("en"));
     psetting->endGroup();
@@ -448,14 +464,20 @@ void QCPTitle::slotFirmSetting()
 }
 void QCPTitle::slotInchAction()
 {
-    QSettings* psetting = new QSettings("mLaser.ini",QSettings::IniFormat);
+    QString lpath = QCoreApplication::applicationDirPath(); 
+	QString lname = "/mLaser.ini";
+    QString lallPath = QString("%1%2").arg(lpath).arg(lname);
+    QSettings* psetting = new QSettings(lallPath,QSettings::IniFormat);
     psetting->beginGroup("mode");
     psetting->setValue("unit",QString("inch"));
     psetting->endGroup();
 }
 void QCPTitle::slotMMAction()
-{
-    QSettings* psetting = new QSettings("mLaser.ini",QSettings::IniFormat);
+{ 
+    QString lpath = QCoreApplication::applicationDirPath(); 
+	QString lname = "/mLaser.ini";
+    QString lallPath = QString("%1%2").arg(lpath).arg(lname);
+    QSettings* psetting = new QSettings(lallPath,QSettings::IniFormat);
     psetting->beginGroup("mode");
     psetting->setValue("unit",QString("mm"));
     psetting->endGroup();
@@ -463,7 +485,10 @@ void QCPTitle::slotMMAction()
 //是否在打开软件时显示串口连接界面
 void QCPTitle::slotSerialAction(bool t)
 {
-    QSettings* psetting = new QSettings("mLaser.ini",QSettings::IniFormat);
+    QString lpath = QCoreApplication::applicationDirPath(); 
+	QString lname = "/mLaser.ini";
+    QString lallPath = QString("%1%2").arg(lpath).arg(lname);
+    QSettings* psetting = new QSettings(lallPath,QSettings::IniFormat);
     psetting->beginGroup("mode");
     psetting->setValue("showserial",t);
     psetting->endGroup();
@@ -671,6 +696,7 @@ void QCPTitle::slotPreview()
 //处理添加文字的请求
 void QCPTitle::slotAddFont(QString cmd)
 {
+    QString path = QCoreApplication::applicationDirPath();
     QString file = cmd;
     int w = 800;
     int h = 800;
@@ -719,11 +745,11 @@ void QCPTitle::slotAddFont(QString cmd)
         else if(fi.depth()<=8)
         {
 
-            QFile::remove("24bit.png");
+            QFile::remove(path + "/24bit.png");
             QImage ne(file);
 
             QImage a = ne.convertToFormat(QImage::Format_ARGB32_Premultiplied);
-            a.save("24bit.png");
+            a.save(path + "/24bit.png");
             emit Sig_BD_Rect(QRect(0,0,w,h));
         }
 
@@ -759,7 +785,10 @@ void QCPTitle::on_btnOpen_clicked()
 {
     QFile::remove("show.gcode");
     on_btnDelet_clicked();
-    QSettings* psetting = new QSettings("Config.ini",QSettings::IniFormat);
+	QString path = QCoreApplication::applicationDirPath(); 
+	QString name = "/Config.ini";
+    QString allPath = QString("%1%2").arg(path).arg(name);
+    QSettings* psetting = new QSettings(allPath,QSettings::IniFormat);
     psetting->beginGroup("laser");
     QString dir = psetting->value("dir").toString();
     QString file = QFileDialog::getOpenFileName(this,tr("OpenFile"),dir,tr("All (*.png *.jpg *.jpeg *.svg *.dxf *.bmp *.mbl);;Image Files (*.png *.jpg *.jpeg *.svg *.dxf);;Project (*.mbl)"));
@@ -827,9 +856,13 @@ void QCPTitle::on_btnOpen_clicked()
         }
         else if(QFileInfo(file).suffix()=="mbl")
         {
-            removeDirWithContent("./ds");
-            zip->unzip(file,"./ds");
-            QSettings* pset = new QSettings("./ds/config.ini",QSettings::IniFormat);
+            QString dspath = QCoreApplication::applicationDirPath();
+            QString dsname = "/ds/config.ini";
+            QString dsallPath = QString("%1%2").arg(dspath).arg(dsname);
+            QString _dspath = dspath + "/ds";
+            removeDirWithContent(_dspath);
+            zip->unzip(file,_dspath);
+            QSettings* pset = new QSettings(dsallPath,QSettings::IniFormat);
             QStringList m = pset->childGroups();
             for(int p=0;p<m.count();p++)
             {
@@ -843,7 +876,7 @@ void QCPTitle::on_btnOpen_clicked()
                     int y = pset->value("y").toInt();
                     int width = pset->value("width").toInt();
                     int height = pset->value("height").toInt();
-                    QString filedir = "./ds/"+cFileName;
+                    QString filedir = _dspath + cFileName;
                     qDebug()<<"Get the file:"<<filedir;
                     if(bFont==0)
                     {
@@ -906,13 +939,13 @@ void QCPTitle::on_btnOpen_clicked()
             //            else if(fi.depth()<=8)
             {
 
-                QFile::remove("24bit.png");
+                QFile::remove(path + "/24bit.png");
                 QImage ne(file);
 
                 QImage a = ne.convertToFormat(QImage::Format_RGB32);
-                a.save("24bit.png");
+                a.save(path + "/24bit.png");
                 emit Sig_BD_Rect(QRect(0,0,w,h));
-                emit Sig_BD_Open("24bit.png");
+                emit Sig_BD_Open(path + "/24bit.png");
             }
             bPic = true;
         }
@@ -1003,12 +1036,16 @@ void QCPTitle::on_btnQrcode_clicked()
 void QCPTitle::on_btnSave_clicked()
 {
     //创建临时目录和配置文件
+    QString propath = QCoreApplication::applicationDirPath();
+    QString proname = "/project/config.ini";
+    QString proallPath = QString("%1%2").arg(propath).arg(proname);
+    QString _propath = propath + "/project";
     QDir *temp = new QDir();
-    bool exist = temp->exists("./project");
-    removeDirWithContent(("./project"));
+    bool exist = temp->exists(_propath);
+    removeDirWithContent((_propath));
     //    QMessageBox::warning(this,tr("创建文件夹"),tr("文件夹已经存在！"));
-    bool ok = temp->mkdir("./project");
-    QFile config("./project/config.ini");
+    bool ok = temp->mkdir(_propath);
+    QFile config(proallPath);
     config.open(QIODevice::ReadWrite);
     config.close();
 
@@ -1021,7 +1058,10 @@ void QCPTitle::on_btnSave_clicked()
     {
         //获取材料相关的参数设置
         QString material = expert->getMaterialType();
-        QSettings * pset = new QSettings("./material.ini",QSettings::IniFormat);
+		QString mpath = QCoreApplication::applicationDirPath(); 
+	    QString mname = "/material.ini";
+        QString mallPath = QString("%1%2").arg(mpath).arg(mname);
+        QSettings * pset = new QSettings(mallPath,QSettings::IniFormat);
         pset->beginGroup(material);
         QString times = pset->value("times").toString();
         QString laserPowerHigh=pset->value("laserPowerHigh").toString();
@@ -1029,7 +1069,7 @@ void QCPTitle::on_btnSave_clicked()
         QString laserSpeed=pset->value("laserSpeed").toString();
         QString laserTravelSpeed = pset->value("laserTravelSpeed").toString();
         pset->endGroup();
-        QSettings * config = new QSettings("./project/config.ini",QSettings::IniFormat);
+        QSettings * config = new QSettings(proallPath,QSettings::IniFormat);
         config->beginGroup("laser");
         config->setValue("type",0);
         config->setValue("times",times);
@@ -1043,7 +1083,10 @@ void QCPTitle::on_btnSave_clicked()
     else if(type==1)    //雕刻
     {
         //获取雕刻相关的参数设置
-        QSettings * pset = new QSettings("./Config.ini",QSettings::IniFormat);
+        QString path = QCoreApplication::applicationDirPath(); 
+	    QString name = "/Config.ini";
+        QString allPath = QString("%1%2").arg(path).arg(name);
+        QSettings * pset = new QSettings(allPath,QSettings::IniFormat);
         pset->beginGroup("laser");
         QString carv_type=pset->value("carv_type").toString();
         QString p_power_time = pset->value("p_power_time").toString();
@@ -1052,7 +1095,7 @@ void QCPTitle::on_btnSave_clicked()
         QString r_per_pixcel = pset->value("r_per_pixcel").toString();
         pset->endGroup();
 
-        QSettings * config = new QSettings("./project/config.ini",QSettings::IniFormat);
+        QSettings * config = new QSettings(proallPath,QSettings::IniFormat);
         config->beginGroup("laser");
         config->setValue("type",1);
         config->setValue("carv_type",carv_type);
@@ -1063,7 +1106,7 @@ void QCPTitle::on_btnSave_clicked()
         config->endGroup();
     }
     QString storeName = QFileDialog::getSaveFileName(this,tr("保存工程"),".","Project (*.mbl)");
-    zip->zip("./project",storeName);
+    zip->zip(_propath,storeName);
 
 }
 

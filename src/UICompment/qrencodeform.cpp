@@ -60,9 +60,10 @@ void QrencodeForm::languageUpdate()
 }
 void QrencodeForm::rencodeShow()
 {
+    QString path = QCoreApplication::applicationDirPath();
     qDebug()<<"adasdaqweqeqweqw";
     QImage *img = new QImage;
-    if(! ( img->load("qr.png") ) ) //加载图像
+    if(! ( img->load(path + "/qr.png") ) ) //加载图像
     {
       delete img;
       return;

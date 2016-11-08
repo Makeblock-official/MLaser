@@ -297,13 +297,17 @@ void FrontEnd::slotCombineFile(QStringList p)
         QMessageBox::information(NULL,"Notice","Can not show!");
     }
     QTextStream out(&file);
-
-    QSettings* psetting = new QSettings("Config.ini",QSettings::IniFormat);
+    QString cpath = QCoreApplication::applicationDirPath();
+    QString cname = "/Config.ini";
+    QString callPath = QString("%1%2").arg(cpath).arg(cname);
+    QSettings* psetting = new QSettings(callPath,QSettings::IniFormat);
     psetting->beginGroup("laser");
     QString type = psetting->value("material").toString();
     psetting->endGroup();
-
-    QSettings* tpsetting = new QSettings("material.ini",QSettings::IniFormat);
+    QString mpath = QCoreApplication::applicationDirPath();
+    QString mname = "/material.ini";
+    QString mallPath = QString("%1%2").arg(mpath).arg(mname);
+    QSettings* tpsetting = new QSettings(mallPath,QSettings::IniFormat);
     tpsetting->beginGroup(type);
     times =  tpsetting->value("times").toInt();
     tpsetting->endGroup();

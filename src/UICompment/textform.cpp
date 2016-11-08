@@ -27,7 +27,10 @@ TextForm::TextForm(QWidget *parent) :
     //font setting
     blod = false;
     bItly = false;
-    QSettings* psetting = new QSettings("mLaser.ini",QSettings::IniFormat);
+	QString lpath = QCoreApplication::applicationDirPath(); 
+	QString lname = "/mLaser.ini";
+    QString lallPath = QString("%1%2").arg(lpath).arg(lname);
+    QSettings* psetting = new QSettings(lallPath,QSettings::IniFormat);
     psetting->beginGroup("font");
     int pfont = psetting->value("font").toInt();
     int size = psetting->value("font_size").toInt();
@@ -48,6 +51,7 @@ TextForm::~TextForm()
 
 void TextForm::on_btnOk_clicked()
 {
+    QString path = QCoreApplication::applicationDirPath();
     QString contents = ui->plainTextEdit->toPlainText();
     QStringList pi = contents.split("\n");
     QFontMetricsF fm(fonts);
@@ -69,9 +73,9 @@ void TextForm::on_btnOk_clicked()
 
     painter.drawText(f,contents);
     painter.end();
-    QFile::remove("font1.jpg");
-    text_pic.save("font1.jpg","JPEG",100);
-    emit Sig_AddFont("font1.jpg");
+    QFile::remove(path + "/font1.jpg");
+    text_pic.save(path + "/font1.jpg","JPEG",100);
+    emit Sig_AddFont(path + "/font1.jpg");
     this->close();
 }
 
@@ -105,7 +109,10 @@ void TextForm::on_comboBoxFontSize_activated(const QString &arg1)
 }
 void TextForm::updateConfig()
 {
-    QSettings* psetting = new QSettings("mLaser.ini",QSettings::IniFormat);
+    QString lpath = QCoreApplication::applicationDirPath(); 
+	QString lname = "/mLaser.ini";
+    QString lallPath = QString("%1%2").arg(lpath).arg(lname);
+    QSettings* psetting = new QSettings(lallPath,QSettings::IniFormat);
     psetting->beginGroup("font");
     int font = ui->fontComboBox->currentIndex();
     int font_size = ui->comboBoxFontSize->currentIndex();

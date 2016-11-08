@@ -16,19 +16,19 @@ int main(int argc, char *argv[])
     UIManager *w = new UIManager();
     CPSerialPort* printport = new CPSerialPort();
     FrontEnd* frontdoor = new FrontEnd(NULL,printport);
-
 //    QApplication::setApplicationName("mLaser");
 //    QApplication::setApplicationVersion("2.0");
     QApplication::setOrganizationName("pypt");
     QApplication::setOrganizationDomain("pypt.lt");
 
     // Set feed URL before doing anything else
-    QSettings* pset = new QSettings("./Config.ini",QSettings::IniFormat);
+    QString path = QCoreApplication::applicationDirPath(); 
+	QString name = "/Config.ini";
+    QString allPath = QString("%1%2").arg(path).arg(name);
+    QSettings* pset = new QSettings(allPath,QSettings::IniFormat);
     pset->beginGroup("update");
     QString url = pset->value("url").toString();
     pset->endGroup();
-
-
     FvUpdater::sharedUpdater()->SetFeedURL(url);
     FvUpdater::sharedUpdater()->CheckForUpdatesSilent();
 

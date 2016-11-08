@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QSettings>
 #include "bitmap2gcode.h"
+#include "QCoreApplication"
 
 const int Bs = 255;
 const int Ns = 0;
@@ -65,7 +66,10 @@ void Bitmap2Gcode::ExportGcode(QPointF f,QPointF scopes,QString savepath)
 {
     pos = f;
     scope = scopes;
-    QSettings* confsetting = new QSettings("Config.ini",QSettings::IniFormat);
+    QString mpath = QCoreApplication::applicationDirPath();
+    QString mname = "/Config.ini";
+    QString mallPath = QString("%1%2").arg(mpath).arg(mname);
+    QSettings* confsetting = new QSettings(mallPath,QSettings::IniFormat);
     confsetting->beginGroup("laser");
     //    confsetting->setValue("carv_type",index);
     int c_type = confsetting->value("carv_type").toInt();
@@ -80,6 +84,7 @@ void Bitmap2Gcode::ExportGcode(QPointF f,QPointF scopes,QString savepath)
 //make sure the picture is binary picture
 QImage Bitmap2Gcode::GrayScalePicture(QImage src,int grayscale)
 {
+    QString path = QCoreApplication::applicationDirPath(); 
     QImage tempImg;
     tempImg = src;
     QImage pos_1 = tempImg;                         //拷贝
@@ -134,13 +139,14 @@ QImage Bitmap2Gcode::GrayScalePicture(QImage src,int grayscale)
     {
         show = tempImg;
     }
-    show.save("dear.png","PNG",100);
+    show.save(path + "/dear.png","PNG",100);
     return show;
 }
 
 //change image to halftone
 QImage Bitmap2Gcode::Image2Halftone(QImage src)
 {
+    QString path = QCoreApplication::applicationDirPath(); 
     QImage image = src;
 
     int media = 0;
@@ -204,7 +210,7 @@ QImage Bitmap2Gcode::Image2Halftone(QImage src)
 
 
     }
-    image.save("hi.png","PNG",100);
+    image.save(path + "/hi.png","PNG",100);
     return image;
 }
 
@@ -463,7 +469,10 @@ void Bitmap2Gcode::ExportGrayPix(QImage src,QString savefile)
     //    QImage temp_d = Image2Halftone(src);
     QImage image = src.scaled(scope.x(),scope.y(),Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
 
-    QSettings* apsetting = new QSettings("mLaser.ini",QSettings::IniFormat);
+    QString mpath = QCoreApplication::applicationDirPath();
+    QString mname = "/mLaser.ini";
+    QString mallPath = QString("%1%2").arg(mpath).arg(mname);
+    QSettings* apsetting = new QSettings(mallPath,QSettings::IniFormat);
     apsetting->beginGroup("mode");
     QString uint = apsetting->value("unit").toString();
     double scale=0.1;
@@ -483,8 +492,10 @@ void Bitmap2Gcode::ExportGrayPix(QImage src,QString savefile)
 
     out<<"G0 X1 Y1 F6000 \n";
     out<<"M4 P0 \n";
-
-    QSettings* psetting = new QSettings("Config.ini",QSettings::IniFormat);
+    QString cpath = QCoreApplication::applicationDirPath();
+    QString cname = "/Config.ini";
+    QString callPath = QString("%1%2").arg(cpath).arg(cname);
+    QSettings* psetting = new QSettings(callPath,QSettings::IniFormat);
     psetting->beginGroup("laser");
     int time = psetting->value("p_power_time").toInt();
     int r_pmp  = psetting->value("r_per_pixcel").toInt();

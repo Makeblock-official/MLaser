@@ -1,6 +1,7 @@
 #include <QDebug>
 #include "pixmapitem.h"
 #include "QSettings"
+#include "QCoreApplication"
 
 PixmapItem::PixmapItem(QGraphicsItem *parent)
     :QGraphicsPixmapItem(parent)
@@ -15,7 +16,10 @@ PixmapItem::PixmapItem(QGraphicsItem *parent)
     direction=0;
     m_scale = 1.0;
     rescale = 1.0;
-    QSettings *config = new QSettings("Config.ini",QSettings::IniFormat);
+    QString mpath = QCoreApplication::applicationDirPath();
+    QString mname = "/Config.ini";
+    QString mallPath = QString("%1%2").arg(mpath).arg(mname);
+    QSettings *config = new QSettings(mallPath,QSettings::IniFormat);
     config->beginGroup("laser");
     config->setValue("scale",1);
     config->endGroup();
@@ -170,7 +174,10 @@ void PixmapItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
         qDebug()<<"mouse release checked!";
         QPixmap nf = this->pixmap().scaled(m_rect.width(),m_rect.height(),Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
         this->setPixmap(nf);
-        QSettings *config = new QSettings("Config.ini",QSettings::IniFormat);
+        QString mpath = QCoreApplication::applicationDirPath();
+        QString mname = "/Config.ini";
+        QString mallPath = QString("%1%2").arg(mpath).arg(mname);
+        QSettings *config = new QSettings(mallPath,QSettings::IniFormat);
         config->beginGroup("laser");
         qDebug()<<"now"<<m_rect.width();
         float _mscale = m_rect.width()/rescale;

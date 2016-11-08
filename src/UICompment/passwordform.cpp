@@ -32,7 +32,10 @@ PasswordForm::~PasswordForm()
 
 void PasswordForm::on_btnChange_clicked()
 {
-    QSettings* psetting = new QSettings("Config.ini",QSettings::IniFormat);
+    QString path = QCoreApplication::applicationDirPath(); 
+	QString name = "/Config.ini";
+    QString allPath = QString("%1%2").arg(path).arg(name);
+    QSettings* psetting = new QSettings(allPath,QSettings::IniFormat);
     psetting->beginGroup("laser");
     QString pass = psetting->value("pass").toString();
     psetting->endGroup();

@@ -148,15 +148,19 @@ void GModel::filterGcode(QString filePath,QPointF pose,QPointF scope,QString out
     //rewrite the gcode ,and save the gcode file
     in.seek(0);
     bool write_speed = false;
-
-    QSettings* psetting = new QSettings("Config.ini",QSettings::IniFormat);
+    QString cpath = QCoreApplication::applicationDirPath();
+    QString cname = "/Config.ini";
+    QString callPath = QString("%1%2").arg(cpath).arg(cname);
+    QSettings* psetting = new QSettings(callPath,QSettings::IniFormat);
     psetting->beginGroup("laser");
     QString type = psetting->value("material").toString();
     float mscale = psetting->value("scale").toFloat();
     boundvalue = boundvalue * mscale;
     psetting->endGroup();
-
-    QSettings* tpsetting = new QSettings("material.ini",QSettings::IniFormat);
+    QString mpath = QCoreApplication::applicationDirPath();
+    QString mname = "/material.ini";
+    QString mallPath = QString("%1%2").arg(mpath).arg(mname);
+    QSettings* tpsetting = new QSettings(mallPath,QSettings::IniFormat);
     tpsetting->beginGroup(type);
 
     int powerHigh = tpsetting->value("laserPowerHigh").toInt();
@@ -171,8 +175,10 @@ void GModel::filterGcode(QString filePath,QPointF pose,QPointF scope,QString out
     QString powerL = "M4 P"+QString::number(powerLow)+"\n";
     QString speedPrint = "G1 F"+QString::number(laserspeed)+"\n";
     qDebug()<<"Mark--type:"<<type<<"HoghPower:"<<powerH<<"LowPower:"<<powerLow;
-
-    QSettings* apsetting = new QSettings("mLaser.ini",QSettings::IniFormat);
+    QString lpath = QCoreApplication::applicationDirPath();
+    QString lname = "/mLaser.ini";
+    QString lallPath = QString("%1%2").arg(lpath).arg(lname);
+    QSettings* apsetting = new QSettings(lallPath,QSettings::IniFormat);
     apsetting->beginGroup("mode");
     QString uint = apsetting->value("unit").toString();
     QPointF pos = pose/10.0;

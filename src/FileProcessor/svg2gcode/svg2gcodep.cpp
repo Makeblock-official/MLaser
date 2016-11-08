@@ -1,6 +1,7 @@
 #include <QSettings>
 #include <QDebug>
 #include "svg2gcodep.h"
+#include "QCoreApplication"
 
 Svg2GcodeP::Svg2GcodeP(QWidget *parent) :
     QWidget(parent)
@@ -43,12 +44,17 @@ void Svg2GcodeP::SetgGcodeWidth(int w)
 //the interface of svg to gcode.
 void Svg2GcodeP::SvgToGcode(QString inputfile,QString outfile)
 {
-    QSettings* psetting = new QSettings("Config.ini",QSettings::IniFormat);
+	QString path = QCoreApplication::applicationDirPath();
+    QString name_config = "/Config.ini";
+	QString name_meterial = "/material.ini";
+	QString config_allPath = QString("%1%2").arg(path).arg(name_config);
+	QString meterial_allPath = QString("%1%2").arg(path).arg(name_meterial);
+    QSettings* psetting = new QSettings(config_allPath,QSettings::IniFormat);
     psetting->beginGroup("laser");
     QString type = psetting->value("material").toString();
     psetting->endGroup();
 
-    QSettings* tpsetting = new QSettings("material.ini",QSettings::IniFormat);
+    QSettings* tpsetting = new QSettings(meterial_allPath,QSettings::IniFormat);
     tpsetting->beginGroup(type);
     int laserTravelSpeed =  tpsetting->value("laserTravelSpeed").toInt();
     int laserSpeed =  tpsetting->value("laserSpeed").toInt();

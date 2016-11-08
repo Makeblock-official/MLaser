@@ -23,7 +23,10 @@ LoadForm::LoadForm(QWidget *parent) :
     pLayout->setSpacing(0);
     pLayout->setContentsMargins(0, 0, 0, 0);
     setLayout(pLayout);
-    QSettings* psetting = new QSettings("mLaser.ini",QSettings::IniFormat);
+	QString lpath = QCoreApplication::applicationDirPath(); 
+	QString lname = "/mLaser.ini";
+    QString lallPath = QString("%1%2").arg(lpath).arg(lname);
+    QSettings* psetting = new QSettings(lallPath,QSettings::IniFormat);
     psetting->beginGroup("mode");
     QString serial = psetting->value("serial").toString();
     bool b_first = psetting->value("showserial").toBool();
@@ -77,7 +80,10 @@ void LoadForm::on_btnConnect_clicked()
 {
     //连接串口
     QString com = ui->comboBoxSerial->currentText();
-    QSettings* psetting = new QSettings("mLaser.ini",QSettings::IniFormat);
+	QString lpath = QCoreApplication::applicationDirPath(); 
+	QString lname = "/mLaser.ini";
+    QString lallPath = QString("%1%2").arg(lpath).arg(lname);
+    QSettings* psetting = new QSettings(lallPath,QSettings::IniFormat);
     psetting->beginGroup("mode");
     psetting->setValue("serial",com);
     psetting->endGroup();
@@ -133,7 +139,10 @@ void LoadForm::on_btnNext_clicked()
 //开启串口提示对话框
 void LoadForm::on_checkBox_toggled(bool checked)
 {
-    QSettings* psetting = new QSettings("mLaser.ini",QSettings::IniFormat);
+    QString lpath = QCoreApplication::applicationDirPath(); 
+	QString lname = "/mLaser.ini";
+    QString lallPath = QString("%1%2").arg(lpath).arg(lname);
+    QSettings* psetting = new QSettings(lallPath,QSettings::IniFormat);
     psetting->beginGroup("mode");
     psetting->setValue("showserial",checked);
     psetting->endGroup();

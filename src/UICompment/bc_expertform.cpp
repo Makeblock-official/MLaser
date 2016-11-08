@@ -10,13 +10,18 @@ BC_ExpertForm::BC_ExpertForm(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->frameCarving->hide();
-
-    QSettings* confsetting = new QSettings("Config.ini",QSettings::IniFormat);
+    QString path = QCoreApplication::applicationDirPath();
+	QString name = "/Config.ini";
+    QString allPath = QString("%1%2").arg(path).arg(name);
+    QSettings* confsetting = new QSettings(allPath,QSettings::IniFormat);
     confsetting->beginGroup("laser");
     int c_index = confsetting->value("m_value").toInt();
     int c_type = confsetting->value("carv_type").toInt();
     confsetting->endGroup();
-    QSettings* psetting = new QSettings("material.ini",QSettings::IniFormat);
+	QString mpath = QCoreApplication::applicationDirPath(); 
+	QString mname = "/material.ini";
+    QString mallPath = QString("%1%2").arg(mpath).arg(mname);
+    QSettings* psetting = new QSettings(mallPath,QSettings::IniFormat);
     QStringList p = psetting->childGroups();
     ui->comboMaterial->addItems(p);
     ui->comboMaterial->setCurrentIndex(c_index);
@@ -155,7 +160,10 @@ void BC_ExpertForm::on_btnSetHome_clicked()
 void BC_ExpertForm::on_comboMaterial_currentIndexChanged(const QString &arg1)
 {
     //每种材料对应了config中打印的参数
-    QSettings* psetting = new QSettings("material.ini",QSettings::IniFormat);
+    QString mpath = QCoreApplication::applicationDirPath(); 
+	QString mname = "/material.ini";
+    QString mallPath = QString("%1%2").arg(mpath).arg(mname);
+    QSettings* psetting = new QSettings(mallPath,QSettings::IniFormat);
     QString material;
     switch(ui->comboMaterial->currentIndex())
     {
@@ -178,7 +186,10 @@ void BC_ExpertForm::on_comboMaterial_currentIndexChanged(const QString &arg1)
     ui->lineEditSpaceSpeed->setText(travlspeed);
     ui->lineEditPower->setText(power);
     ui->lineEditRepeat->setText(times);
-    QSettings* confsetting = new QSettings("Config.ini",QSettings::IniFormat);
+    QString path = QCoreApplication::applicationDirPath();
+	QString name = "/Config.ini";
+    QString allPath = QString("%1%2").arg(path).arg(name);
+    QSettings* confsetting = new QSettings(allPath,QSettings::IniFormat);
     confsetting->beginGroup("laser");
     confsetting->setValue("material",material);
     confsetting->setValue("m_value",ui->comboMaterial->currentIndex());
@@ -187,7 +198,11 @@ void BC_ExpertForm::on_comboMaterial_currentIndexChanged(const QString &arg1)
 //编辑打印次数
 void BC_ExpertForm::on_lineEditRepeat_returnPressed()
 {
-    QSettings* psetting = new QSettings("material.ini",QSettings::IniFormat);
+	QString mpath = QCoreApplication::applicationDirPath(); 
+	QString mname = "/material.ini";
+    QString mallPath = QString("%1%2").arg(mpath).arg(mname);
+
+    QSettings* psetting = new QSettings(mallPath,QSettings::IniFormat);
     QString m ;//= ui->comboMaterial->currentText();
     switch(ui->comboMaterial->currentIndex())
     {
@@ -209,7 +224,10 @@ void BC_ExpertForm::on_lineEditRepeat_returnPressed()
 //设置打印光强
 void BC_ExpertForm::on_lineEditPower_returnPressed()
 {
-    QSettings* psetting = new QSettings("material.ini",QSettings::IniFormat);
+    QString mpath = QCoreApplication::applicationDirPath(); 
+	QString mname = "/material.ini";
+    QString mallPath = QString("%1%2").arg(mpath).arg(mname);
+    QSettings* psetting = new QSettings(mallPath,QSettings::IniFormat);
     QString m ;//= ui->comboMaterial->currentText();
     switch(ui->comboMaterial->currentIndex())
     {
@@ -233,7 +251,10 @@ void BC_ExpertForm::on_lineEditPower_returnPressed()
 //设置打印速度
 void BC_ExpertForm::on_lineEditPixSpeed_returnPressed()
 {
-    QSettings* psetting = new QSettings("material.ini",QSettings::IniFormat);
+    QString mpath = QCoreApplication::applicationDirPath(); 
+	QString mname = "/material.ini";
+    QString mallPath = QString("%1%2").arg(mpath).arg(mname);
+    QSettings* psetting = new QSettings(mallPath,QSettings::IniFormat);
     QString m ;//= ui->comboMaterial->currentText();
     switch(ui->comboMaterial->currentIndex())
     {
@@ -254,7 +275,10 @@ void BC_ExpertForm::on_lineEditPixSpeed_returnPressed()
 //空走速度
 void BC_ExpertForm::on_lineEditSpaceSpeed_returnPressed()
 {
-    QSettings* psetting = new QSettings("material.ini",QSettings::IniFormat);
+    QString mpath = QCoreApplication::applicationDirPath(); 
+	QString mname = "/material.ini";
+    QString mallPath = QString("%1%2").arg(mpath).arg(mname);
+    QSettings* psetting = new QSettings(mallPath,QSettings::IniFormat);
     QString m ;//= ui->comboMaterial->currentText();
     switch(ui->comboMaterial->currentIndex())
     {
@@ -277,7 +301,10 @@ void BC_ExpertForm::on_lineEditSpaceSpeed_returnPressed()
 
 void BC_ExpertForm::on_comboMaterial_currentIndexChanged(int index)
 {
-    QSettings* confsetting = new QSettings("Config.ini",QSettings::IniFormat);
+    QString path = QCoreApplication::applicationDirPath();
+	QString name = "/Config.ini";
+    QString allPath = QString("%1%2").arg(path).arg(name);
+    QSettings* confsetting = new QSettings(allPath,QSettings::IniFormat);
     confsetting->beginGroup("laser");
     confsetting->setValue("m_value",index);
     confsetting->endGroup();
@@ -285,7 +312,10 @@ void BC_ExpertForm::on_comboMaterial_currentIndexChanged(int index)
 void BC_ExpertForm::languageUpdate()
 {
     ui->retranslateUi(this);
-    QSettings* confsetting = new QSettings("Config.ini",QSettings::IniFormat);
+    QString path = QCoreApplication::applicationDirPath();
+	QString name = "/Config.ini";
+    QString allPath = QString("%1%2").arg(path).arg(name);
+    QSettings* confsetting = new QSettings(allPath,QSettings::IniFormat);
     confsetting->beginGroup("laser");
     int c_index = confsetting->value("m_value").toInt();
     QString p_speed = confsetting->value("p_move_speed").toString();
@@ -304,7 +334,10 @@ void BC_ExpertForm::languageUpdate()
 }
 void BC_ExpertForm::slotUpdateParmeter()
 {
-    QSettings *pset = new QSettings("./ds/config.ini",QSettings::IniFormat);
+    QString dspath = QCoreApplication::applicationDirPath();
+    QString dsname = "/ds/config.ini";
+    QString dsallPath = QString("%1%2").arg(dspath).arg(dsname);
+    QSettings *pset = new QSettings(dsallPath,QSettings::IniFormat);
     pset->beginGroup("laser");
     int type = pset->value("type").toInt();
     pset->endGroup();
@@ -312,7 +345,7 @@ void BC_ExpertForm::slotUpdateParmeter()
     {
         //获取材料相关的参数设置
 
-        QSettings * pset = new QSettings("./ds/config.ini",QSettings::IniFormat);
+        QSettings * pset = new QSettings(dsallPath,QSettings::IniFormat);
         pset->beginGroup("laser");
         QString times = pset->value("times").toString();
         QString laserPowerHigh=pset->value("laserPowerHigh").toString();
@@ -320,8 +353,10 @@ void BC_ExpertForm::slotUpdateParmeter()
         QString laserSpeed=pset->value("laserSpeed").toString();
         QString laserTravelSpeed = pset->value("laserTravelSpeed").toString();
         pset->endGroup();
-
-        QSettings * config = new QSettings("./Config.ini",QSettings::IniFormat);
+        QString path1 = QCoreApplication::applicationDirPath();
+        QString name1 = "/Config.ini";
+        QString allPath1 = QString("%1%2").arg(path1).arg(name1);
+        QSettings * config = new QSettings(allPath1,QSettings::IniFormat);
         config->beginGroup("laser");
         config->setValue("times",times);
         config->setValue("laserPowerHigh",laserPowerHigh);
@@ -340,7 +375,7 @@ void BC_ExpertForm::slotUpdateParmeter()
     else if(type==1)    //雕刻
     {
         //获取雕刻相关的参数设置
-        QSettings * pset = new QSettings("./ds/config.ini",QSettings::IniFormat);
+        QSettings * pset = new QSettings(dsallPath,QSettings::IniFormat);
         pset->beginGroup("laser");
         QString carv_type=pset->value("carv_type").toString();
         QString p_power_time = pset->value("p_power_time").toString();
@@ -349,7 +384,10 @@ void BC_ExpertForm::slotUpdateParmeter()
         QString r_per_pixcel = pset->value("r_per_pixcel").toString();
         pset->endGroup();
 
-        QSettings * config = new QSettings("./Config.ini",QSettings::IniFormat);
+        QString path1 = QCoreApplication::applicationDirPath();
+        QString name1 = "/Config.ini";
+        QString allPath1 = QString("%1%2").arg(path1).arg(name1);
+        QSettings * config = new QSettings(allPath1,QSettings::IniFormat);
         config->beginGroup("laser");
         config->setValue("carv_type",carv_type);
         config->setValue("p_power_time",p_power_time);
@@ -370,7 +408,10 @@ void BC_ExpertForm::slotUpdateParmeter()
 //灰度雕刻，修改移动速度
 void BC_ExpertForm::on_lineEditCarvSpeed_returnPressed()
 {
-    QSettings* confsetting = new QSettings("Config.ini",QSettings::IniFormat);
+    QString path = QCoreApplication::applicationDirPath(); 
+	QString name = "/Config.ini";
+    QString allPath = QString("%1%2").arg(path).arg(name);
+    QSettings* confsetting = new QSettings(allPath,QSettings::IniFormat);
     confsetting->beginGroup("laser");
     confsetting->setValue("p_move_speed",ui->lineEditCarvSpeed->text());
     confsetting->endGroup();
@@ -379,7 +420,10 @@ void BC_ExpertForm::on_lineEditCarvSpeed_returnPressed()
 //灰度雕刻，修改激光强度---power
 void BC_ExpertForm::on_lineEditCarvPiwer_returnPressed()
 {
-    QSettings* confsetting = new QSettings("Config.ini",QSettings::IniFormat);
+    QString path = QCoreApplication::applicationDirPath(); 
+	QString name = "/Config.ini";
+    QString allPath = QString("%1%2").arg(path).arg(name);
+    QSettings* confsetting = new QSettings(allPath,QSettings::IniFormat);
     confsetting->beginGroup("laser");
     confsetting->setValue("p_power",ui->lineEditCarvPiwer->text());
     confsetting->endGroup();
@@ -388,7 +432,10 @@ void BC_ExpertForm::on_lineEditCarvPiwer_returnPressed()
 //灰度雕刻，修改烧刻时间
 void BC_ExpertForm::on_lineEditCarvTime_returnPressed()
 {
-    QSettings* confsetting = new QSettings("Config.ini",QSettings::IniFormat);
+    QString path = QCoreApplication::applicationDirPath(); 
+	QString name = "/Config.ini";
+    QString allPath = QString("%1%2").arg(path).arg(name);
+    QSettings* confsetting = new QSettings(allPath,QSettings::IniFormat);
     confsetting->beginGroup("laser");
     confsetting->setValue("p_power_time",ui->lineEditCarvTime->text());
     confsetting->endGroup();
@@ -397,7 +444,10 @@ void BC_ExpertForm::on_lineEditCarvTime_returnPressed()
 //灰度雕刻，修改像素间隔
 void BC_ExpertForm::on_lineEditCarvPixcel_returnPressed()
 {
-    QSettings* confsetting = new QSettings("Config.ini",QSettings::IniFormat);
+    QString path = QCoreApplication::applicationDirPath(); 
+	QString name = "/Config.ini";
+    QString allPath = QString("%1%2").arg(path).arg(name);
+    QSettings* confsetting = new QSettings(allPath,QSettings::IniFormat);
     confsetting->beginGroup("laser");
     confsetting->setValue("r_per_pixcel",ui->lineEditCarvPixcel->text());
     confsetting->setValue("v_per_pixcel",ui->lineEditCarvPixcel->text());
@@ -420,7 +470,10 @@ void BC_ExpertForm::on_btnPointLaser_released()
 //修改处理图片的算法
 void BC_ExpertForm::on_comboBoxPicType_currentIndexChanged(int index)
 {
-    QSettings* confsetting = new QSettings("Config.ini",QSettings::IniFormat);
+    QString path = QCoreApplication::applicationDirPath(); 
+	QString name = "/Config.ini";
+    QString allPath = QString("%1%2").arg(path).arg(name);
+    QSettings* confsetting = new QSettings(allPath,QSettings::IniFormat);
     confsetting->beginGroup("laser");
     confsetting->setValue("carv_type",index);
     confsetting->endGroup();
@@ -447,7 +500,10 @@ void BC_ExpertForm::on_btnOK1_clicked()
     QString spaceSpeed = ui->lineEditSpaceSpeed->text();
     QString power = ui->lineEditPower->text();
     QString material = ui->comboMaterial->currentText();
-    QSettings * pset = new QSettings("material.ini",QSettings::IniFormat);
+	QString mpath = QCoreApplication::applicationDirPath(); 
+	QString mname = "/material.ini";
+    QString mallPath = QString("%1%2").arg(mpath).arg(mname);
+    QSettings * pset = new QSettings(mallPath,QSettings::IniFormat);
     pset->beginGroup(material);
     pset->setValue("times",times);
     pset->setValue("laserPowerHigh",power);
@@ -462,7 +518,10 @@ void BC_ExpertForm::on_btnOK2_clicked()
     QString pixcel =ui->lineEditCarvPixcel->text();
     QString speed =ui->lineEditCarvSpeed->text();
     QString time =ui->lineEditCarvTime->text();
-    QSettings * pset = new QSettings("Config.ini",QSettings::IniFormat);
+	QString path = QCoreApplication::applicationDirPath(); 
+	QString name = "/Config.ini";
+    QString allPath = QString("%1%2").arg(path).arg(name);
+    QSettings * pset = new QSettings(allPath,QSettings::IniFormat);
     pset->beginGroup("laser");
     pset->setValue("p_power",power);
     pset->setValue("r_per_pixcel",pixcel);

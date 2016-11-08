@@ -35,8 +35,10 @@ HexLoadForm::HexLoadForm(QWidget *parent) :
     ui->portCombo->setStyleSheet("QComboBox{border:1px solid gray;}"
                                  "QComboBox QAbstractItemView::item{height:25px;}");
     ui->portCombo->setView(new QListView());
-
-    QSettings* psetting = new QSettings("mLaser.ini",QSettings::IniFormat);
+	QString lpath = QCoreApplication::applicationDirPath(); 
+	QString lname = "/mLaser.ini";
+    QString lallPath = QString("%1%2").arg(lpath).arg(lname);
+    QSettings* psetting = new QSettings(lallPath,QSettings::IniFormat);
     psetting->beginGroup("mode");
     QString serial = psetting->value("serial").toString();
     psetting->endGroup();
@@ -82,7 +84,7 @@ void HexLoadForm::on_btnHex_clicked()
 //烧录固件
 void HexLoadForm::on_btnLoad_clicked()
 {
-    file = "./mLaser.hex";
+    file = "mLaser.hex";
     QString a = ui->portCombo->currentText();
     emit Sig_Process(file,a);
     ui->label->show();

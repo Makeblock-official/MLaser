@@ -206,6 +206,7 @@ void BD_ViewForm::slotDrag()
 
 void BD_ViewForm::slotRoat90()
 {
+    QString path = QCoreApplication::applicationDirPath();
     if(fFileTag==BITMAPTYPE)
     {
         //        QFile::remove("r_90.png");
@@ -218,19 +219,20 @@ void BD_ViewForm::slotRoat90()
         matrix.rotate(90);
         QImage f(current_file);
         *imgRatate = f.transformed(matrix);
-        imgRatate->save("r_90.png");
+        imgRatate->save(path + "/r_90.png");
 
         //将变换之后的图片重新导入到场景中
         resetAll();
         fFileTag = -1;
         pScene->setRect(fScope);
-        slotOpen("r_90.png");
+        slotOpen(path + "/r_90.png");
 
     }
 
 }
 void BD_ViewForm::slotRoat180()
 {
+    QString path = QCoreApplication::applicationDirPath();
     if(fFileTag==BITMAPTYPE)
     {
         //        QFile::remove("r_90.png");
@@ -243,17 +245,18 @@ void BD_ViewForm::slotRoat180()
         matrix.rotate(180);
         QImage f(current_file);
         *imgRatate = f.transformed(matrix);
-        imgRatate->save("r_180.png");
+        imgRatate->save(path+"/r_180.png");
 
         //将变换之后的图片重新导入到场景中
         resetAll();
         fFileTag = -1;
         pScene->setRect(fScope);
-        slotOpen("r_180.png");
+        slotOpen(path+"/r_180.png");
     }
 }
 void BD_ViewForm::slotRoat270()
 {
+    QString path = QCoreApplication::applicationDirPath();
     if(fFileTag==BITMAPTYPE)
     {
         //        QFile::remove("r_90.png");
@@ -266,13 +269,13 @@ void BD_ViewForm::slotRoat270()
         matrix.rotate(90);
         QImage f(current_file);
         *imgRatate = f.transformed(matrix);
-        imgRatate->save("r_270.png");
+        imgRatate->save(path+"/r_270.png");
 
         //将变换之后的图片重新导入到场景中
         resetAll();
         fFileTag = -1;
         pScene->setRect(fScope);
-        slotOpen("r_270.png");
+        slotOpen(path+"/r_270.png");
 
     }
 }
@@ -314,15 +317,19 @@ void BD_ViewForm::slotSaveAs(QString file)
     //    pScene->m_svgfilenames.clear();
     //    pScene->m_picfilenames.clear();
     //1.获取scene中的文件名
+    QString projpath = QCoreApplication::applicationDirPath();
+    QString projname = "/project/config.ini";
+    QString projallPath = QString("%1%2").arg(projpath).arg(projname);
+    QString _projpath = projpath + "/project/";
     for(int i=0;i<pScene->m_svgItems.size();i++)
     {
         QString filename = pScene->m_svgfilenames.at(i);
         QRectF m = pScene->m_svgItems.at(i)->getRect();
         QPointF f = pScene->m_svgItems.at(i)->pos();
         QPointF r_pos(m.x(),m.y());
-        QString name = tr("./project/svg%1.svg").arg(i);
+        QString name = QString("%1svg%2.svg").arg(_projpath).arg(i);//tr("./project/svg%1.svg").arg(i);
         QFile::copy(filename,name);
-        QSettings* psetting = new QSettings("./project/config.ini",QSettings::IniFormat);
+        QSettings* psetting = new QSettings(projallPath,QSettings::IniFormat);
         psetting->beginGroup(tr("svg%1").arg(i));
         psetting->setValue("name",QFileInfo(name).fileName());
         psetting->setValue("bfont",0);
@@ -344,9 +351,10 @@ void BD_ViewForm::slotSaveAs(QString file)
         bool bFont = pScene->m_picItems.at(j)->bFont;
         QString suffix = QFileInfo(filename).suffix();
 
-        QString name = tr("./project/pic%1.%2").arg(j).arg(suffix);
+        QString lastname = tr("/pic%1.%2").arg(j).arg(suffix);
+        QString name = _projpath + lastname;
         QFile::copy(filename,name);
-        QSettings* psetting = new QSettings("./project/config.ini",QSettings::IniFormat);
+        QSettings* psetting = new QSettings(projallPath,QSettings::IniFormat);
         psetting->beginGroup(tr("pic%1").arg(j));
         psetting->setValue("name",QFileInfo(name).fileName());
         if(bFont)

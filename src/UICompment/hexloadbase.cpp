@@ -1,5 +1,6 @@
 #include "hexloadbase.h"
 #include "qdebug.h"
+#include "QCoreApplication"
 
 HexLoadBase::HexLoadBase(QObject *parent) :
     QObject(parent)
@@ -9,18 +10,19 @@ HexLoadBase::HexLoadBase(QObject *parent) :
 
 void HexLoadBase::HexLoad(QString filename ,QString a)
 {
+    QString path = QCoreApplication::applicationDirPath();
     QStringList po;
-    QString arg = tr("-Uflash:w:%1:i").arg(filename);
+    QString arg = tr("-Uflash:w:%1/%2:i").arg(path).arg(filename);
     //UNO para
     //po<<"-C./avrdude.conf"<<"-v"<<"-v"<<"-v"<<"-v"<<"-patmega328p"<<"-carduino"<<comName<<"-b115200"<<"-D"<<arg;
-#if define Q_OS_DARWIN || define Q_OS_DARWIN64
+#if defined Q_OS_WIN
     QString comName = "-P"+a;
-    po<<"-C./avrdude.conf"<<"-v"<<"-v"<<"-v"<<"-v"<<"-patmega2560"<<"-cwiring"<<comName<<"-b115200"<<"-D"<<arg;
-    download->start("./avrdude.exe",po );
+    po<<"-C"  + path + "/avrdude.conf"<<"-v"<<"-v"<<"-v"<<"-v"<<"-patmega2560"<<"-cwiring"<<comName<<"-b115200"<<"-D"<<arg;
+    download->start(path + "/avrdude.exe",po );
 #else
     QString comName = "-P/dev/cu."+a;
-    po<<"-C./avrdude.linux.conf"<<"-v"<<"-v"<<"-v"<<"-v"<<"-patmega2560"<<"-cwiring"<<comName<<"-b115200"<<"-D"<<arg;
-    download->start("./avrdude",po );
+    po<<"-C" +  path + "/avrdude.linux.conf"<<"-v"<<"-v"<<"-v"<<"-v"<<"-patmega2560"<<"-cwiring"<<comName<<"-b115200"<<"-D"<<arg;
+    download->start(path + "/avrdude",po );
 #endif
 //    qDebug()<<po;
     download->waitForFinished();

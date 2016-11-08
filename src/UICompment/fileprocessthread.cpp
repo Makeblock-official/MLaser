@@ -50,7 +50,10 @@ void FileProcessThread::slotCuttingFile(PGraphicsScene*pScene)
         b2s->SetBintmap(filename);
         b2s->OutPutSvg("out.svg");
         QPointF k(m.width(),m.height());
-        QSettings* psetting = new QSettings("Config.ini",QSettings::IniFormat);
+		QString path = QCoreApplication::applicationDirPath(); 
+	    QString name = "/Config.ini";
+        QString allPath = QString("%1%2").arg(path).arg(name);
+        QSettings* psetting = new QSettings(allPath,QSettings::IniFormat);
         psetting->beginGroup("laser");
         float laserspeed =  psetting->value("laserSpeed").toFloat();
         psetting->endGroup();

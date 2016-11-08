@@ -4,6 +4,7 @@
 #include <QApplication>
 #include <QDebug>
 #include <string>
+#include "fvupdater.h"
 
 // QSettings key for the latest skipped version
 #define FV_IGNORED_VERSIONS_LATEST_SKIPPED_VERSION_KEY	"FVLatestSkippedVersion"
@@ -49,7 +50,7 @@ bool FVIgnoredVersions::VersionIsIgnored(QString version)
 //		}
 //	}
 
-	std::string currentAppVersion = std::string(FV_APP_VERSION);
+    std::string currentAppVersion = FV_APP_VERSION.toStdString();
 	std::string suggestedVersion = std::string(version.toStdString());
 	if (FvVersionComparator::CompareVersions(currentAppVersion, suggestedVersion) == FvVersionComparator::kAscending) {
 		// Newer version - do not skip
