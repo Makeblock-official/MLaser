@@ -29,7 +29,7 @@
             <!-- Windows version. -->
             <enclosure
                 url="https://codeload.github.com/Makeblock-official/mlaser_resources/zip/master"
-                fervor:version="2.2"
+                fervor:version="2.3"
                 fervor:platform="Q_OS_WIN32"
                 length="1656492"
                 type="application/octet-stream" />
@@ -48,7 +48,7 @@
              -->
             <enclosure
                 url="https://codeload.github.com/Makeblock-official/Makeblock-Libraries/zip/master"
-                sparkle:version="2.2"
+                sparkle:version="2.3"
                 fervor:platform="Q_OS_MAC"
                 length="1623481"
                 type="application/octet-stream"
