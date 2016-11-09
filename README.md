@@ -9,7 +9,7 @@ Click to download the installation of the compressed package
  
 [Mac OS](https://raw.githubusercontent.com/Makeblock-official/mlaser_resources/master/distribution/mac/mLaser.dmg) 
 
-[Windows](https://raw.githubusercontent.com/Makeblock-official/mlaser_resources/master/distribution/windows/mLaserSetup.zip) 
+[Windows](https://raw.githubusercontent.com/Makeblock-official/mlaser_resources/master/distribution/windows/mLaserSetup.rar) 
 
 installation package, and follow the instructions to install it. (Note: Please use English characters in the installation address.)
 
