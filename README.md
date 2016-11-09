@@ -5,7 +5,13 @@ Learn more from Makeblock official website
 # Detailed instructions of mLaser
 ## 1.Software installation
 
-Double-click the downloaded [mLaser](http://122.228.233.203/download.makeblock.com/laserbot/mLaser1.0-en.exe?wsiphost=ipdb) installation package, and follow the instructions to install it. (Note: Please use English characters in the installation address.)
+Double-click the downloaded mlaser
+ 
+[MACOS](https://raw.githubusercontent.com/Makeblock-official/mlaser_resources/master/buildNeed/mac.rar) 
+
+[Windows](https://raw.githubusercontent.com/Makeblock-official/mlaser_resources/master/distribution/windows/mLaserSetup.zip) 
+
+installation package, and follow the instructions to install it. (Note: Please use English characters in the installation address.)
 
 ## 2.Software configuration
 
