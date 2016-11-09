@@ -5,9 +5,9 @@ Learn more from Makeblock official website
 # Detailed instructions of mLaser
 ## 1.Software installation
 
-Double-click the downloaded mlaser
+Click to download the installation of the compressed package
  
-[MACOS](https://raw.githubusercontent.com/Makeblock-official/mlaser_resources/master/buildNeed/mac.rar) 
+[Mac OS](https://raw.githubusercontent.com/Makeblock-official/mlaser_resources/master/buildNeed/mac.rar) 
 
 [Windows](https://raw.githubusercontent.com/Makeblock-official/mlaser_resources/master/distribution/windows/mLaserSetup.zip) 
 
