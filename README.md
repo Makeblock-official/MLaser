@@ -32,7 +32,7 @@ Learn more from Makeblock official website
 [http://learn.makeblock.com/en/laserbot/](http://learn.makeblock.com/en/laserbot/)
 
 #5. Detailed instructions of mLaser
-## (1)Software installation
+## (1) Software installation
 
 Click to download the installation of the compressed package
  
@@ -42,7 +42,7 @@ Click to download the installation of the compressed package
 
 installation package, and follow the instructions to install it. (Note: Please use English characters in the installation address.)
 
-## (2)Software configuration
+## (2) Software configuration
 
 (*This step is necessary for the first use of LaserBot, and later you may directly skip to step 1*)
 After assembling LaserBot, start mLaser to access the log in interface:
