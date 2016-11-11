@@ -35,12 +35,15 @@ Learn more from Makeblock official website
 ## (1) Software installation
 
 Click to download the installation of the compressed package
- 
-[Mac OS](https://raw.githubusercontent.com/Makeblock-official/mlaser_resources/master/distribution/mac/mLaser.dmg) 
 
-[Windows](https://raw.githubusercontent.com/Makeblock-official/mlaser_resources/master/distribution/windows/mLaserSetup.rar) 
+|Version    |System     |DownLoad from Git|DownLoad from Makeblock|
+|:----|:----|:----|:----|
 
-installation package, and follow the instructions to install it. (Note: Please use English characters in the installation address.)
+|V2.2|Mac OS|[Download Link 1](https://raw.githubusercontent.com/Makeblock-official/mlaser_resources/master/distribution/mac/mLaser.dmg)|[Download Link 2](http://download.makeblock.com/laserbot/mLaser.dmg)|
+|V2.2|Windows|[Download Link 1](https://raw.githubusercontent.com/Makeblock-official/mlaser_resources/master/distribution/windows/mLaserSetup.rar)|[Download Link 2](http://download.makeblock.com/laserbot/mLaserSetup.rar)|
+
+
+Then follow the instructions to install it. (Note: Please use English characters in the installation address.)
 
 ## (2) Software configuration
 

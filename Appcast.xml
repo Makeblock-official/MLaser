@@ -28,7 +28,7 @@
 
             <!-- Windows version. -->
             <enclosure
-                url="https://raw.githubusercontent.com/Makeblock-official/mlaser_resources/master/distribution/windows/mLaserSetup.rar"
+                url="http://download.makeblock.com/laserbot/mLaserSetup.rar"
                 fervor:version="2.2"
                 fervor:platform="Q_OS_WIN32"
                 length="1656492"
@@ -47,7 +47,7 @@
                  namespace just tells the updater that this is a download for OS X.
              -->
             <enclosure
-                url="https://raw.githubusercontent.com/Makeblock-official/mlaser_resources/master/distribution/mac/mLaser.dmg"
+                url="http://download.makeblock.com/laserbot/mLaser.dmg"
                 sparkle:version="2.2"
                 fervor:platform="Q_OS_MAC"
                 length="1623481"
