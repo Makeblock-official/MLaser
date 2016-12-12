@@ -34,7 +34,7 @@ private:
 signals:
     void Sig_GetMessage(QString);
     void Sig_Disconnect();
-    void Sig_ConnectFail();
+    void Sig_ConnectFail(bool b);
 private slots:
     void on_updateUart_clicked();
     void on_btnConnect_clicked();

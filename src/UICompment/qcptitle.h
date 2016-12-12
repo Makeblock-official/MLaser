@@ -22,6 +22,10 @@
 #include "bc_expertform.h"
 #include "bd_viewform.h"
 
+#include "Update/fvupdater.h"
+#include "Update/fvupdatewindow.h"
+#include "Update/fvupdateconfirmdialog.h"
+#include "Communicate/serial/cpserialport.h"
 #include "FileProcessor/dxf2svg/dl_dxf.h"
 #include "FileProcessor/dxf2svg/dl_creationadapter.h"
 #include "FileProcessor/dxf2svg/creationclass.h"
@@ -71,7 +75,7 @@ public slots:
     void slotCancle();
     void slotFinishPersent(unsigned int);
     void slotLaserOn(QString);
-    void slotPreview(); //画边框
+    void slotPreview();                  //画边框
     void slotProcessBar(bool,quint64);   //进度条显示
     void slotGcodeMode();
     void slotConnectFaile(bool);
@@ -118,6 +122,9 @@ private:
     BC_ExpertForm* expert;
     BD_ViewForm* viewer;
     FirmSettingForm* firmform;
+    //CPSerialPort* cpserial;
+    FvUpdateWindow* fvupdatewindow;
+    FvUpdateConfirmDialog* fvupdate;
 
     ZipUnzip* zip;
 
@@ -139,11 +146,9 @@ private:
 
     QAction* softwareAction;
 
-    QMenu *scaleMenu;   //  刻度尺单位
+    QMenu *scaleMenu;       //刻度尺单位
     QMenu *languageMenu;    //语言
     QMenu* uiChoose;        //界面选择
-
-
 
     QStringList comList;
 
@@ -158,6 +163,7 @@ private:
     void enableUserWaitingCursor();
     void disableUserWaitingCursor();
     bool removeDirWithContent(QString dirName);
+    void Serial_Connect(QString);
 protected:
     void showEvent(QShowEvent *e);
 signals:
@@ -166,10 +172,11 @@ signals:
     void Sig_MAddFont(QString);
     void Sig_BD_Rect(QRect);
     void Sig_ProcessItem();     //处理场景BD_ViewForm中的模型。将模型转化为gcode
-    void Sig_SaveAs(QString);          //弹出对话框，发送路径及保存名至场景类BD_ViewForm，保存*ml工程文件
+    void Sig_SaveAs(QString);   //弹出对话框，发送路径及保存名至场景类BD_ViewForm，保存*ml工程文件
     void Sig_BDCombineFile(QStringList);
     void Sig_ToLaser(QString);
     void Sig_SerialPort(QString);
+    void Sig_uintUpdate(void);
     void Sig_Print();
     void Sig_Stop();
     void Sig_Recover();
@@ -179,6 +186,7 @@ signals:
     void Sig_ReadParmeter();
     void Sig_GCODE(QString);
     void Sig_Rencode();
+    void Sig_SerialConnect(QString);
 
 };
 

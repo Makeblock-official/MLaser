@@ -58,6 +58,7 @@ BD_ViewForm::BD_ViewForm(QWidget *parent) :
     ui->frameStatus->hide();
     connect(pScene,SIGNAL(Sig_UReloadImage(QRectF,QString)),this,SLOT(slotReloadFile(QRectF,QString)));
     connect(pScene,SIGNAL(Sig_ShowPos(QRectF)),this,SLOT(slotShowPos(QRectF)));
+
     movie = new QMovie(":/Source/gif/wait2.gif");
     ui->labelMovie->setMovie(movie);
     movie->start();
@@ -127,23 +128,34 @@ void BD_ViewForm::resetAll()
     pScene->update();
     this->repaint();
 }
+
 void BD_ViewForm::slotSetHW(QPointF m)
 {
     pScene->setHW(m);
 }
+
 //设置是使用轮廓打印还是使用灰度打印
 void BD_ViewForm::setPrintKind(int k)
 {
     kPrint = k;
 }
+
 //轮廓模式打印
 void BD_ViewForm::getCuttingFile()
 {
     emit Sig_Cut(pScene);
     ui->labelMovie->show();
 }
+
 QRectF BD_ViewForm::getBounding()
 {
+    QString path = QCoreApplication::applicationDirPath();
+    QString name = "/mLaser.ini";
+    QString allPath = QString("%1%2").arg(path).arg(name);
+    QSettings* psetting = new QSettings(allPath,QSettings::IniFormat);
+    psetting->beginGroup("mode");
+    QString unit = psetting->value("unit").toString();
+    psetting->endGroup();
     QPointF topleft(9999,9999);
     QPointF bottmright(0,0);
     for(int i=0;i<pScene->m_svgItems.size();i++)
@@ -179,8 +191,17 @@ QRectF BD_ViewForm::getBounding()
         if(bottmright.y()<nf.y())
             bottmright.setY(nf.y());
     }
-    return QRectF(topleft.x(),topleft.y(),(bottmright.x()-topleft.x()),(bottmright.y()-topleft.y()));
+    qDebug()<<"toplx"<<topleft.x()<<"toply"<<topleft.y()<<"bottx"<<bottmright.x()<<"botty"<<bottmright.y();
+    if(unit == "mm")
+    {
+        return QRectF(topleft.x(),topleft.y(),(bottmright.x()-topleft.x()),(bottmright.y()-topleft.y()));
+    }
+    else
+    {
+        return QRectF(topleft.x(),topleft.y(),(bottmright.x()-topleft.x()),(bottmright.y()-topleft.y()));
+    }
 }
+
 //灰度雕刻模式打印
 void BD_ViewForm::getCarveFile()
 {
@@ -193,11 +214,13 @@ void BD_ViewForm::slotCombinePrint(QStringList filelist)
     ui->labelMovie->hide();
     emit Sig_CombinePrint(filelist);
 }
+
 //选择模式
 void BD_ViewForm::slotSelect()
 {
     ui->graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
 }
+
 //拖拽模式
 void BD_ViewForm::slotDrag()
 {
@@ -230,6 +253,7 @@ void BD_ViewForm::slotRoat90()
     }
 
 }
+
 void BD_ViewForm::slotRoat180()
 {
     QString path = QCoreApplication::applicationDirPath();
@@ -254,6 +278,7 @@ void BD_ViewForm::slotRoat180()
         slotOpen(path+"/r_180.png");
     }
 }
+
 void BD_ViewForm::slotRoat270()
 {
     QString path = QCoreApplication::applicationDirPath();
@@ -266,7 +291,7 @@ void BD_ViewForm::slotRoat270()
         //根据旋转的角度，来变换图片
         QImage* imgRatate = new QImage();
         QMatrix matrix;
-        matrix.rotate(90);
+        matrix.rotate(270);
         QImage f(current_file);
         *imgRatate = f.transformed(matrix);
         imgRatate->save(path+"/r_270.png");
@@ -279,17 +304,24 @@ void BD_ViewForm::slotRoat270()
 
     }
 }
+
 void BD_ViewForm::slotReloadFile(QRectF f,QString file)
 {
-    //    resetAll();
-    //    fFileTag = -1;
-    //    pScene->setRect(f);
-    //    slotOpen(file);
     qDebug()<<"fff-------,you get the goode prise of it";
     pScene->update();
     ui->graphicsView->repaint();
     ui->graphicsView->update();
 }
+
+void BD_ViewForm::uintUpdate()
+{
+    QString path = QCoreApplication::applicationDirPath();
+    qDebug()<<"uintUpdate";
+	resetAll();
+    fFileTag = -1;
+    slotOpen(path+"/24bit.jpg");
+}
+
 void BD_ViewForm::slotOpen(QString file)
 {
     current_file = file;
@@ -306,10 +338,12 @@ void BD_ViewForm::slotOpen(QString file)
         pScene->loadImage(file,false);
     }
 }
+
 void BD_ViewForm::slotShowPos(QRectF m)
 {
     emit Sig_ShowPos(m);
 }
+
 void BD_ViewForm::slotSaveAs(QString file)
 {
     //    pScene->m_picItems.clear();
@@ -338,9 +372,6 @@ void BD_ViewForm::slotSaveAs(QString file)
         psetting->setValue("width",m.width());
         psetting->setValue("height",m.height());
         psetting->endGroup();
-
-
-
     }
     for(int j = 0;j<pScene->m_picItems.size();j++)
     {
@@ -367,9 +398,7 @@ void BD_ViewForm::slotSaveAs(QString file)
         psetting->setValue("width",m.width());
         psetting->setValue("height",m.height());
         psetting->endGroup();
-
     }
-
 }
 
 void BD_ViewForm::slotRect(QRect f)
@@ -427,6 +456,7 @@ void BD_ViewForm::on_btnReset_clicked()
     matrix.scale(scale,scale);
     ui->graphicsView->setMatrix(matrix);
 }
+
 //放大
 void BD_ViewForm::on_btnZoomOut_clicked()
 {
@@ -435,6 +465,7 @@ void BD_ViewForm::on_btnZoomOut_clicked()
     matrix.scale(scale,scale);
     ui->graphicsView->setMatrix(matrix);
 }
+
 //缩小
 void BD_ViewForm::on_btnZoomIn_clicked()
 {
@@ -445,7 +476,34 @@ void BD_ViewForm::on_btnZoomIn_clicked()
     matrix.scale(scale,scale);
     ui->graphicsView->setMatrix(matrix);
 }
+
 void BD_ViewForm::languageUpdate()
 {
     ui->retranslateUi(this);
+    QString path = QCoreApplication::applicationDirPath();
+    QString name = "/mLaser.ini";
+    QString allPath = QString("%1%2").arg(path).arg(name);
+    QSettings* psetting = new QSettings(allPath,QSettings::IniFormat);
+    psetting->beginGroup("mode");
+    QString language = psetting->value("language").toString();
+    psetting->endGroup();
+    pScene->drawAxis();
+    pScene->update();
+    if(language == "zh")
+    {
+      roatedAMenu->setTitle("旋转");
+      deletAction->setText("删除");
+      posAction->setText("位置");
+      pDrag->setText("拖拽");
+      pSelect->setText("选择");
+    }
+	else
+    {
+      roatedAMenu->setTitle("Roate");
+      deletAction->setText("Delete");
+      posAction->setText("Position");
+      pDrag->setText("Drag");
+      pSelect->setText("Select");
+
+	}
 }

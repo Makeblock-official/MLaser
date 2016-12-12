@@ -72,36 +72,41 @@ void PGraphicsScene::drawAxis()
     QString mallPath = QString("%1%2").arg(mpath).arg(mname);
     QSettings* apsetting = new QSettings(mallPath,QSettings::IniFormat);
     apsetting->beginGroup("mode");
-    QString uint = apsetting->value("unit").toString();
-    int unit = 1;
-    if(uint=="inch")
+    QString uint_value = apsetting->value("unit").toString();
+    float unit = 1;
+    if(uint_value == "inch")
     {
         QGraphicsTextItem *po = new QGraphicsTextItem("-(in)");
         po->setPos(5,5);
         this->addItem(po);
-        unit = 10;
+        unit = 2.5;
+        qDebug()<<"drawAxis inch";
     }
-    else if(uint=="mm")
+    else if(uint_value == "mm")
     {
         QGraphicsTextItem *po = new QGraphicsTextItem("-(mm)");
         po->setPos(5,5);
         this->addItem(po);
-        uint =1;
+        qDebug()<<"drawAxis mm";
+        unit = 1.0;
     }
     apsetting->endGroup();
 
     int home = 30;
+    int seg_num = 0;
+	int seg_pos = 0;
 
 
     this->addLine(home,home,4000,home);//横线
     for(int i=home;i<4000;i++)
     {
-        if((i-home)%(10)==0)
+        seg_pos = round(10 * seg_num * unit);
+        if((i-home) == (seg_pos))
         {
-            if((i-home)%(50)==0)
+            if((seg_num % 5) == 0)
             {
                 this->addLine(i,home,i,home-10);
-                QGraphicsTextItem *po = new QGraphicsTextItem(QString::number((i-home)/(10.0*unit)));
+                QGraphicsTextItem *po = new QGraphicsTextItem(QString::number(seg_num));
                 po->setPos(i-10,-5);
                 this->addItem(po);
             }
@@ -109,19 +114,23 @@ void PGraphicsScene::drawAxis()
             {
                 this->addLine(i,home,i,home-5);
             }
+            seg_num++;
         }
 
     }
 
+    seg_num = 0;
+	seg_pos = 0;
     this->addLine(home,home,home,4000);
     for(int i=home;i<4000;i++)
     {
-        if((i-home)%(10)==0)
+        seg_pos = round(10 * seg_num * unit);
+        if((i-home) == seg_pos)
         {
-            if((i-home)%(50)==0)
+            if((seg_num % 5) == 0)
             {
                 this->addLine(home,i,home-10,i);
-                QGraphicsTextItem *po = new QGraphicsTextItem(QString::number((i-home)/(10.0*unit)));
+                QGraphicsTextItem *po = new QGraphicsTextItem(QString::number(seg_num));
                 po->setPos(-2,i-12);
                 this->addItem(po);
             }
@@ -129,6 +138,7 @@ void PGraphicsScene::drawAxis()
             {
                 this->addLine(home,i,home-5,i);
             }
+            seg_num++;
         }
     }
 
@@ -169,10 +179,12 @@ QPointF PGraphicsScene::getPixmapPos()
 {
     //    return m_picItem->scenePos();
 }
+
 qreal PGraphicsScene::getDPM()
 {
     return pDpm;
 }
+
 void PGraphicsScene::setPixmapPos(QPointF m)
 {
     //    m_picItem->setPos(m);
@@ -291,12 +303,12 @@ void PGraphicsScene::setRect(QRectF f)
 //鼠标拖拽了模型之后，重新载入图片
 void PGraphicsScene::slotReloadPic(QRectF f,QString file)
 {
-    //    currentQRectF = f;
-    //    removeAllItems();
-    //    this->clear();
-    //    drawAxis();
-    //    qDebug()<<"Reload file from :"<<file;
-    //    emit Sig_ReloadImage(file);
-    //    emit Sig_UReloadImage(f,file);
+    currentQRectF = f;
+    removeAllItems();
+    this->clear();
+    drawAxis();
+    qDebug()<<"Reload file from :"<<file;
+    emit Sig_ReloadImage(file);
+    emit Sig_UReloadImage(f,file);
 }
 

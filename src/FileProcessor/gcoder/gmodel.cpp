@@ -12,7 +12,7 @@
 
 GModel::GModel()
 {
-    boundvalue = 0.3;
+    boundvalue = 0.4;
 }
 //for render the picture
 void GModel::loadFile(QString filePath)
@@ -184,8 +184,8 @@ void GModel::filterGcode(QString filePath,QPointF pose,QPointF scope,QString out
     QPointF pos = pose/10.0;
     if(uint=="inch")
     {
-        _scale = _scale*2.54;
-        pos = pose/25.4;
+        _scale = _scale*1.0;
+        pos = pose/10.0;
     }
 
     else if(uint=="mm")
@@ -200,6 +200,7 @@ void GModel::filterGcode(QString filePath,QPointF pose,QPointF scope,QString out
     while(!in.atEnd())
     {
         QString current_str = in.readLine();
+		qDebug()<<"current_str:"<<current_str;
         if(current_str.startsWith("M4"))
         {
             out<<current_str<<"\n";
@@ -227,60 +228,42 @@ void GModel::filterGcode(QString filePath,QPointF pose,QPointF scope,QString out
             QPointF d(cur_pos.x()-last_pos.x(),cur_pos.y()-last_pos.y());
             last_pos = cur_pos;
             qreal dis = sqrt(d.x()*d.x()+d.y()*d.y());
+			
+            qDebug()<<"regXY --- cur_pos.x():"<<cur_pos.x()<<"cur_pos.y():"<<cur_pos.y()<<"pos.x():"<< pos.x()<<"pos.y()"<<pos.y()<<"_scale:"<<_scale << "dis:"<<dis;
             if(dis>0.5)
             {
                 if(cur_speed==1)    //当等于1，代表前面的速度是快速，即之前走的是圆弧路线
                 {
-                    if(((su.x()+pos.x())<=(boundsMin.x()*_scale + boundvalue)) && ((su.y()+pos.y())<=(boundsMin.y()*_scale + boundvalue)))
-                    {
-                        out<<QObject::tr("M4 P0 \n");
-                    }
-                    else if(((su.x()+pos.x())>= (boundsMax.x()*_scale - boundvalue)) && ((su.y()+pos.y())>=(boundsMax.y()*_scale - boundvalue)))
-                    {
-                        out<<QObject::tr("M4 P0 \n");
-                    }
-                    else
-                    {
-                        out<<speedPrint;
-                        out<<powerH;
-                        cur_speed = 0;
-                    }
+                    out<<speedPrint;
+                    out<<powerH;
+                    cur_speed = 0;
                 }
             }
             else
             {
                 if(cur_speed==0)    //当等于0，代表前面的速度是慢，即之前走的是直线，现在要求走曲线了
                 {
-                    if(((su.x()+pos.x())<=(boundsMin.x()*_scale + boundvalue)) && ((su.y()+pos.y())<=(boundsMin.y()*_scale + boundvalue)))
-                    {
-                        out<<QObject::tr("M4 P0 \n");
-                    }
-                    else if(((su.x()+pos.x())>= (boundsMax.x()*_scale - boundvalue)) && ((su.y()+pos.y())>=(boundsMax.y()*_scale - boundvalue)))
-                    {
-                        out<<QObject::tr("M4 P0 \n");
-                    }
-                    else
-                    {
-                        out<<speedPrint;
-                        out<<powerL;       //降低照射功率
-                        cur_speed = 1;
-                    }
+                    out<<speedPrint;
+                    out<<powerL;       //降低照射功率
+                    cur_speed = 1;
                 }
             }
             //距离判断极致结束
 
             {
                 qDebug()<<"cc"<<"xmin"<<boundsMin.x()<<"xmax"<<boundsMax.x()<<"ymin"<<boundsMin.y()<<"ymax"<<boundsMax.y()<<"scale"<<_scale<<"boundvalue"<<boundvalue;
-                if(((su.x()+pos.x())<=(boundsMin.x()*_scale + boundvalue)) && ((su.y()+pos.y())<=(boundsMin.y()*_scale + boundvalue)))
+                if((su.x() <= (boundsMin.x()*_scale + boundvalue)) && (su.y() <= (boundsMin.y()*_scale + boundvalue)))
                 {
-
+                  qDebug()<<"Ignore Gcode 1";
                 }
-                else if(((su.x()+pos.x())>= (boundsMax.x()*_scale - boundvalue)) && ((su.y()+pos.y())>=(boundsMax.y()*_scale - boundvalue)))
+                else if((su.x() >= (boundsMax.x()*_scale - boundvalue)) && (su.y() >= (boundsMax.y()*_scale - boundvalue)))
                 {
-
+                  
+                  qDebug()<<"Ignore Gcode 2";
                 }
                 else
                 {
+                    qDebug()<<"G1"<<"X"<<su.x()+pos.x()<<" Y"<<su.y()+pos.y();
                     out<<QObject::tr("G1 X%1 Y%2 \n").arg(su.x()+pos.x()).arg(su.y()+pos.y());
                 }
             }

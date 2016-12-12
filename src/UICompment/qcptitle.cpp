@@ -5,6 +5,7 @@
 #include "../Update/fvupdater.h"
 #include "qcptitle.h"
 #include "ui_qcptitle.h"
+#include "Communicate/serial/cpserialport.h"
 
 QCPTitle::QCPTitle(QWidget *parent) :
     QWidget(parent),
@@ -26,6 +27,10 @@ QCPTitle::QCPTitle(QWidget *parent) :
     mcreationClass = new CreationClass();
     hex = new HexLoadForm();
     posform = new PostionForm();
+    fvupdatewindow = new FvUpdateWindow();
+    fvupdate = new FvUpdateConfirmDialog;
+//    cpserial = new CPSerialPort();
+
 //    firmform = new FirmSettingForm();
 
     //简单模式第一个页面
@@ -100,6 +105,7 @@ QCPTitle::QCPTitle(QWidget *parent) :
     enAction = ui->enAction;
     connect(zhAction,SIGNAL(triggered()),this,SLOT(slotZhAction()));
     connect(enAction,SIGNAL(triggered()),this,SLOT(slotEnAction()));
+    connect(hex,SIGNAL(Sig_Serial_Connect(QString)),this,SLOT(Serial_Connect(QString)));
     zhAction->setCheckable(true);
     enAction->setCheckable(true);
     QString a;
@@ -272,6 +278,8 @@ QCPTitle::QCPTitle(QWidget *parent) :
 
     connect(this,SIGNAL(Sig_Rencode()),rencode,SLOT(rencodeShow()));
 
+    connect(this,SIGNAL(Sig_uintUpdate()),viewer,SLOT(uintUpdate()));
+
     //BA BB ----> This
     connect(easy,SIGNAL(Sig_Preview()),this,SLOT(slotPreview()));
     connect(easyn,SIGNAL(Sig_Cutting()),this,SLOT(slotCutting()));
@@ -424,6 +432,9 @@ void QCPTitle::slotZhAction()
     gcodeer->languageUpdate();
     rencode->languageUpdate();
     hex->languageUpdate();
+    viewer->languageUpdate();
+//    fvupdate->languageUpdate();
+    fvupdatewindow->languageUpdate();
     languageMenu->setTitle("语言");
     uiChoose->setTitle("界面选择");
     scaleMenu->setTitle("刻度单位");
@@ -453,6 +464,8 @@ void QCPTitle::slotEnAction()
     gcodeer->languageUpdate();
     rencode->languageUpdate();
     hex->languageUpdate();
+    viewer->languageUpdate();
+    fvupdatewindow->languageUpdate();
     languageMenu->setTitle("Language");
     uiChoose->setTitle("Select Interface");
     scaleMenu->setTitle("Scale Unit");
@@ -471,6 +484,9 @@ void QCPTitle::slotInchAction()
     psetting->beginGroup("mode");
     psetting->setValue("unit",QString("inch"));
     psetting->endGroup();
+    qDebug()<<"slotInchAction";
+    emit Sig_uintUpdate();
+	
 }
 void QCPTitle::slotMMAction()
 { 
@@ -481,6 +497,8 @@ void QCPTitle::slotMMAction()
     psetting->beginGroup("mode");
     psetting->setValue("unit",QString("mm"));
     psetting->endGroup();
+    qDebug()<<"slotMMAction";
+	emit Sig_uintUpdate();
 }
 //是否在打开软件时显示串口连接界面
 void QCPTitle::slotSerialAction(bool t)
@@ -505,6 +523,13 @@ void QCPTitle::slotHexLoad()
     hex->show();
     hex->activateWindow();
 }
+
+void QCPTitle::Serial_Connect(QString com)
+{
+  qDebug()<<"Serial_Connect";
+  emit Sig_SerialConnect(com);
+}
+
 
 /*
  *
@@ -781,17 +806,22 @@ void QCPTitle::on_btnSetHome_clicked()
     //    postion->show();
 }
 //打开按键
+
 void QCPTitle::on_btnOpen_clicked()
 {
     QString path = QCoreApplication::applicationDirPath();
-    QFile::remove(path + "/show.gcode");
-    on_btnDelet_clicked(); 
 	QString name = "/Config.ini";
     QString allPath = QString("%1%2").arg(path).arg(name);
     QSettings* psetting = new QSettings(allPath,QSettings::IniFormat);
     psetting->beginGroup("laser");
     QString dir = psetting->value("dir").toString();
     QString file = QFileDialog::getOpenFileName(this,tr("OpenFile"),dir,tr("All (*.png *.jpg *.jpeg *.svg *.dxf *.bmp *.mbl);;Image Files (*.png *.jpg *.jpeg *.svg *.dxf);;Project (*.mbl)"));
+    qDebug()<<"file"<<file;
+    if(!file.isEmpty())
+    {
+        QFile::remove(path + "/show.gcode");
+        on_btnDelet_clicked();
+    }
     psetting->setValue("dir",file);
     psetting->endGroup();
     int w = 800;
@@ -894,14 +924,21 @@ void QCPTitle::on_btnOpen_clicked()
             emit Sig_ReadParmeter();
 
         }
-        else
+        else if(QFileInfo(file).suffix()=="png")
         {
-//            if(QFileInfo(file).suffix()=="png")
-//            {
-//                QFile::remove("temp.jpeg");
-//                QImage pis(file);
-//                pis.save("temp.jpeg");
-//            }
+            QImage pis(file);
+            QImage alpha_image(pis.width(),pis.height(),QImage::Format_ARGB32_Premultiplied);
+            QImage pis_image = pis.convertToFormat(QImage::Format_ARGB32_Premultiplied);
+            QImage show = pis.convertToFormat(QImage::Format_RGB32);
+            if(pis_image.hasAlphaChannel())
+            {
+               alpha_image = pis_image.alphaChannel();
+//               alpha_image.invertPixels(QImage::InvertRgba);
+               show.invertPixels(QImage::InvertRgb);
+               show.setAlphaChannel(alpha_image);
+               show.invertPixels(QImage::InvertRgb);
+               qDebug()<<"The image has alpha channel!";
+            }
             QImage ps(file);
             if(ps.format()<=3)
             {
@@ -929,24 +966,48 @@ void QCPTitle::on_btnOpen_clicked()
 
                 }
             }
-
-            //            QImage fi(file);
-            //            if(fi.depth()>8)
-            //            {
-            //                emit Sig_BD_Rect(QRect(0,0,w,h));
-            //                emit Sig_BD_Open(file);
-            //            }
-            //            else if(fi.depth()<=8)
+            QFile::remove(path + "/24bit.jpg");
+            show.save(path + "/24bit.jpg");
+            emit Sig_BD_Rect(QRect(0,0,w,h));
+            emit Sig_BD_Open(path + "/24bit.jpg");
+            bPic = true;
+        }
+		else
+        {
+            QImage ps(file);
+            if(ps.format()<=3)
             {
-
-                QFile::remove(path + "/24bit.png");
-                QImage ne(file);
-
-                QImage a = ne.convertToFormat(QImage::Format_RGB32);
-                a.save(path + "/24bit.png");
-                emit Sig_BD_Rect(QRect(0,0,w,h));
-                emit Sig_BD_Open(path + "/24bit.png");
+                qDebug()<<"Your image is invalid!";
+                w = ps.width();
+                h = ps.height();
             }
+            else
+            {
+                w = ps.width();
+                h = ps.height();
+                scale = w/(h*1.0);
+                if(w>=1000||h>=1000)
+                {
+                    if(scale>1.0)
+                    {
+                        w = 1000;
+                        h = 1000/scale;
+                    }
+                    else
+                    {
+                        h = 1000;
+                        w = 1000*scale;
+                    }    
+
+                }
+            }
+            QFile::remove(path + "/24bit.jpg");
+            QImage ne(file);
+
+            QImage a = ne.convertToFormat(QImage::Format_RGB32);
+            a.save(path + "/24bit.jpg");
+            emit Sig_BD_Rect(QRect(0,0,w,h));
+            emit Sig_BD_Open(path + "/24bit.jpg");
             bPic = true;
         }
         bLoadedfile = true;
@@ -1023,7 +1084,6 @@ void QCPTitle::slotConnectFaile(bool b)
     {
         expert->setElementEnable(true);
     }
-        qDebug()<<"connecd!!!!!!!!!!!!!!!!!!!!!!!!!!!";
 }
 //显示二维码
 void QCPTitle::on_btnQrcode_clicked()

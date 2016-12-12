@@ -23,16 +23,17 @@ CPSerialPort::CPSerialPort(QWidget *parent) :
     ui->portCombo->setStyleSheet("QComboBox{border:1px solid gray;}"
                                  "QComboBox QAbstractItemView::item{height:25px;}");
     ui->portCombo->setView(new QListView());
+
     //init serial and show it in the UI combo
     foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts())
     {
         QSerialPort serial;
         serial.setPort(info);
+		qDebug()<<info.portName()<<info.description()<<info.manufacturer();
+		comList.append(info.portName());
         if (serial.open(QIODevice::ReadWrite))
         {
-            qDebug()<<info.portName()<<info.description()<<info.manufacturer();
-            comList.append(info.portName());
-            serial.close();
+          serial.close();
         }
     }
     ui->portCombo->addItems(comList);
@@ -74,11 +75,11 @@ void CPSerialPort::on_updateUart_clicked()
     {
         QSerialPort serial;
         serial.setPort(info);
+        qDebug()<<info.portName()<<info.description()<<info.manufacturer();
+        comList.append(info.portName());
         if (serial.open(QIODevice::ReadWrite))
         {
-            qDebug()<<info.portName()<<info.description()<<info.manufacturer();
-            comList.append(info.portName());
-            serial.close();
+          serial.close();
         }
     }
     ui->portCombo->addItems(comList);
@@ -91,7 +92,6 @@ void CPSerialPort::on_btnConnect_clicked()
         comName = ui->portCombo->currentText();
         mySerialport->setPortName(comName);
         mySerialport->setBaudRate(115200);
-//                mySerialport->setBaudRate(9600);
         mySerialport->setDataBits(QSerialPort::Data8);
         mySerialport->setParity(QSerialPort::NoParity);
         mySerialport->setStopBits(QSerialPort::OneStop);
@@ -100,19 +100,20 @@ void CPSerialPort::on_btnConnect_clicked()
         {
             connect(mySerialport,SIGNAL(readyRead()),this,SLOT(Slot_ResponseUart()));
             ui->btnConnect->setText(tr("Disconnect"));
+            qDebug()<<comName << "connected";
             bConnect = true;
-            //QMessageBox::information(this,tr("Notice"),tr("Serial open successful."));
         }
         else
         {
+            qDebug()<<comName << "Serial open failed";
             QMessageBox::information(this,tr("Notice"),tr("Serial open failed."));
         }
-
     }
     else
     {
         bConnect = false;
         ui->btnConnect->setText(tr("Connect"));
+        qDebug()<<comName << "disconnected";
         mySerialport->disconnect();
         mySerialport->close();
         emit Sig_Disconnect();
@@ -136,19 +137,22 @@ void CPSerialPort::ConnectPort(QString m)
             {
                 connect(mySerialport,SIGNAL(readyRead()),this,SLOT(Slot_ResponseUart()));
                 ui->btnConnect->setText(tr("Disconnect"));
+                qDebug()<<comName << "connected 2";
                 bConnect = true;
-                //QMessageBox::information(this,tr("Notice"),tr("Serial open successful."));
             }
             else
             {
                 QMessageBox::information(this,tr("Notice"),tr("Serial open failed."));
+                qDebug()<<comName << "Serial open failed 2";
             }
+            //emit Sig_ConnectFail(true);
 
         }
         else
         {
             bConnect = false;
             ui->btnConnect->setText(tr("Connect"));
+            qDebug()<<comName << "disconnected 2";
             mySerialport->disconnect();
             mySerialport->close();
             emit Sig_Disconnect();

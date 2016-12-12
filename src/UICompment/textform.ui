@@ -106,6 +106,11 @@ QComboBox#comboBoxFontSize{
     </property>
     <item>
      <widget class="QFrame" name="frameFont">
+      <property name="font">
+       <font>
+        <stylestrategy>PreferDefault</stylestrategy>
+       </font>
+      </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
       </property>
@@ -117,7 +122,14 @@ QComboBox#comboBoxFontSize{
         <number>12</number>
        </property>
        <item>
-        <widget class="QFontComboBox" name="fontComboBox"/>
+        <widget class="QFontComboBox" name="fontComboBox">
+         <property name="insertPolicy">
+          <enum>QComboBox::InsertAtBottom</enum>
+         </property>
+         <property name="minimumContentsLength">
+          <number>0</number>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QToolButton" name="btnBlod">
@@ -132,9 +144,46 @@ QComboBox#comboBoxFontSize{
        </item>
        <item>
         <widget class="QComboBox" name="comboBoxFontSize">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="editable">
+          <bool>false</bool>
+         </property>
+         <property name="currentIndex">
+          <number>20</number>
+         </property>
+         <property name="maxVisibleItems">
+          <number>10</number>
+         </property>
          <item>
           <property name="text">
-           <string>8</string>
+           <string>5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>5.5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6.5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7.5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>10.5</string>
           </property>
          </item>
          <item>
@@ -149,17 +198,17 @@ QComboBox#comboBoxFontSize{
          </item>
          <item>
           <property name="text">
+           <string>15</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
            <string>16</string>
           </property>
          </item>
          <item>
           <property name="text">
            <string>18</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>20</string>
           </property>
          </item>
          <item>
@@ -179,32 +228,12 @@ QComboBox#comboBoxFontSize{
          </item>
          <item>
           <property name="text">
-           <string>28</string>
+           <string>36</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>30</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>32</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>38</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>40</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>44</string>
+           <string>42</string>
           </property>
          </item>
          <item>
@@ -214,72 +243,17 @@ QComboBox#comboBoxFontSize{
          </item>
          <item>
           <property name="text">
-           <string>50</string>
+           <string>56</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>52</string>
+           <string>72</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>54</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>58</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>60</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>62</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>77</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>78</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>80</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>84</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>86</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>90</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>100</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>110</string>
+           <string>96</string>
           </property>
          </item>
          <item>
@@ -289,17 +263,12 @@ QComboBox#comboBoxFontSize{
          </item>
          <item>
           <property name="text">
-           <string>130</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>140</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
            <string>150</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>180</string>
           </property>
          </item>
         </widget>

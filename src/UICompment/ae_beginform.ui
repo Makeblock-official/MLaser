@@ -270,7 +270,7 @@ QTextBrowser{
              </size>
             </property>
             <property name="text">
-             <string>开始测试</string>
+             <string>开始雕刻测试</string>
             </property>
            </widget>
           </item>

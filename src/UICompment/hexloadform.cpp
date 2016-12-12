@@ -65,11 +65,11 @@ void HexLoadForm::UpdateSerial()
     {
         QSerialPort serial;
         serial.setPort(info);
+        qDebug()<<info.portName()<<info.description()<<info.manufacturer();
+        comList.append(info.portName());
         if (serial.open(QIODevice::ReadWrite))
         {
-            qDebug()<<info.portName()<<info.description()<<info.manufacturer();
-            comList.append(info.portName());
-            serial.close();
+          serial.close();
         }
     }
     ui->portCombo->addItems(comList);
@@ -86,9 +86,21 @@ void HexLoadForm::on_btnLoad_clicked()
 {
     file = "mLaser.hex";
     QString a = ui->portCombo->currentText();
-    emit Sig_Process(file,a);
-    ui->label->show();
-    movie->start();
+    QSerialPort mySerialport;
+    mySerialport.setPortName(a);
+    if(mySerialport.open(QIODevice::ReadWrite))
+    {
+      mySerialport.close();
+      emit Sig_Process(file,a);
+      ui->label->show();
+      movie->start();
+    }
+    else
+    {
+      //emit Sig_Serial_Connect(a);
+      qDebug()<< a << "Serial open failed, may be occupied";
+      QMessageBox::information(this,tr("Notice"),tr("Serial open failed, may be occupied"));
+    }
 }
 void HexLoadForm::languageUpdate()
 {

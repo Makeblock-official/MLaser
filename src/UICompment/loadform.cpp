@@ -87,9 +87,19 @@ void LoadForm::on_btnConnect_clicked()
     psetting->beginGroup("mode");
     psetting->setValue("serial",com);
     psetting->endGroup();
-    emit Sig_SerialConnect(com);
-    ui->btnConnect->setText(tr("正在连接.."));
-    autocheck->start(3500);
+	if(!bConnect)
+    {
+      emit Sig_SerialConnect(com);
+	  bConnect = true;
+      ui->btnConnect->setText(tr("正在连接.."));
+      autocheck->start(3500);
+    }
+	else
+    {
+	  bConnect = false;
+      emit Sig_SerialConnect(com);
+      ui->btnConnect->setText(tr("连接串口"));
+	}
 }
 void LoadForm::setInitState(bool b)
 {
@@ -97,7 +107,7 @@ void LoadForm::setInitState(bool b)
 }
 void LoadForm::slotTimeOut()
 {
-    QMessageBox::information(NULL,tr("提示"),tr("串口连接失败，请检查是否连接串口或者端口号，或重新插拔USB口。"));
+//    QMessageBox::information(NULL,tr("提示"),tr("串口连接失败，请检查是否连接串口或者端口号，或重新插拔USB口。"));
 //    QMessageBox::information(NULL,tr("Notice"),tr("Serial open failed."));
     ui->btnConnect->setText(tr("连接串口"));
     autocheck->stop();

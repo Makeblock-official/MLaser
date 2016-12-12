@@ -32,12 +32,12 @@
         <translation>串口</translation>
     </message>
     <message>
-        <location filename="UICompment/ab_serialform.cpp" line="71"/>
+        <location filename="UICompment/ab_serialform.cpp" line="74"/>
         <source>提示</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="UICompment/ab_serialform.cpp" line="71"/>
+        <location filename="UICompment/ab_serialform.cpp" line="74"/>
         <source>原始密码错误！</source>
         <translation>原始密码错误！</translation>
     </message>
@@ -235,8 +235,9 @@
     </message>
     <message>
         <location filename="UICompment/ae_beginform.ui" line="273"/>
-        <source>开始测试</source>
-        <translation>开始测试</translation>
+        <source>开始雕刻测试</source>
+        <oldsource>开始测试</oldsource>
+        <translation>开始雕刻测试</translation>
     </message>
     <message>
         <location filename="UICompment/ae_beginform.ui" line="292"/>
@@ -488,14 +489,21 @@
         <translation>切割材料</translation>
     </message>
     <message>
+        <location filename="UICompment/bc_expertform.ui" line="362"/>
+        <source>100</source>
+        <translation>100</translation>
+    </message>
+    <message>
         <location filename="UICompment/bc_expertform.ui" line="376"/>
         <source>重复次数</source>
         <translation>重复次数</translation>
     </message>
     <message>
         <location filename="UICompment/bc_expertform.ui" line="390"/>
-        <source>2</source>
-        <translation>2</translation>
+        <location filename="UICompment/bc_expertform.ui" line="507"/>
+        <source>1</source>
+        <oldsource>2</oldsource>
+        <translation>1</translation>
     </message>
     <message>
         <location filename="UICompment/bc_expertform.ui" line="369"/>
@@ -519,8 +527,9 @@
     </message>
     <message>
         <location filename="UICompment/bc_expertform.ui" line="397"/>
-        <source>500</source>
-        <translation>500</translation>
+        <source>400</source>
+        <oldsource>200</oldsource>
+        <translation>400</translation>
     </message>
     <message>
         <location filename="UICompment/bc_expertform.ui" line="355"/>
@@ -531,13 +540,13 @@
     </message>
     <message>
         <location filename="UICompment/bc_expertform.ui" line="348"/>
-        <source>3000</source>
-        <translation>3000</translation>
+        <source>2000</source>
+        <oldsource>3000</oldsource>
+        <translation>2000</translation>
     </message>
     <message>
-        <location filename="UICompment/bc_expertform.ui" line="362"/>
         <source>50</source>
-        <translation>50</translation>
+        <translation type="vanished">50</translation>
     </message>
     <message>
         <location filename="UICompment/bc_expertform.ui" line="383"/>
@@ -556,8 +565,9 @@
     </message>
     <message>
         <location filename="UICompment/bc_expertform.ui" line="493"/>
-        <source>1000</source>
-        <translation>1000</translation>
+        <source>1200</source>
+        <oldsource>1000</oldsource>
+        <translation>1200</translation>
     </message>
     <message>
         <location filename="UICompment/bc_expertform.ui" line="514"/>
@@ -576,18 +586,14 @@
     </message>
     <message>
         <location filename="UICompment/bc_expertform.ui" line="500"/>
-        <source>90</source>
-        <translation>90</translation>
+        <source>95</source>
+        <oldsource>90</oldsource>
+        <translation>95</translation>
     </message>
     <message>
         <location filename="UICompment/bc_expertform.ui" line="528"/>
         <source>6</source>
         <translation>6</translation>
-    </message>
-    <message>
-        <location filename="UICompment/bc_expertform.ui" line="507"/>
-        <source>1</source>
-        <translation>1</translation>
     </message>
     <message>
         <location filename="UICompment/bc_expertform.ui" line="542"/>
@@ -641,7 +647,7 @@
     </message>
     <message>
         <location filename="UICompment/bc_expertform.ui" line="672"/>
-        <location filename="UICompment/bc_expertform.cpp" line="127"/>
+        <location filename="UICompment/bc_expertform.cpp" line="132"/>
         <source>开始</source>
         <translation>开始</translation>
     </message>
@@ -655,12 +661,12 @@
         <translation type="vanished">激光已打开</translation>
     </message>
     <message>
-        <location filename="UICompment/bc_expertform.cpp" line="134"/>
+        <location filename="UICompment/bc_expertform.cpp" line="139"/>
         <source>暂停</source>
         <translation>暂停</translation>
     </message>
     <message>
-        <location filename="UICompment/bc_expertform.cpp" line="356"/>
+        <location filename="UICompment/bc_expertform.cpp" line="461"/>
         <source>M4 P%1</source>
         <translation></translation>
     </message>
@@ -731,27 +737,22 @@
         <translation>270</translation>
     </message>
     <message>
-        <location filename="UICompment/bd_viewform.cpp" line="323"/>
-        <source>./project/svg%1.svg</source>
+        <location filename="UICompment/bd_viewform.cpp" line="385"/>
+        <source>/pic%1.%2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UICompment/bd_viewform.cpp" line="326"/>
+        <location filename="UICompment/bd_viewform.cpp" line="367"/>
         <source>svg%1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UICompment/bd_viewform.cpp" line="347"/>
-        <source>./project/pic%1.%2</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="UICompment/bd_viewform.cpp" line="350"/>
+        <location filename="UICompment/bd_viewform.cpp" line="389"/>
         <source>pic%1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UICompment/bd_viewform.cpp" line="387"/>
+        <location filename="UICompment/bd_viewform.cpp" line="424"/>
         <source>current persent %1</source>
         <translation></translation>
     </message>
@@ -759,54 +760,54 @@
 <context>
     <name>Bitmap2Gcode</name>
     <message>
-        <location filename="FileProcessor/bitmap2gcode/bitmap2gcode.cpp" line="89"/>
+        <location filename="FileProcessor/bitmap2gcode/bitmap2gcode.cpp" line="94"/>
         <source>format = %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="FileProcessor/bitmap2gcode/bitmap2gcode.cpp" line="459"/>
+        <location filename="FileProcessor/bitmap2gcode/bitmap2gcode.cpp" line="465"/>
         <source>提示</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="FileProcessor/bitmap2gcode/bitmap2gcode.cpp" line="459"/>
+        <location filename="FileProcessor/bitmap2gcode/bitmap2gcode.cpp" line="465"/>
         <source>无法创建文件</source>
         <translation>无法创建文件</translation>
     </message>
     <message>
-        <location filename="FileProcessor/bitmap2gcode/bitmap2gcode.cpp" line="523"/>
+        <location filename="FileProcessor/bitmap2gcode/bitmap2gcode.cpp" line="534"/>
         <source>G0 X%1 Y%2 F3500 
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="FileProcessor/bitmap2gcode/bitmap2gcode.cpp" line="536"/>
-        <location filename="FileProcessor/bitmap2gcode/bitmap2gcode.cpp" line="573"/>
+        <location filename="FileProcessor/bitmap2gcode/bitmap2gcode.cpp" line="547"/>
+        <location filename="FileProcessor/bitmap2gcode/bitmap2gcode.cpp" line="584"/>
         <source>M4 P%1 
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="FileProcessor/bitmap2gcode/bitmap2gcode.cpp" line="538"/>
+        <location filename="FileProcessor/bitmap2gcode/bitmap2gcode.cpp" line="549"/>
         <source>G1 X%1 Y%2 
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="FileProcessor/bitmap2gcode/bitmap2gcode.cpp" line="539"/>
-        <location filename="FileProcessor/bitmap2gcode/bitmap2gcode.cpp" line="576"/>
+        <location filename="FileProcessor/bitmap2gcode/bitmap2gcode.cpp" line="550"/>
+        <location filename="FileProcessor/bitmap2gcode/bitmap2gcode.cpp" line="587"/>
         <source>G4 P%1 
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="FileProcessor/bitmap2gcode/bitmap2gcode.cpp" line="560"/>
+        <location filename="FileProcessor/bitmap2gcode/bitmap2gcode.cpp" line="571"/>
         <source>G0 X%1 Y%2 F6000 
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="FileProcessor/bitmap2gcode/bitmap2gcode.cpp" line="575"/>
+        <location filename="FileProcessor/bitmap2gcode/bitmap2gcode.cpp" line="586"/>
         <source>G1 X%1 Y%2  
 </source>
         <translation></translation>
@@ -815,22 +816,22 @@
 <context>
     <name>Bitmap2Svg</name>
     <message>
-        <location filename="FileProcessor/bitmap2svg/QPotrace/bitmap2svg.cpp" line="14"/>
+        <location filename="FileProcessor/bitmap2svg/QPotrace/bitmap2svg.cpp" line="19"/>
         <source>format = %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="FileProcessor/bitmap2svg/QPotrace/bitmap2svg.cpp" line="45"/>
+        <location filename="FileProcessor/bitmap2svg/QPotrace/bitmap2svg.cpp" line="46"/>
         <source>MakeBlock Svg Generate</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="FileProcessor/bitmap2svg/QPotrace/bitmap2svg.cpp" line="46"/>
+        <location filename="FileProcessor/bitmap2svg/QPotrace/bitmap2svg.cpp" line="47"/>
         <source>An SVG drawing created by the SVG Generator Provide by makeblock.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="FileProcessor/bitmap2svg/QPotrace/bitmap2svg.cpp" line="81"/>
+        <location filename="FileProcessor/bitmap2svg/QPotrace/bitmap2svg.cpp" line="82"/>
         <source>wi = %1,he = %2</source>
         <translation></translation>
     </message>
@@ -853,28 +854,28 @@
         <translation>串口</translation>
     </message>
     <message>
-        <location filename="Communicate/serial/cpserialport.cpp" line="63"/>
-        <location filename="Communicate/serial/cpserialport.cpp" line="108"/>
-        <location filename="Communicate/serial/cpserialport.cpp" line="144"/>
+        <location filename="Communicate/serial/cpserialport.cpp" line="64"/>
+        <location filename="Communicate/serial/cpserialport.cpp" line="109"/>
+        <location filename="Communicate/serial/cpserialport.cpp" line="146"/>
         <source>Notice</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="Communicate/serial/cpserialport.cpp" line="63"/>
-        <location filename="Communicate/serial/cpserialport.cpp" line="108"/>
-        <location filename="Communicate/serial/cpserialport.cpp" line="144"/>
+        <location filename="Communicate/serial/cpserialport.cpp" line="64"/>
+        <location filename="Communicate/serial/cpserialport.cpp" line="109"/>
+        <location filename="Communicate/serial/cpserialport.cpp" line="146"/>
         <source>Serial open failed.</source>
         <translation>串口打开失败.</translation>
     </message>
     <message>
         <location filename="Communicate/serial/cpserialport.cpp" line="102"/>
-        <location filename="Communicate/serial/cpserialport.cpp" line="138"/>
+        <location filename="Communicate/serial/cpserialport.cpp" line="140"/>
         <source>Disconnect</source>
         <translation>断开</translation>
     </message>
     <message>
-        <location filename="Communicate/serial/cpserialport.cpp" line="115"/>
-        <location filename="Communicate/serial/cpserialport.cpp" line="151"/>
+        <location filename="Communicate/serial/cpserialport.cpp" line="116"/>
+        <location filename="Communicate/serial/cpserialport.cpp" line="154"/>
         <source>Connect</source>
         <translation>连接</translation>
     </message>
@@ -882,32 +883,32 @@
 <context>
     <name>ControlForm</name>
     <message>
-        <location filename="UICompment/controlform.ui" line="14"/>
+        <location filename="UICompment/controlform.ui" line="17"/>
         <source>ControlPanel</source>
         <translation>控制台</translation>
     </message>
     <message>
-        <location filename="UICompment/controlform.ui" line="72"/>
+        <location filename="UICompment/controlform.ui" line="81"/>
         <source>Y+</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UICompment/controlform.ui" line="85"/>
+        <location filename="UICompment/controlform.ui" line="97"/>
         <source>X-</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UICompment/controlform.ui" line="98"/>
+        <location filename="UICompment/controlform.ui" line="113"/>
         <source>复位</source>
         <translation>复位</translation>
     </message>
     <message>
-        <location filename="UICompment/controlform.ui" line="111"/>
+        <location filename="UICompment/controlform.ui" line="129"/>
         <source>X+</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UICompment/controlform.ui" line="124"/>
+        <location filename="UICompment/controlform.ui" line="145"/>
         <source>Y-</source>
         <translation></translation>
     </message>
@@ -948,24 +949,24 @@
 <context>
     <name>FileProcessThread</name>
     <message>
-        <location filename="UICompment/fileprocessthread.cpp" line="28"/>
+        <location filename="UICompment/fileprocessthread.cpp" line="31"/>
         <source>svg_%1.gcode</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UICompment/fileprocessthread.cpp" line="29"/>
+        <location filename="UICompment/fileprocessthread.cpp" line="33"/>
         <source>printsvg_%1.gcode</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UICompment/fileprocessthread.cpp" line="46"/>
-        <location filename="UICompment/fileprocessthread.cpp" line="89"/>
+        <location filename="UICompment/fileprocessthread.cpp" line="52"/>
+        <location filename="UICompment/fileprocessthread.cpp" line="102"/>
         <source>pic_%1.gcode</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UICompment/fileprocessthread.cpp" line="48"/>
-        <location filename="UICompment/fileprocessthread.cpp" line="91"/>
+        <location filename="UICompment/fileprocessthread.cpp" line="54"/>
+        <location filename="UICompment/fileprocessthread.cpp" line="104"/>
         <source>printpic_%1.gcode</source>
         <translation></translation>
     </message>
@@ -1021,32 +1022,32 @@
         <translation>串口连接成功！</translation>
     </message>
     <message>
-        <location filename="Communicate/serial/frontend.cpp" line="232"/>
-        <location filename="Communicate/serial/frontend.cpp" line="265"/>
+        <location filename="Communicate/serial/frontend.cpp" line="233"/>
+        <location filename="Communicate/serial/frontend.cpp" line="267"/>
         <source>M4 P0 
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Communicate/serial/frontend.cpp" line="233"/>
+        <location filename="Communicate/serial/frontend.cpp" line="234"/>
         <source>G90 
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Communicate/serial/frontend.cpp" line="241"/>
+        <location filename="Communicate/serial/frontend.cpp" line="242"/>
         <source>G0 X%1 Y%2 F3000
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Communicate/serial/frontend.cpp" line="242"/>
+        <location filename="Communicate/serial/frontend.cpp" line="243"/>
         <source>M4 P30 
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Communicate/serial/frontend.cpp" line="243"/>
+        <location filename="Communicate/serial/frontend.cpp" line="244"/>
         <source>G1 X%1 Y%2 F3000 
 </source>
         <oldsource>G1 X%1 Y%2 F1200 
@@ -1054,15 +1055,15 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="Communicate/serial/frontend.cpp" line="244"/>
         <location filename="Communicate/serial/frontend.cpp" line="245"/>
         <location filename="Communicate/serial/frontend.cpp" line="246"/>
+        <location filename="Communicate/serial/frontend.cpp" line="247"/>
         <source>G1 X%1 Y%2 
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Communicate/serial/frontend.cpp" line="266"/>
+        <location filename="Communicate/serial/frontend.cpp" line="268"/>
         <source>G1 F2000 X0 Y0 
 </source>
         <oldsource>G1 X0 Y0 
@@ -1070,7 +1071,7 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="Communicate/serial/frontend.cpp" line="310"/>
+        <location filename="Communicate/serial/frontend.cpp" line="315"/>
         <source>material=%2 times=%1</source>
         <translation></translation>
     </message>
@@ -1095,7 +1096,7 @@
     <message>
         <location filename="Update/fvupdateconfirmdialog.ui" line="78"/>
         <source>下载本更新, 关闭 &quot;%1&quot;,安装后重启 &quot;%1&quot;.</source>
-        <translation></translation>
+        <translation>下载本更新, 关闭 &quot;%1&quot;,安装后重启 &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="Update/fvupdateconfirmdialog.ui" line="85"/>
@@ -1122,12 +1123,12 @@
     <message>
         <location filename="Update/fvupdatewindow.ui" line="103"/>
         <source>检测到新版本 %1 ！ </source>
-        <translation></translation>
+        <translation>检测到新版本 %1 ！ </translation>
     </message>
     <message>
         <location filename="Update/fvupdatewindow.ui" line="110"/>
         <source>检测到新版本 %1 %2 - 您当前的版本为%3. 是否需要更新版本？</source>
-        <translation></translation>
+        <translation>检测到新版本 %1 %2 - 您当前的版本为%3. 是否需要更新版本？</translation>
     </message>
     <message>
         <location filename="Update/fvupdatewindow.ui" line="151"/>
@@ -1162,48 +1163,48 @@
 <context>
     <name>FvUpdater</name>
     <message>
-        <location filename="Update/fvupdater.cpp" line="221"/>
+        <location filename="Update/fvupdater.cpp" line="220"/>
         <source>Unable to open this link in a browser. Please do it manually.</source>
         <translation>无法打开浏览器，请手动打开.</translation>
     </message>
     <message>
-        <location filename="Update/fvupdater.cpp" line="344"/>
+        <location filename="Update/fvupdater.cpp" line="354"/>
         <source>Feed download failed: %1.</source>
         <translation>下载失败:%1.</translation>
     </message>
     <message>
-        <location filename="Update/fvupdater.cpp" line="483"/>
+        <location filename="Update/fvupdater.cpp" line="493"/>
         <source>Feed parsing failed: %1 %2.</source>
         <translation>解析失败:%1 %2.</translation>
     </message>
     <message>
-        <location filename="Update/fvupdater.cpp" line="491"/>
-        <location filename="Update/fvupdater.cpp" line="542"/>
+        <location filename="Update/fvupdater.cpp" line="501"/>
+        <location filename="Update/fvupdater.cpp" line="552"/>
         <source>No updates were found.</source>
         <translation>未检测到更新.</translation>
     </message>
     <message>
-        <location filename="Update/fvupdater.cpp" line="520"/>
+        <location filename="Update/fvupdater.cpp" line="530"/>
         <source>Feed error: &quot;release notes&quot; link is empty</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Update/fvupdater.cpp" line="529"/>
+        <location filename="Update/fvupdater.cpp" line="539"/>
         <source>Feed error: invalid &quot;release notes&quot; link</source>
         <translation>链接错误</translation>
     </message>
     <message>
-        <location filename="Update/fvupdater.cpp" line="533"/>
+        <location filename="Update/fvupdater.cpp" line="543"/>
         <source>Feed error: invalid &quot;enclosure&quot; with the download link</source>
         <translation>错误的链接</translation>
     </message>
     <message>
-        <location filename="Update/fvupdater.cpp" line="584"/>
+        <location filename="Update/fvupdater.cpp" line="594"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="Update/fvupdater.cpp" line="600"/>
+        <location filename="Update/fvupdater.cpp" line="610"/>
         <source>Information</source>
         <translation>信息</translation>
     </message>
@@ -1221,7 +1222,7 @@
     <message>
         <location filename="UICompment/gcodeform.ui" line="14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Gcode模式</translation>
     </message>
     <message>
         <location filename="UICompment/gcodeform.ui" line="141"/>
@@ -1262,8 +1263,8 @@
 <context>
     <name>HexLoadBase</name>
     <message>
-        <location filename="UICompment/hexloadbase.cpp" line="12"/>
-        <source>-Uflash:w:%1:i</source>
+        <location filename="UICompment/hexloadbase.cpp" line="15"/>
+        <source>-Uflash:w:%1/%2:i</source>
         <translation></translation>
     </message>
 </context>
@@ -1290,17 +1291,27 @@
         <translation>固件更新</translation>
     </message>
     <message>
-        <location filename="UICompment/hexloadform.cpp" line="79"/>
+        <location filename="UICompment/hexloadform.cpp" line="81"/>
         <source>OpenHex</source>
         <translation>打开Hex文件</translation>
     </message>
     <message>
-        <location filename="UICompment/hexloadform.cpp" line="100"/>
+        <location filename="UICompment/hexloadform.cpp" line="101"/>
+        <source>Notice</source>
+        <translation>提示</translation>
+    </message>
+    <message>
+        <location filename="UICompment/hexloadform.cpp" line="101"/>
+        <source>Serial open failed, may be occupied</source>
+        <translation>串口打开失败，可能是端口被占用</translation>
+    </message>
+    <message>
+        <location filename="UICompment/hexloadform.cpp" line="113"/>
         <source>提示</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="UICompment/hexloadform.cpp" line="100"/>
+        <location filename="UICompment/hexloadform.cpp" line="113"/>
         <source>固件刷新完成！软件将会自动关闭，关闭后请拔出USB，重新连接一次。</source>
         <translation>固件刷新完成！软件将会自动关闭，关闭后请拔出USB，重新连接一次。</translation>
     </message>
@@ -1345,32 +1356,32 @@
         <translation type="vanished">串口连接</translation>
     </message>
     <message>
-        <location filename="UICompment/loadform.cpp" line="85"/>
+        <location filename="UICompment/loadform.cpp" line="91"/>
         <source>正在连接..</source>
         <translation>正在连接</translation>
     </message>
     <message>
-        <location filename="UICompment/loadform.cpp" line="94"/>
+        <location filename="UICompment/loadform.cpp" line="100"/>
         <source>提示</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="UICompment/loadform.cpp" line="94"/>
+        <location filename="UICompment/loadform.cpp" line="100"/>
         <source>串口连接失败，请检查是否连接串口或者端口号，或重新插拔USB口。</source>
         <translation>串口连接失败，请检查是否连接串口或者端口号，或重新插拔USB口。</translation>
     </message>
     <message>
-        <location filename="UICompment/loadform.cpp" line="96"/>
+        <location filename="UICompment/loadform.cpp" line="102"/>
         <source>连接串口</source>
         <translation>连接串口</translation>
     </message>
     <message>
-        <location filename="UICompment/loadform.cpp" line="104"/>
+        <location filename="UICompment/loadform.cpp" line="110"/>
         <source>断开连接</source>
         <translation>断开连接</translation>
     </message>
     <message>
-        <location filename="UICompment/loadform.cpp" line="125"/>
+        <location filename="UICompment/loadform.cpp" line="131"/>
         <source>Port</source>
         <translation></translation>
     </message>
@@ -1403,18 +1414,18 @@
         <translation>串口</translation>
     </message>
     <message>
-        <location filename="UICompment/passwordform.cpp" line="51"/>
-        <location filename="UICompment/passwordform.cpp" line="59"/>
+        <location filename="UICompment/passwordform.cpp" line="54"/>
+        <location filename="UICompment/passwordform.cpp" line="62"/>
         <source>提示</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="UICompment/passwordform.cpp" line="51"/>
+        <location filename="UICompment/passwordform.cpp" line="54"/>
         <source>使用密码修改成功！</source>
         <translation>登陆密码修改成功！</translation>
     </message>
     <message>
-        <location filename="UICompment/passwordform.cpp" line="59"/>
+        <location filename="UICompment/passwordform.cpp" line="62"/>
         <source>原始密码错误！</source>
         <translation>原始密码错误！</translation>
     </message>
@@ -1515,8 +1526,8 @@
     </message>
     <message>
         <location filename="UICompment/qcptitle.ui" line="326"/>
-        <location filename="UICompment/qcptitle.cpp" line="108"/>
-        <location filename="UICompment/qcptitle.cpp" line="404"/>
+        <location filename="UICompment/qcptitle.cpp" line="115"/>
+        <location filename="UICompment/qcptitle.cpp" line="424"/>
         <source>二维码</source>
         <translation>二维码</translation>
     </message>
@@ -1555,7 +1566,7 @@
         <translation type="vanished">另存为</translation>
     </message>
     <message>
-        <location filename="UICompment/qcptitle.cpp" line="142"/>
+        <location filename="UICompment/qcptitle.cpp" line="149"/>
         <source>界面选择</source>
         <translation>界面选择</translation>
     </message>
@@ -1581,7 +1592,7 @@
         <translation type="vanished">硬件设置</translation>
     </message>
     <message>
-        <location filename="UICompment/qcptitle.cpp" line="178"/>
+        <location filename="UICompment/qcptitle.cpp" line="185"/>
         <source>刻度尺单位</source>
         <translation>刻度尺单位</translation>
     </message>
@@ -1594,18 +1605,18 @@
         <translation type="vanished">英寸(inch)</translation>
     </message>
     <message>
-        <location filename="UICompment/qcptitle.cpp" line="765"/>
+        <location filename="UICompment/qcptitle.cpp" line="809"/>
         <source>All (*.png *.jpg *.jpeg *.svg *.dxf *.bmp *.mbl);;Image Files (*.png *.jpg *.jpeg *.svg *.dxf);;Project (*.mbl)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UICompment/qcptitle.cpp" line="1065"/>
+        <location filename="UICompment/qcptitle.cpp" line="1159"/>
         <source>保存工程</source>
         <translation>保存工程</translation>
     </message>
     <message>
-        <location filename="UICompment/qcptitle.cpp" line="92"/>
-        <location filename="UICompment/qcptitle.cpp" line="109"/>
+        <location filename="UICompment/qcptitle.cpp" line="99"/>
+        <location filename="UICompment/qcptitle.cpp" line="116"/>
         <source>语言</source>
         <translation>语言</translation>
     </message>
@@ -1620,12 +1631,12 @@
         <translation>English</translation>
     </message>
     <message>
-        <location filename="UICompment/qcptitle.cpp" line="115"/>
+        <location filename="UICompment/qcptitle.cpp" line="122"/>
         <source>Qrcode</source>
         <translation>Qrcode</translation>
     </message>
     <message>
-        <location filename="UICompment/qcptitle.cpp" line="116"/>
+        <location filename="UICompment/qcptitle.cpp" line="123"/>
         <source>Language</source>
         <translation>Language</translation>
     </message>
@@ -1654,7 +1665,7 @@
         <translation type="vanished">反馈建议</translation>
     </message>
     <message>
-        <location filename="UICompment/qcptitle.cpp" line="431"/>
+        <location filename="UICompment/qcptitle.cpp" line="457"/>
         <source>Qcode</source>
         <translation>Qrcode</translation>
     </message>
@@ -1663,38 +1674,38 @@
         <translation type="vanished">保存路劲</translation>
     </message>
     <message>
-        <location filename="UICompment/qcptitle.cpp" line="607"/>
+        <location filename="UICompment/qcptitle.cpp" line="649"/>
         <source>灰度打印测试</source>
         <translation>灰度打印</translation>
     </message>
     <message>
-        <location filename="UICompment/qcptitle.cpp" line="618"/>
+        <location filename="UICompment/qcptitle.cpp" line="660"/>
         <source>提示</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="UICompment/qcptitle.cpp" line="618"/>
+        <location filename="UICompment/qcptitle.cpp" line="660"/>
         <source>SVG矢量图无法进行灰度雕刻！</source>
         <translation>SVG矢量图无法进行灰度雕刻！</translation>
     </message>
     <message>
-        <location filename="UICompment/qcptitle.cpp" line="635"/>
-        <location filename="UICompment/qcptitle.cpp" line="667"/>
+        <location filename="UICompment/qcptitle.cpp" line="677"/>
+        <location filename="UICompment/qcptitle.cpp" line="709"/>
         <source>注意</source>
         <translation>注意</translation>
     </message>
     <message>
-        <location filename="UICompment/qcptitle.cpp" line="635"/>
+        <location filename="UICompment/qcptitle.cpp" line="677"/>
         <source>未加载文件或未连接串口！</source>
         <translation>未加载文件或未连接串口！</translation>
     </message>
     <message>
-        <location filename="UICompment/qcptitle.cpp" line="667"/>
+        <location filename="UICompment/qcptitle.cpp" line="709"/>
         <source>未加载文件！</source>
         <translation>未加载文件！</translation>
     </message>
     <message>
-        <location filename="UICompment/qcptitle.cpp" line="765"/>
+        <location filename="UICompment/qcptitle.cpp" line="809"/>
         <source>OpenFile</source>
         <translation>打开</translation>
     </message>
@@ -1724,29 +1735,29 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="FileProcessor/gcoder/gmodel.cpp" line="83"/>
+        <location filename="FileProcessor/gcoder/gmodel.cpp" line="84"/>
         <source>X=%1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="FileProcessor/gcoder/gmodel.cpp" line="148"/>
+        <location filename="FileProcessor/gcoder/gmodel.cpp" line="147"/>
         <source>_bound x=%1 y=%2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="FileProcessor/gcoder/gmodel.cpp" line="188"/>
+        <location filename="FileProcessor/gcoder/gmodel.cpp" line="197"/>
         <source>G0 F%1 
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="FileProcessor/gcoder/gmodel.cpp" line="204"/>
+        <location filename="FileProcessor/gcoder/gmodel.cpp" line="214"/>
         <source>G0 X%1 Y%2 
  </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="FileProcessor/gcoder/gmodel.cpp" line="244"/>
+        <location filename="FileProcessor/gcoder/gmodel.cpp" line="267"/>
         <source>G1 X%1 Y%2 
 </source>
         <translation></translation>
@@ -1755,8 +1766,8 @@
         <location filename="UICompment/renderarea/msvgitem.cpp" line="109"/>
         <location filename="UICompment/renderarea/msvgitem.cpp" line="191"/>
         <location filename="UICompment/renderarea/msvgitem.cpp" line="233"/>
-        <location filename="UICompment/renderarea/pixmapitem.cpp" line="88"/>
-        <location filename="UICompment/renderarea/pixmapitem.cpp" line="140"/>
+        <location filename="UICompment/renderarea/pixmapitem.cpp" line="100"/>
+        <location filename="UICompment/renderarea/pixmapitem.cpp" line="152"/>
         <source>W:%1 H:%2</source>
         <translation></translation>
     </message>
@@ -1771,7 +1782,7 @@
     <message>
         <location filename="UICompment/qrencodeform.ui" line="14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>二维码</translation>
     </message>
     <message>
         <location filename="UICompment/qrencodeform.ui" line="134"/>
@@ -1783,7 +1794,7 @@
 <context>
     <name>Svg2GcodeP</name>
     <message>
-        <location filename="FileProcessor/svg2gcode/svg2gcodep.cpp" line="24"/>
+        <location filename="FileProcessor/svg2gcode/svg2gcodep.cpp" line="25"/>
         <source>这是文字！</source>
         <translation></translation>
     </message>
@@ -1793,185 +1804,135 @@
     <message>
         <location filename="UICompment/textform.ui" line="14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>添加文字</translation>
     </message>
     <message>
         <location filename="UICompment/textform.ui" line="137"/>
-        <source>8</source>
-        <translation>8</translation>
-    </message>
-    <message>
-        <location filename="UICompment/textform.ui" line="142"/>
-        <source>12</source>
-        <translation>12</translation>
-    </message>
-    <message>
-        <location filename="UICompment/textform.ui" line="147"/>
-        <source>14</source>
-        <translation>14</translation>
-    </message>
-    <message>
-        <location filename="UICompment/textform.ui" line="152"/>
-        <source>16</source>
-        <translation>16</translation>
-    </message>
-    <message>
-        <location filename="UICompment/textform.ui" line="157"/>
-        <source>18</source>
-        <translation>18</translation>
-    </message>
-    <message>
-        <location filename="UICompment/textform.ui" line="162"/>
-        <source>20</source>
-        <translation>20</translation>
+        <source>5</source>
+        <oldsource>8</oldsource>
+        <translation>八号</translation>
     </message>
     <message>
         <location filename="UICompment/textform.ui" line="167"/>
-        <source>22</source>
-        <translation>22</translation>
+        <source>12</source>
+        <translation>小四</translation>
     </message>
     <message>
         <location filename="UICompment/textform.ui" line="172"/>
-        <source>24</source>
-        <translation>24</translation>
-    </message>
-    <message>
-        <location filename="UICompment/textform.ui" line="177"/>
-        <source>26</source>
-        <translation>26</translation>
+        <source>14</source>
+        <translation>四号</translation>
     </message>
     <message>
         <location filename="UICompment/textform.ui" line="182"/>
-        <source>28</source>
-        <translation>28</translation>
+        <source>16</source>
+        <translation>三号</translation>
     </message>
     <message>
         <location filename="UICompment/textform.ui" line="187"/>
-        <source>30</source>
-        <translation>30</translation>
+        <source>18</source>
+        <translation>小二</translation>
     </message>
     <message>
         <location filename="UICompment/textform.ui" line="192"/>
-        <source>32</source>
-        <translation>32</translation>
+        <source>22</source>
+        <translation>二号</translation>
     </message>
     <message>
         <location filename="UICompment/textform.ui" line="197"/>
-        <source>38</source>
-        <translation></translation>
+        <source>24</source>
+        <translation>小一</translation>
     </message>
     <message>
         <location filename="UICompment/textform.ui" line="202"/>
-        <source>40</source>
-        <translation></translation>
+        <source>26</source>
+        <translation>一号</translation>
+    </message>
+    <message>
+        <location filename="UICompment/textform.ui" line="142"/>
+        <source>5.5</source>
+        <translation>七号</translation>
+    </message>
+    <message>
+        <location filename="UICompment/textform.ui" line="147"/>
+        <source>6.5</source>
+        <translation>小六</translation>
+    </message>
+    <message>
+        <location filename="UICompment/textform.ui" line="152"/>
+        <source>7.5</source>
+        <translation>六号</translation>
+    </message>
+    <message>
+        <location filename="UICompment/textform.ui" line="157"/>
+        <source>9</source>
+        <translation>小五</translation>
+    </message>
+    <message>
+        <location filename="UICompment/textform.ui" line="162"/>
+        <source>10.5</source>
+        <translation>五号</translation>
+    </message>
+    <message>
+        <location filename="UICompment/textform.ui" line="177"/>
+        <source>15</source>
+        <translation>小三</translation>
     </message>
     <message>
         <location filename="UICompment/textform.ui" line="207"/>
-        <source>44</source>
-        <translation></translation>
+        <source>36</source>
+        <oldsource>44</oldsource>
+        <translation>小初</translation>
     </message>
     <message>
         <location filename="UICompment/textform.ui" line="212"/>
-        <source>48</source>
-        <translation></translation>
+        <source>42</source>
+        <oldsource>48</oldsource>
+        <translation>初号</translation>
     </message>
     <message>
         <location filename="UICompment/textform.ui" line="217"/>
         <source>50</source>
-        <translation></translation>
+        <translation>50</translation>
     </message>
     <message>
         <location filename="UICompment/textform.ui" line="222"/>
-        <source>52</source>
-        <translation></translation>
+        <source>60</source>
+        <oldsource>52</oldsource>
+        <translation>60</translation>
     </message>
     <message>
         <location filename="UICompment/textform.ui" line="227"/>
-        <source>54</source>
-        <translation></translation>
+        <source>80</source>
+        <oldsource>54</oldsource>
+        <translation>80</translation>
     </message>
     <message>
         <location filename="UICompment/textform.ui" line="232"/>
-        <source>58</source>
-        <translation></translation>
+        <source>100</source>
+        <translation>100</translation>
     </message>
     <message>
         <location filename="UICompment/textform.ui" line="237"/>
-        <source>60</source>
-        <translation></translation>
+        <source>120</source>
+        <translation>120</translation>
     </message>
     <message>
         <location filename="UICompment/textform.ui" line="242"/>
-        <source>62</source>
-        <translation></translation>
+        <source>150</source>
+        <translation>150</translation>
     </message>
     <message>
         <location filename="UICompment/textform.ui" line="247"/>
-        <source>77</source>
-        <translation></translation>
+        <source>180</source>
+        <translation>180</translation>
     </message>
     <message>
-        <location filename="UICompment/textform.ui" line="252"/>
-        <source>78</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="UICompment/textform.ui" line="257"/>
-        <source>80</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="UICompment/textform.ui" line="262"/>
-        <source>84</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="UICompment/textform.ui" line="267"/>
-        <source>86</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="UICompment/textform.ui" line="272"/>
-        <source>90</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="UICompment/textform.ui" line="277"/>
-        <source>100</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="UICompment/textform.ui" line="282"/>
-        <source>110</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="UICompment/textform.ui" line="287"/>
-        <source>120</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="UICompment/textform.ui" line="292"/>
-        <source>130</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="UICompment/textform.ui" line="297"/>
-        <source>140</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="UICompment/textform.ui" line="302"/>
-        <source>150</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="UICompment/textform.ui" line="366"/>
+        <location filename="UICompment/textform.ui" line="311"/>
         <source>确认</source>
         <translation>确认</translation>
     </message>
     <message>
-        <location filename="UICompment/textform.ui" line="379"/>
+        <location filename="UICompment/textform.ui" line="324"/>
         <source>取消</source>
         <translation>取消</translation>
     </message>

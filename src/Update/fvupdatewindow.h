@@ -21,6 +21,7 @@ public:
 	bool UpdateWindowWithCurrentProposedUpdate();
 
 	void closeEvent(QCloseEvent* event);
+    void languageUpdate();
 
 private:
 	Ui::FvUpdateWindow*	m_ui;

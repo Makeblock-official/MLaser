@@ -10,6 +10,9 @@
     <height>273</height>
    </rect>
   </property>
+  <property name="focusPolicy">
+   <enum>Qt::WheelFocus</enum>
+  </property>
   <property name="windowTitle">
    <string>ControlPanel</string>
   </property>
@@ -28,6 +31,9 @@
      <width>281</width>
      <height>201</height>
     </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">QFrame#framePannel{
@@ -68,6 +74,9 @@ QPushButton:pressed{
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="focusPolicy">
+       <enum>Qt::ClickFocus</enum>
+      </property>
       <property name="text">
        <string>Y+</string>
       </property>
@@ -80,6 +89,9 @@ QPushButton:pressed{
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::ClickFocus</enum>
       </property>
       <property name="text">
        <string>X-</string>
@@ -94,6 +106,9 @@ QPushButton:pressed{
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="focusPolicy">
+       <enum>Qt::ClickFocus</enum>
+      </property>
       <property name="text">
        <string>复位</string>
       </property>
@@ -107,6 +122,9 @@ QPushButton:pressed{
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="focusPolicy">
+       <enum>Qt::ClickFocus</enum>
+      </property>
       <property name="text">
        <string>X+</string>
       </property>
@@ -119,6 +137,9 @@ QPushButton:pressed{
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::ClickFocus</enum>
       </property>
       <property name="text">
        <string>Y-</string>

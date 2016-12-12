@@ -37,7 +37,7 @@ private:
     QFont fonts;
     bool blod;
     bool bItly;
-
+    float font_size_tab[23] = {5,5.5,6.5,7.5,9,10.5,12,14,15,16,18,22,24,26,36,42,48,56,72,96,120,150,180};
     //function
     void updateConfig();
 signals:

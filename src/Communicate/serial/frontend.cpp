@@ -25,7 +25,6 @@ FrontEnd::FrontEnd(QObject *parent,CPSerialPort*printports ) :
 
 void FrontEnd::serialDisconnect()
 {
-    emit Sig_Disconnect();
     emit Sig_ConnectFaile(false);
 }
 
@@ -262,13 +261,12 @@ void FrontEnd::genBounding(QRectF rf)
         boundcode.push_back(a3);
         boundcode.push_back(a4);
         boundcode.push_back(a5);
+        qDebug()<<a0<<a1<<a2<<a3<<a4<<a5;
     }
     QString a6 = tr("M4 P0 \n");
     QString a7 = tr("G1 F2000 X0 Y0 \n");
     boundcode.push_back(a6);
     boundcode.push_back(a7);
-    //    qDebug()<<a<<a1<<a2<<a3<<a4<<a5;
-
 }
 void FrontEnd::resetBounding()
 {
@@ -349,7 +347,7 @@ void FrontEnd::slotSerialConnect(QString m)
 {
     printport->ConnectPort(m);
     isConnect = true;
-    qDebug()<<"Now int the serial connect slot";
+    qDebug()<<"Now in the serial connect slot";
 }
 
 void FrontEnd::slotConnectFaile(bool b)

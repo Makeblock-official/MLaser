@@ -10,6 +10,7 @@
 #include "af_backform.h"
 #include "ag_lastform.h"
 #include "ah_hexform.h"
+#include "bd_viewform.h"
 
 #include "qcptitle.h"
 #include "loadform.h"
@@ -59,6 +60,7 @@ private:
     AF_BackForm* backform;
     AG_LastForm* lastform;
     AH_HexForm* hexform;
+    BD_ViewForm* viewform;
 
     LoadForm* firstform;
 

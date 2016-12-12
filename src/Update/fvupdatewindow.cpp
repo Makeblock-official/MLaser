@@ -92,3 +92,8 @@ void FvUpdateWindow::urlChange(QUrl url)
     qDebug()<<"aaaa"<<url;
     QDesktopServices::openUrl(url);
 }
+
+void FvUpdateWindow::languageUpdate()
+{
+    m_ui->retranslateUi(this);
+}

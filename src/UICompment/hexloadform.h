@@ -39,6 +39,7 @@ private:
     HexLoadBase* hexBase;
 signals:
     void Sig_Process(QString,QString);
+    void Sig_Serial_Connect(QString);
 };
 
 #endif // HEXLOADFORM_H

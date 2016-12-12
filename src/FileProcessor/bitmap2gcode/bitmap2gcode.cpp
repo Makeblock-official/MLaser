@@ -479,8 +479,8 @@ void Bitmap2Gcode::ExportGrayPix(QImage src,QString savefile)
     //     pos = pos/10;
     if(uint=="inch")
     {
-        pos = pos*2.54;
-        scale = 2.54;
+        pos = pos/10;
+        scale = 0.1;
 
     }
     else if(uint=="mm")

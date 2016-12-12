@@ -50,6 +50,7 @@ public slots:
     void slotCombinePrint(QStringList);
     void slotSetHW(QPointF m);  //设置图片的长宽
     void slotShowPos(QRectF);
+    void uintUpdate();
 protected:
     void contextMenuEvent(QContextMenuEvent *event);
 private:

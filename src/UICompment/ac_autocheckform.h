@@ -17,7 +17,7 @@ public:
     ~AC_AutoCheckForm();
     void languageUpdate();
     void timeStart();
-    void setConnectState(bool b){bConnect = b;}
+    void setConnectState(bool b);
     void setButtonStyle(int m);
 public slots:
     void slotTimeOut();

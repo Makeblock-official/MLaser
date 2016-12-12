@@ -5,8 +5,7 @@ UIManager::UIManager(QObject *parent) :
     QObject(parent)
 {
     isMWindow = false;
-    loadform = new AA_LoadForm();
-
+    loadform    = new AA_LoadForm();
     serialform  = new AB_SerialForm();
     checkform   = new AC_AutoCheckForm();
     laserform   = new AD_LaserForm();
@@ -16,6 +15,7 @@ UIManager::UIManager(QObject *parent) :
     hexform     = new AH_HexForm();
     mwindow     = new QCPTitle();
     firstform   = new LoadForm();
+    viewform    = new BD_ViewForm();
 	QString lpath = QCoreApplication::applicationDirPath(); 
 	QString lname = "/mLaser.ini";
     QString lallPath = QString("%1%2").arg(lpath).arg(lname);
@@ -53,6 +53,7 @@ UIManager::UIManager(QObject *parent) :
     connect(mwindow,SIGNAL(Sig_Recover()),this,SLOT(slotRecover()));
     connect(mwindow,SIGNAL(Sig_Bounding(QRectF)),this,SLOT(slotBounding(QRectF)));
     connect(mwindow,SIGNAL(Sig_GCODE(QString)),this,SIGNAL(Sig_GCODE_ui(QString)));
+	connect(mwindow,SIGNAL(Sig_SerialConnect(QString)),this,SLOT(slotSerialConnect(QString)));
 
     connect(this,SIGNAL(Sig_ProcessBar(bool,quint64)),mwindow,SLOT(slotProcessBar(bool,quint64)));
     connect(this,SIGNAL(Sig_ConnectFaile(bool)),mwindow,SLOT(slotConnectFaile(bool)));
@@ -97,7 +98,7 @@ UIManager::UIManager(QObject *parent) :
     firstform->languageUpdate();
     lastform->languageUpdate();
     hexform->languageUpdate();
-
+    viewform->languageUpdate();
     serialform->show();
 }
 
@@ -266,7 +267,6 @@ void UIManager::slotMWin(QString cmd)
 }
 void UIManager::slotShowLoad()
 {
-    qDebug()<<"flsakdjf";
     //    if(!mwindow->isActiveWindow())
     // if(!isMWindow)
     if(mwindow->isHidden())
@@ -314,6 +314,7 @@ void UIManager::slotSerialPort(QString m)
 }
 void UIManager::slotSerialConnect(QString m)
 {
+	qDebug()<<"slotSerialConnect";
     emit Sig_SerialConnect(m);
 }
 //接收FrontEnd发送过来的打印完成比例
@@ -349,9 +350,7 @@ void UIManager::slotProcessBar(bool s,quint64 m)
 
 void UIManager::slotConnectFaile(bool b)
 {
-    emit Sig_ConnectFaile(b);
     checkform->setConnectState(b);
-    qDebug()<<"UIManager receive:--------";
 }
 void UIManager::slotEndStopState(int m)
 {

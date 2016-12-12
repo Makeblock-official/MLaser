@@ -68,6 +68,14 @@ void AC_AutoCheckForm::on_btnAutoHome_clicked()
 {
     emit Sig_ToLaser("G28 X Y");
 }
+
+void AC_AutoCheckForm::setConnectState(bool b)
+{
+	qDebug()<<"setConnectState:" << b;
+    bConnect = b;
+}
+
+
 void AC_AutoCheckForm::setButtonStyle(int m)
 {
     qDebug()<<tr("In the button style,value=%1").arg(m);
