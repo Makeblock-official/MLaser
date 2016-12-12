@@ -350,6 +350,7 @@ void UIManager::slotProcessBar(bool s,quint64 m)
 
 void UIManager::slotConnectFaile(bool b)
 {
+    emit Sig_ConnectFaile(b);
     checkform->setConnectState(b);
 }
 void UIManager::slotEndStopState(int m)
