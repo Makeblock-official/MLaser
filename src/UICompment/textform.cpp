@@ -90,7 +90,7 @@ void TextForm::on_btnOk_clicked()
 
 void TextForm::on_fontComboBox_activated(const QString &arg1)
 {
-    //    float font_size_tab[] = {5,5.5,6.5,7.5,9,10.5,12,14,15,16,18,22,24,26,36,42,48,56,72,96,120,150,180};
+    fonts = ui->fontComboBox->currentFont();
     int font_size = (int)font_size_tab[ui->comboBoxFontSize->currentIndex()];
     fonts.setPointSize(font_size);
     ui->plainTextEdit->setFont(fonts);
