@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss
-    version="2.3"
+    version="2.2"
     xmlns:atom="http://learn.makeblock.com/"
     xmlns:sparkle="http://www.makeblock.com/"
     xmlns:fervor="https://github.com/Makeblock-official/mlaser_resources"
@@ -14,7 +14,7 @@
         <atom:link href="https://github.com/Makeblock-official/MLaser/blob/master/Appcast.xml" rel="self" type="application/rss+xml" />
 
         <item>
-            <title>Version 2.3 </title>
+            <title>Version 2.2 </title>
             <pubDate>Tues, 25 Oct 2016 19:20:11 +0000</pubDate>
             <guid isPermaLink="true">https://github.com/Makeblock-official/MLaser</guid>
 
@@ -28,8 +28,8 @@
 
             <!-- Windows version. -->
             <enclosure
-                url="https://raw.githubusercontent.com/Makeblock-official/mlaser_resources/master/distribution/windows/mLaserSetup.rar"
-                fervor:version="2.3"
+                url="http://download.makeblock.com/laserbot/mLaserSetup.rar"
+                fervor:version="2.2"
                 fervor:platform="Q_OS_WIN32"
                 length="43338081"
                 type="application/octet-stream" />
@@ -37,7 +37,7 @@
             <!-- Linux version. -->
             <enclosure
                 url="https://codeload.github.com/Makeblock-official/mlaser_resources/zip/master"
-                fervor:version="2.3"
+                fervor:version="2.2"
                 fervor:platform="Q_OS_LINUX"
                 length="86189351"
                 type="application/octet-stream" />
@@ -47,8 +47,8 @@
                  namespace just tells the updater that this is a download for OS X.
              -->
             <enclosure
-                url="https://raw.githubusercontent.com/Makeblock-official/mlaser_resources/master/distribution/mac/mLaser.dmg"
-                sparkle:version="2.3"
+                url="http://download.makeblock.com/laserbot/mLaser.dmg"
+                sparkle:version="2.2"
                 fervor:platform="Q_OS_MAC"
                 length="44035746"
                 type="application/octet-stream"
