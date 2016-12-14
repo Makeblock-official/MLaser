@@ -98,6 +98,14 @@ void CPSerialPort::on_btnConnect_clicked()
         mySerialport->setFlowControl(QSerialPort::NoFlowControl);
         if(mySerialport->open(QIODevice::ReadWrite))
         {
+            QString com = ui->portCombo->currentText();
+            QString lpath = QCoreApplication::applicationDirPath(); 
+            QString lname = "/mLaser.ini";
+            QString lallPath = QString("%1%2").arg(lpath).arg(lname);
+            QSettings* psetting = new QSettings(lallPath,QSettings::IniFormat);
+            psetting->beginGroup("mode");
+            psetting->setValue("serial",com);
+            psetting->endGroup();
             connect(mySerialport,SIGNAL(readyRead()),this,SLOT(Slot_ResponseUart()));
             ui->btnConnect->setText(tr("Disconnect"));
             qDebug()<<comName << "connected";
@@ -135,6 +143,14 @@ void CPSerialPort::ConnectPort(QString m)
             mySerialport->setFlowControl(QSerialPort::NoFlowControl);
             if(mySerialport->open(QIODevice::ReadWrite))
             {
+                QString com = ui->portCombo->currentText();
+                QString lpath = QCoreApplication::applicationDirPath(); 
+                QString lname = "/mLaser.ini";
+                QString lallPath = QString("%1%2").arg(lpath).arg(lname);
+                QSettings* psetting = new QSettings(lallPath,QSettings::IniFormat);
+                psetting->beginGroup("mode");
+                psetting->setValue("serial",com);
+                psetting->endGroup();
                 connect(mySerialport,SIGNAL(readyRead()),this,SLOT(Slot_ResponseUart()));
                 ui->btnConnect->setText(tr("Disconnect"));
                 qDebug()<<comName << "connected 2";

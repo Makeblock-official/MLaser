@@ -35,17 +35,17 @@ TextForm::TextForm(QWidget *parent) :
     psetting->beginGroup("font");
     int pfont = psetting->value("font").toInt();
     int psize = psetting->value("font_size").toInt();
+    psetting->endGroup();
     ui->fontComboBox->setCurrentIndex(pfont);
     ui->comboBoxFontSize->setCurrentIndex(psize);
-    psetting->endGroup();
-
+	
     fonts = ui->fontComboBox->currentFont();
-	int size = ui->comboBoxFontSize->currentIndex();
+    int size = ui->comboBoxFontSize->currentIndex();
     int font_size = (int)font_size_tab[size];
     fonts.setPointSize(font_size);
     ui->plainTextEdit->setFont(fonts);
 	languageUpdate();
-    qDebug()<<"pfont:" << pfont << ",psize:"<<psize << ",size:"<<size<<",font_size:" << font_size;
+    qDebug()<<"pfont:" << pfont << ",size:"<<size<<",font_size:" << font_size <<",text:" << ui->comboBoxFontSize->itemText(psize);
 }
 
 TextForm::~TextForm()
@@ -59,7 +59,7 @@ void TextForm::on_btnOk_clicked()
     QString path = QCoreApplication::applicationDirPath();
     QString contents = ui->plainTextEdit->toPlainText();
     QStringList pi = contents.split("\n");
-	QFont fonts_temp;
+    QFont fonts_temp(ui->fontComboBox->currentFont());
     int font_size = (int)(3.6 * font_size_tab[ui->comboBoxFontSize->currentIndex()]);
     fonts_temp.setPointSize(font_size);
 
@@ -154,4 +154,12 @@ void TextForm::on_btnItly_clicked()
 void TextForm::languageUpdate()
 {
     ui->retranslateUi(this);
+    QString path = QCoreApplication::applicationDirPath();
+    QString name = "/mLaser.ini";
+    QString allPath = QString("%1%2").arg(path).arg(name);
+    QSettings* psetting = new QSettings(allPath,QSettings::IniFormat);
+    psetting->beginGroup("font");
+    int psize = psetting->value("font_size").toInt();
+    psetting->endGroup();
+    ui->comboBoxFontSize->setCurrentText(ui->comboBoxFontSize->itemText(psize));
 }

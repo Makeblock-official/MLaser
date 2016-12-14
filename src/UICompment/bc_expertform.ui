@@ -344,6 +344,9 @@ QComboBox::down-arrow {
          </item>
          <item row="5" column="1">
           <widget class="QLineEdit" name="lineEditSpaceSpeed">
+           <property name="whatsThis">
+            <string notr="true"/>
+           </property>
            <property name="text">
             <string>2000</string>
            </property>
@@ -358,6 +361,9 @@ QComboBox::down-arrow {
          </item>
          <item row="3" column="1">
           <widget class="QLineEdit" name="lineEditPower">
+           <property name="whatsThis">
+            <string notr="true"/>
+           </property>
            <property name="text">
             <string>100</string>
            </property>
@@ -386,6 +392,9 @@ QComboBox::down-arrow {
          </item>
          <item row="2" column="1">
           <widget class="QLineEdit" name="lineEditRepeat">
+           <property name="whatsThis">
+            <string notr="true"/>
+           </property>
            <property name="text">
             <string>1</string>
            </property>
@@ -393,6 +402,9 @@ QComboBox::down-arrow {
          </item>
          <item row="4" column="1">
           <widget class="QLineEdit" name="lineEditPixSpeed">
+           <property name="whatsThis">
+            <string notr="true"/>
+           </property>
            <property name="text">
             <string>400</string>
            </property>
@@ -428,7 +440,10 @@ QComboBox::down-arrow {
             </size>
            </property>
            <property name="focusPolicy">
-            <enum>Qt::NoFocus</enum>
+            <enum>Qt::WheelFocus</enum>
+           </property>
+           <property name="contextMenuPolicy">
+            <enum>Qt::DefaultContextMenu</enum>
            </property>
            <item>
             <property name="text">
@@ -489,6 +504,9 @@ QComboBox::down-arrow {
          </item>
          <item row="1" column="1">
           <widget class="QLineEdit" name="lineEditCarvSpeed">
+           <property name="whatsThis">
+            <string notr="true"/>
+           </property>
            <property name="text">
             <string>1200</string>
            </property>
@@ -496,6 +514,9 @@ QComboBox::down-arrow {
          </item>
          <item row="2" column="1">
           <widget class="QLineEdit" name="lineEditCarvPiwer">
+           <property name="whatsThis">
+            <string notr="true"/>
+           </property>
            <property name="text">
             <string>95</string>
            </property>
@@ -503,6 +524,9 @@ QComboBox::down-arrow {
          </item>
          <item row="4" column="1">
           <widget class="QLineEdit" name="lineEditCarvPixcel">
+           <property name="whatsThis">
+            <string notr="true"/>
+           </property>
            <property name="text">
             <string>1</string>
            </property>
@@ -524,6 +548,9 @@ QComboBox::down-arrow {
          </item>
          <item row="3" column="1">
           <widget class="QLineEdit" name="lineEditCarvTime">
+           <property name="whatsThis">
+            <string notr="true"/>
+           </property>
            <property name="text">
             <string>6</string>
            </property>
@@ -564,6 +591,9 @@ QComboBox::down-arrow {
              <width>0</width>
              <height>25</height>
             </size>
+           </property>
+           <property name="contextMenuPolicy">
+            <enum>Qt::DefaultContextMenu</enum>
            </property>
            <item>
             <property name="text">

@@ -45,7 +45,6 @@ QCPTitle::QCPTitle(QWidget *parent) :
 
     //左侧显示图元的窗口类
     viewer  = new BD_ViewForm();
-
 //    easyn->setElementEnable(true);
 //    expert->setElementEnable(false);
 
@@ -166,7 +165,6 @@ QCPTitle::QCPTitle(QWidget *parent) :
     toolMenu->addMenu(uiChoose);
     connect(expertAction,SIGNAL(triggered()),this,SLOT(slotExpert()));
     connect(coustomAction,SIGNAL(triggered()),this,SLOT(slotCoustom()));
-
 
     //G代码模式
     gcodeAction = ui->gcodeAction;
@@ -1148,7 +1146,7 @@ void QCPTitle::on_btnSave_clicked()
         QString allPath = QString("%1%2").arg(path).arg(name);
         QSettings * pset = new QSettings(allPath,QSettings::IniFormat);
         pset->beginGroup("laser");
-        QString carv_type=pset->value("carv_type").toString();
+        int carv_type=pset->value("carv_type").toInt();
         QString p_power_time = pset->value("p_power_time").toString();
         QString p_move_speed = pset->value("p_move_speed").toString();
         QString p_power = pset->value("p_power").toString();

@@ -111,6 +111,14 @@ void HexLoadForm::languageUpdate()
 void HexLoadForm::slotFinishHexLoad()
 {
 //    movie->stop();
+	QString com = ui->portCombo->currentText();
+	QString lpath = QCoreApplication::applicationDirPath(); 
+	QString lname = "/mLaser.ini";
+    QString lallPath = QString("%1%2").arg(lpath).arg(lname);
+    QSettings* psetting = new QSettings(lallPath,QSettings::IniFormat);
+    psetting->beginGroup("mode");
+    psetting->setValue("serial",com);
+    psetting->endGroup();
     QMessageBox::information(this,tr("提示"),tr("固件刷新完成！软件将会自动关闭，关闭后请拔出USB，重新连接一次。"));
     ui->label->hide();
     qApp->quit();

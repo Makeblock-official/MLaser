@@ -29,19 +29,18 @@ private slots:
     void on_btnStop_clicked();
     void on_btnPreview_clicked();
     void on_btnSetHome_clicked();
-    void on_comboMaterial_currentIndexChanged(const QString &arg1);
+    void on_comboMaterial_activated(int index);
     void on_lineEditRepeat_returnPressed();
     void on_lineEditPower_returnPressed();
     void on_lineEditPixSpeed_returnPressed();
     void on_lineEditSpaceSpeed_returnPressed();
-    void on_comboMaterial_currentIndexChanged(int index);
     void on_lineEditCarvSpeed_returnPressed();
     void on_lineEditCarvPiwer_returnPressed();
     void on_lineEditCarvTime_returnPressed();
     void on_lineEditCarvPixcel_returnPressed();
     void on_btnPointLaser_released();
     void on_btnPointLaser_pressed();
-    void on_comboBoxPicType_currentIndexChanged(int index);
+    void on_comboBoxPicType_activated(int index);
 
     void on_btnPower_clicked();
 
@@ -55,7 +54,7 @@ private slots:
 
     void on_lineEditPixSpeed_editingFinished();
 
-    void on_lineEditSpaceSpeed_cursorPositionChanged(int arg1, int arg2);
+    void on_lineEditSpaceSpeed_editingFinished();
 
     void on_lineEditCarvSpeed_editingFinished();
 

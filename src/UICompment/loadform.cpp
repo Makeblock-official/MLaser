@@ -80,13 +80,6 @@ void LoadForm::on_btnConnect_clicked()
 {
     //连接串口
     QString com = ui->comboBoxSerial->currentText();
-	QString lpath = QCoreApplication::applicationDirPath(); 
-	QString lname = "/mLaser.ini";
-    QString lallPath = QString("%1%2").arg(lpath).arg(lname);
-    QSettings* psetting = new QSettings(lallPath,QSettings::IniFormat);
-    psetting->beginGroup("mode");
-    psetting->setValue("serial",com);
-    psetting->endGroup();
 	if(!bConnect)
     {
       emit Sig_SerialConnect(com);
