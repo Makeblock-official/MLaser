@@ -106,9 +106,18 @@ void PGraphicsScene::drawAxis()
             if((seg_num % 5) == 0)
             {
                 this->addLine(i,home,i,home-10);
-                QGraphicsTextItem *po = new QGraphicsTextItem(QString::number(seg_num));
-                po->setPos(i-10,-5);
-                this->addItem(po);
+                if (uint_value == "inch")
+                {
+                    QGraphicsTextItem *po = new QGraphicsTextItem(QString::number(seg_num/10.0));
+                    po->setPos(i-10,-5);
+                    this->addItem(po);
+                }
+                else if (uint_value == "mm")
+                {
+                    QGraphicsTextItem *po = new QGraphicsTextItem(QString::number(seg_num));
+                    po->setPos(i-10,-5);
+                    this->addItem(po);
+                }
             }
             else
             {
@@ -130,9 +139,18 @@ void PGraphicsScene::drawAxis()
             if((seg_num % 5) == 0)
             {
                 this->addLine(home,i,home-10,i);
-                QGraphicsTextItem *po = new QGraphicsTextItem(QString::number(seg_num));
-                po->setPos(-2,i-12);
-                this->addItem(po);
+                if (uint_value == "inch")
+                {
+                    QGraphicsTextItem *po = new QGraphicsTextItem(QString::number(seg_num/10.0));
+                    po->setPos(-2,i-12);
+                    this->addItem(po);
+                }
+                else if (uint_value == "mm")
+                {
+                    QGraphicsTextItem *po = new QGraphicsTextItem(QString::number(seg_num));
+                    po->setPos(-2,i-12);
+                    this->addItem(po);
+                }
             }
             else
             {

@@ -297,6 +297,7 @@ void FrontEnd::slotCombineFile(QStringList p)
         QMessageBox::information(NULL,"Notice","Can not show!");
     }
     QTextStream out(&file);
+
     QString cpath = QCoreApplication::applicationDirPath();
     QString cname = "/Config.ini";
     QString callPath = QString("%1%2").arg(cpath).arg(cname);
@@ -304,15 +305,35 @@ void FrontEnd::slotCombineFile(QStringList p)
     psetting->beginGroup("laser");
     QString type = psetting->value("material").toString();
     psetting->endGroup();
+
     QString mpath = QCoreApplication::applicationDirPath();
     QString mname = "/material.ini";
     QString mallPath = QString("%1%2").arg(mpath).arg(mname);
     QSettings* tpsetting = new QSettings(mallPath,QSettings::IniFormat);
     tpsetting->beginGroup(type);
-    times =  tpsetting->value("times").toInt();
+    int mtimes =  tpsetting->value("times").toInt();
     tpsetting->endGroup();
+
     qDebug()<<tr("material=%2 times=%1").arg(times).arg(type);
-    for(int j=0;j<times;j++)
+
+    QString kpath = QCoreApplication::applicationDirPath();
+    QString kname = "/Config.ini";
+    QString kallPath = QString("%1%2").arg(kpath).arg(kname);
+    QSettings* ksetting = new QSettings(kallPath,QSettings::IniFormat);
+    ksetting->beginGroup("laser");
+    QString kPrint =  ksetting->value("kPrint").toString();
+    ksetting->endGroup();
+
+    if (kPrint == "Cut")
+    {
+        times = mtimes;
+    }
+    else if (kPrint == "Carve")
+    {
+        times = 1;
+    }
+
+	for(int j=0;j<times;j++)
     {
         for(int i=0;i<p.size();i++)
         {
@@ -326,12 +347,14 @@ void FrontEnd::slotCombineFile(QStringList p)
         }
     }
     out<<";end\n";
-    for(int m=0;m<p.size();m++)
+
+	for(int m=0;m<p.size();m++)
     {
         if(!(p.at(m)=="./firsttest.gcode"))
             QFile::remove(p.at(m));
     }
-    file.close();
+
+	file.close();
     slotPrint();
 }
 void FrontEnd::slotConnectPort(QString m)

@@ -1019,6 +1019,18 @@ void QCPTitle::on_btnDelet_clicked()
     viewer->resetAll();
     bLoadedfile = false;
     STATUS = IDLE;
+    //删除24bit.jpg
+    QString path = QCoreApplication::applicationDirPath();
+    QString current_file_image = path + "/24bit.jpg";
+    QString current_file_font = path + "/font1.jpg";
+//    qDebug() << "yangxu1: " << current_file;
+
+    QFile image(current_file_image);
+    image.remove(current_file_image);
+    QFile font(current_file_font);
+    font.remove(current_file_font);
+    //
+//    viewer->resetAll();
     easyn->setElementEnable(false);
     expert->setElementEnable(false);
 }

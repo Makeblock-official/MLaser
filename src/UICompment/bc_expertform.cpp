@@ -83,6 +83,14 @@ void BC_ExpertForm::on_btnSlicer_clicked()
     ui->frameCarving->hide();
     ui->btnSlicer->setStyleSheet(QString("QPushButton{background-color:rgb(107,106,110);}"));
     ui->btnCarve->setStyleSheet(QString("QPushButton{background-color:rgb(87,86,90);}"));
+    //记录切割打印模式kPrint
+    QString path = QCoreApplication::applicationDirPath();
+    QString name = "/Config.ini";
+    QString allPath = QString("%1%2").arg(path).arg(name);
+    QSettings* confsetting = new QSettings(allPath,QSettings::IniFormat);
+    confsetting->beginGroup("laser");
+    confsetting->setValue("kPrint","Cut");
+    confsetting->endGroup();
 }
 //雕刻
 void BC_ExpertForm::on_btnCarve_clicked()
@@ -92,6 +100,14 @@ void BC_ExpertForm::on_btnCarve_clicked()
     ui->frameCarving->show();
     ui->btnCarve->setStyleSheet(QString("QPushButton{background-color:rgb(107,106,110);}"));
     ui->btnSlicer->setStyleSheet(QString("QPushButton{background-color:rgb(87,86,90);}"));
+    //记录切割打印模式kPrint
+    QString path = QCoreApplication::applicationDirPath();
+    QString name = "/Config.ini";
+    QString allPath = QString("%1%2").arg(path).arg(name);
+    QSettings* confsetting = new QSettings(allPath,QSettings::IniFormat);
+    confsetting->beginGroup("laser");
+    confsetting->setValue("kPrint","Carve");
+    confsetting->endGroup();
 }
 //开操作平台
 void BC_ExpertForm::on_btnOpenPanel_clicked()
@@ -537,6 +553,7 @@ void BC_ExpertForm::on_btnOK1_clicked()
     pset->setValue("laserPowerHigh",power);
     pset->setValue("laserSpeed",speed);
     pset->setValue("laserTravelSpeed",spaceSpeed);
+    pset->endGroup();
 
     QString path = QCoreApplication::applicationDirPath();
     QString name = "/Config.ini";
@@ -546,7 +563,6 @@ void BC_ExpertForm::on_btnOK1_clicked()
     confsetting->setValue("material",material);
     confsetting->setValue("m_value",ui->comboMaterial->currentIndex());
     confsetting->endGroup();
-    pset->endGroup();
 }
 //雕刻参数使能
 void BC_ExpertForm::on_btnOK2_clicked()

@@ -6,7 +6,7 @@
     <message>
         <location filename="UICompment/aa_loadform.ui" line="14"/>
         <source>Form</source>
-        <translation>引导页 </translation>
+        <translation>引导页</translation>
     </message>
     <message>
         <location filename="UICompment/aa_loadform.ui" line="107"/>
@@ -841,7 +841,7 @@
     <message>
         <location filename="Communicate/serial/cpserialport.ui" line="14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>串口</translation>
     </message>
     <message>
         <location filename="Communicate/serial/cpserialport.ui" line="167"/>
@@ -1273,7 +1273,7 @@
     <message>
         <location filename="UICompment/hexloadform.ui" line="14"/>
         <source>Form</source>
-        <translation>固件刷新</translation>
+        <translation>固件更新</translation>
     </message>
     <message>
         <location filename="UICompment/hexloadform.ui" line="176"/>

@@ -1,4 +1,5 @@
 #include <QVBoxLayout>
+#include <QSettings>
 #include "postionform.h"
 #include "ui_postionform.h"
 
@@ -36,8 +37,31 @@ void PostionForm::setUIElement(QRectF m)
 {
 //    ui->lineEditX->setText(QString::number(m.x()));
 //    ui->lineEditY->setText(QString::number(m.y()));
-    ui->lineEditW->setText(QString::number(m.width()/10));
-    ui->lineEditH->setText(QString::number(m.height()/10));
+
+    //mm和inch切换显示
+    QString path = QCoreApplication::applicationDirPath();
+    QString name = "/mLaser.ini";
+    QString allPath = QString("%1%2").arg(path).arg(name);
+    QSettings* psetting = new QSettings(allPath,QSettings::IniFormat);
+    psetting->beginGroup("mode");
+    QString unit = psetting->value("unit").toString();
+    psetting->endGroup();
+
+    if (unit == "inch")
+    {
+        ui->lineEditW->setText(QString::number(m.width()/25.4));
+        ui->lineEditH->setText(QString::number(m.height()/25.4));
+    }
+
+    if (unit == "mm")
+    {
+        ui->lineEditW->setText(QString::number(m.width()/10));
+        ui->lineEditH->setText(QString::number(m.height()/10));
+    }
+
+
+//    ui->lineEditW->setText(QString::number(m.width()/10));
+//    ui->lineEditH->setText(QString::number(m.height()/10));
     old_w = ui->lineEditW->text().toDouble();
     old_h = ui->lineEditH->text().toDouble();
 

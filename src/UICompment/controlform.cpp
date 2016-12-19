@@ -60,20 +60,20 @@ void ControlForm::languageUpdate()
 //使用方向键来调节XY的运动
 void ControlForm::keyPressEvent(QKeyEvent *e)
 {
-    if(e->key()==Qt::Key_W)
+    if(e->key()==Qt::Key_Up)
     {
         on_btnYa_clicked();
     }
-    else if(e->key()==Qt::Key_S)
+    else if(e->key()==Qt::Key_Down)
     {
         on_btnYp_clicked();
     }
-    else if(e->key()==Qt::Key_A)
+    else if(e->key()==Qt::Key_Left)
     {
         on_btnXp_clicked();
 
     }
-    else if(e->key()==Qt::Key_D)
+    else if(e->key()==Qt::Key_Right)
     {
         on_btnXa_clicked();
 

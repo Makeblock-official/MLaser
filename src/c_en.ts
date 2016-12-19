@@ -1287,7 +1287,7 @@
     <message>
         <location filename="UICompment/hexloadform.ui" line="14"/>
         <source>Form</source>
-        <translation>Firmware Update</translation>
+        <translation>Update Firmware</translation>
     </message>
     <message>
         <location filename="UICompment/hexloadform.ui" line="176"/>
@@ -1824,7 +1824,7 @@ Password has been updated！</translation>
     <message>
         <location filename="UICompment/textform.ui" line="14"/>
         <source>Form</source>
-        <translation>Add Test</translation>
+        <translation>Add Text</translation>
     </message>
     <message>
         <location filename="UICompment/textform.ui" line="137"/>

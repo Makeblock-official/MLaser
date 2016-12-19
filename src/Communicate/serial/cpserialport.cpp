@@ -10,7 +10,8 @@ CPSerialPort::CPSerialPort(QWidget *parent) :
     TitleBar *pTitleBar = new TitleBar(this);
     installEventFilter(pTitleBar);
     setWindowTitle(tr("串口"));
-    setWindowIcon(QIcon(":/img/logo.png"));
+    QIcon fix(QPixmap(":/Source/icon/logo.png"));
+    setWindowIcon(fix);
 
     QVBoxLayout *pLayout = new QVBoxLayout();
     pLayout->addWidget(pTitleBar);

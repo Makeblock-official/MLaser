@@ -315,11 +315,28 @@ void BD_ViewForm::slotReloadFile(QRectF f,QString file)
 
 void BD_ViewForm::uintUpdate()
 {
-    QString path = QCoreApplication::applicationDirPath();
     qDebug()<<"uintUpdate";
 	resetAll();
     fFileTag = -1;
-    slotOpen(path+"/24bit.jpg");
+
+    QString path = QCoreApplication::applicationDirPath();
+    QString current_file_image =path+"/24bit.jpg";
+    QFile image(current_file_image);
+    QString current_file_font =path+"/font1.jpg";
+    QFile font(current_file_font);
+//    QString current_file_hg =path+"/hg.jpg";
+//    QFile hg(current_file_image);
+
+
+    if (image.exists())
+    {
+         slotOpen(current_file_image);
+    }
+    if (font.exists())
+    {
+         slotOpen(current_file_font);
+    }
+
 }
 
 void BD_ViewForm::slotOpen(QString file)

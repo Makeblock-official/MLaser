@@ -10,7 +10,7 @@ AB_SerialForm::AB_SerialForm(QWidget *parent) :
     setWindowFlags(Qt::FramelessWindowHint | windowFlags());
     TitleBar *pTitleBar = new TitleBar(this);
     installEventFilter(pTitleBar);
-    setWindowTitle(tr("串口"));
+    setWindowTitle(tr("登录"));
     setWindowIcon(QIcon(":/Source/icon/logo.png"));
 
     QVBoxLayout *pLayout = new QVBoxLayout();
