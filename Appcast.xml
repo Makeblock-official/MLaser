@@ -47,10 +47,10 @@
                  namespace just tells the updater that this is a download for OS X.
              -->
             <enclosure
-                url="http://download.makeblock.com/laserbot/mLaser.dmg"
-                sparkle:version="2.2"
+                url="http://download.makeblock.com/laserbot/software/mLaserV2.3.dmg"
+                sparkle:version="2.3"
                 fervor:platform="Q_OS_MAC"
-                length="44035746"
+                length="45093621"
                 type="application/octet-stream"
                 sparkle:dsaSignature="BAFJW4B6B1K1JyW30nbkBwainOzrN6EQuAh" />
 

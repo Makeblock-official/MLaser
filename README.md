@@ -57,7 +57,7 @@ Click to download the installation of the compressed package
 
 |Version    |System     |DownLoad from Git|DownLoad from Makeblock|
 |:----      |:----      |:----            |:----                  |
-|V2.3       |Mac OS     |[Download Link 1](https://raw.githubusercontent.com/Makeblock-official/mlaser_resources/master/distribution/mac/mLaser.dmg)||
+|V2.3       |Mac OS     |[Download Link 1](https://raw.githubusercontent.com/Makeblock-official/mlaser_resources/master/distribution/mac/mLaser.dmg)|[Download Link 2](http://download.makeblock.com/laserbot/software/mLaserV2.3.dmg)|
 |V2.3       |Windows    |[Download Link 1](https://raw.githubusercontent.com/Makeblock-official/mlaser_resources/master/distribution/windows/mLaserSetup.rar)|[Download Link 2](http://download.makeblock.com/laserbot/mLaserSetup.rar)|
 
 Then follow the instructions to install it. (Note: Please use English characters in the installation address.)
