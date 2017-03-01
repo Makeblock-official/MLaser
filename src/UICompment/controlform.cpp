@@ -28,25 +28,25 @@ ControlForm::~ControlForm()
 void ControlForm::on_btnXp_clicked()
 {
     emit Sig_ToLaser(tr("G91"));
-    emit Sig_ToLaser(tr("G1 X-%1 F3000").arg(10));
+    emit Sig_ToLaser(tr("G0 X-%1 F3000").arg(10));
 }
 //X+
 void ControlForm::on_btnXa_clicked()
 {
     emit Sig_ToLaser(tr("G91"));
-    emit Sig_ToLaser(tr("G1 X%1 F3000").arg(10));
+    emit Sig_ToLaser(tr("G0 X%1 F3000").arg(10));
 }
 //Y+
 void ControlForm::on_btnYa_clicked()
 {
     emit Sig_ToLaser(tr("G91"));
-    emit Sig_ToLaser(tr("G1 Y%1 F3000").arg(10));
+    emit Sig_ToLaser(tr("G0 Y%1 F3000").arg(10));
 }
 //Y-
 void ControlForm::on_btnYp_clicked()
 {
     emit Sig_ToLaser(tr("G91"));
-    emit Sig_ToLaser(tr("G1 Y-%1 F3000").arg(10));
+    emit Sig_ToLaser(tr("G0 Y-%1 F3000").arg(10));
 }
 //Home
 void ControlForm::on_btnHome_clicked()
