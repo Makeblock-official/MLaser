@@ -53,7 +53,10 @@ UIManager::UIManager(QObject *parent) :
     connect(mwindow,SIGNAL(Sig_Recover()),this,SLOT(slotRecover()));
     connect(mwindow,SIGNAL(Sig_Bounding(QRectF)),this,SLOT(slotBounding(QRectF)));
     connect(mwindow,SIGNAL(Sig_GCODE(QString)),this,SIGNAL(Sig_GCODE_ui(QString)));
-	connect(mwindow,SIGNAL(Sig_SerialConnect(QString)),this,SLOT(slotSerialConnect(QString)));
+//    connect(mwindow,SIGNAL(Sig_GCODE(QString)),this,SIGNAL(Sig_FrontEndCombine(QStringList)));
+//	connect(mwindow,SIGNAL(Sig_SerialConnect(QString)),this,SLOT(slotSerialConnect(QString)));
+    connect(mwindow,SIGNAL(Sig_PrintGcode(QStringList)),this,SLOT(slotFrontEndComebine(QStringList)));
+    connect(mwindow,SIGNAL(Sig_SerialPortTranslate()),this,SLOT(slotSerialPortTranslate()));
 
     connect(this,SIGNAL(Sig_ProcessBar(bool,quint64)),mwindow,SLOT(slotProcessBar(bool,quint64)));
     connect(this,SIGNAL(Sig_ConnectFaile(bool)),mwindow,SLOT(slotConnectFaile(bool)));
@@ -356,6 +359,16 @@ void UIManager::slotConnectFaile(bool b)
 void UIManager::slotEndStopState(int m)
 {
     checkform->setButtonStyle(m);
+}
+
+void UIManager::slotFrontEndComebine(QStringList fileList)
+{
+    emit Sig_FrontEndCombine(fileList);
+}
+
+void UIManager::slotSerialPortTranslate()
+{
+    emit Sig_SerialPortTranslate();
 }
 //首页接受串口连接与否的槽函数
 void UIManager::slotConnectFirstFaile(bool b)

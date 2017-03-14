@@ -43,6 +43,8 @@ public slots:
     void slotShowPos(QRectF);
 
     void reloadImage(QString pp);
+
+    void slotLoadImageType(QString imageType);
 protected:
     void drawBackground(QPainter *painter, const QRectF &rect);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
@@ -68,6 +70,9 @@ signals:
     void Sig_ReloadImage(QString);
     void Sig_UReloadImage(QRectF,QString);
     void Sig_ShowPos(QRectF);
+
+    void Sig_LoadImageType(QString);//用于处理缩放图片像素损失
+
 
 };
 

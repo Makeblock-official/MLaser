@@ -400,7 +400,7 @@ QImage Bitmap2Gcode::Image2Halftone(QImage src)
 //                    {
 //                        p0 = tr("G0 X%1 Y%2 \n").arg(jj*scale+pos.x()).arg(ii*scale+pos.y());
 //                        p1 = tr("M4 P%1 \n").arg(laserPower);
-////                        p1 = tr("M4 P%1 \n").arg(230);
+//                       p1 = tr("M4 P%1 \n").arg(230);
 //                        ps = tr("G1 F%1 \n").arg(laserSpeed);
 //                        p2 = tr("G1 X%1 Y%2  \n").arg(jj*scale+pos.x()).arg(ii*scale+pos.y());
 //                        preOn = true;
@@ -440,7 +440,7 @@ QImage Bitmap2Gcode::Image2Halftone(QImage src)
 //                    {
 //                        p0 = tr("G0 X%1 Y%2 \n").arg(jj*scale+pos.x()).arg(ii*scale+pos.y());
 //                        p1 = tr("M4 P%1 \n").arg(laserPower);
-////                        p1 = tr("M4 P%1 \n").arg(230);
+//                        p1 = tr("M4 P%1 \n").arg(230);
 //                        ps = tr("G1 F%1 \n").arg(laserSpeed);
 //                        p2 = tr("G1 X%1 Y%2  \n").arg(jj*scale+pos.x()).arg(ii*scale+pos.y());
 //                        preOn = true;

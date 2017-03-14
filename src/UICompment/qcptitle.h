@@ -28,7 +28,9 @@
 #include "Communicate/serial/cpserialport.h"
 #include "FileProcessor/dxf2svg/dl_dxf.h"
 #include "FileProcessor/dxf2svg/dl_creationadapter.h"
-#include "FileProcessor/dxf2svg/creationclass.h"
+//#include "FileProcessor/dxf2svg/creationclass.h"
+#include "FileProcessor/dxf2svg/dxf2bmg.h"
+
 
 #include "Zipunzip/zipunzip.h"
 
@@ -84,6 +86,8 @@ public slots:
     void slotShowPos(QRectF);
     void slotFirmSetting();
 
+    void slotPrintGcode(QString file);//打印Gcode
+
 protected:
     void closeEvent(QCloseEvent *e);
     void changeEvent(QEvent *e);
@@ -110,7 +114,7 @@ private:
     Ui::QCPTitle *ui;
     TextForm* text;
     ControlForm* control;
-    PostionForm* postion;
+//    PostionForm* postion;
     GcodeForm* gcodeer;
     QrencodeForm* rencode;
     HexLoadForm* hex;
@@ -158,11 +162,12 @@ private:
     int STATUS;     //0 --> idle  1--> printable 2-->stop
     int times;
 
-    CreationClass* mcreationClass;
+    Dxf2Bmg mdxf2bmg;
+//    CreationClass* mcreationClass;
 
     void enableUserWaitingCursor();
     void disableUserWaitingCursor();
-    bool removeDirWithContent(QString dirName);
+    bool removeDirWithContent(const QString &folderDir);
     void Serial_Connect(QString);
 protected:
     void showEvent(QShowEvent *e);
@@ -187,6 +192,10 @@ signals:
     void Sig_GCODE(QString);
     void Sig_Rencode();
     void Sig_SerialConnect(QString);
+
+    void Sig_LoadImageType(QString);//用于处理缩放图像损失像素
+    void Sig_PrintGcode(QStringList);//打印gcode
+    void Sig_SerialPortTranslate(); //串口翻译信号
 
 };
 

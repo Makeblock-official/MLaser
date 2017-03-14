@@ -2,6 +2,7 @@
 #include <QMessageBox>
 #include <QTextStream>
 #include "frontend.h"
+#include <QRegExp>
 
 FrontEnd::FrontEnd(QObject *parent,CPSerialPort*printports ) :
     QThread(parent)
@@ -13,6 +14,9 @@ FrontEnd::FrontEnd(QObject *parent,CPSerialPort*printports ) :
     printport = printports;
     isConnect = false;
     times = 1;
+
+    isLaserTempClose = false;    //初始化激光暂时关闭信号为false
+//    repeatTime = 5;             //激光刚打开时的重复打印次数初始化为5次
 
     //this ---->  CPSerialPort
     connect(this,SIGNAL(Sig_ToArduino(QString)),printport,SLOT(WritePort(QString)));
@@ -32,7 +36,9 @@ void FrontEnd::addToSender()
 {
 
     qDebug()<<"tosend"<<toSend;
-    while(1)
+    QRegExp regXY(QString("G1 [\s]* *X([0-9]*\.[0-9]*) *Y([0-9]*\.[0-9]*)"));
+    QRegExp reg0XY(QString("G0 [\s]* *X([0-9]*\.[0-9]*) *Y([0-9]*\.[0-9]*)"));
+    while(1)//循环执行
     {
         toSend = sender->readOneLine();
         if(toSend.startsWith(";"))
@@ -43,6 +49,21 @@ void FrontEnd::addToSender()
         {
             break;
         }
+    }
+    if(toSend.contains(reg0XY))
+    {
+        isLaserTempClose = true;
+    }
+    if((isLaserTempClose == true)&&toSend.contains(regXY))
+    {
+//        for(int i = 0; i < repeatTime - 1; i++)
+//        {
+//            emit Sig_ToArduino(toSend);
+//            emit Sig_ProcessBar(true,sender->getPersent());
+//        }
+        msleep(0);//延时执行
+        isLaserTempClose = false;
+        qDebug() << "yangxu: " << "LaserTempClose!";
     }
     if(toSend == "end")
     {
@@ -324,14 +345,33 @@ void FrontEnd::slotCombineFile(QStringList p)
     QString kPrint =  ksetting->value("kPrint").toString();
     ksetting->endGroup();
 
-    if (kPrint == "Cut")
+#if defined (Q_OS_MAC)
+    QString sspath = QCoreApplication::applicationDirPath();
+    QString ssname = "/firsttest.gcode";
+    QString strPath = QString("%1%2").arg(sspath).arg(ssname);
+#elif defined (Q_OS_WIN)
+    QString strPath = "./firsttest.gcode";
+#endif
+    for(int m=0;m<p.size();m++)
     {
-        times = mtimes;
+        if(!(p.at(m)==strPath))
+        {
+            if (kPrint == "Cut")
+            {
+                times = mtimes;
+            }
+            else if (kPrint == "Carve")
+            {
+                times = 1;
+            }
+        }
+        else
+        {
+            times = 1;
+        }
     }
-    else if (kPrint == "Carve")
-    {
-        times = 1;
-    }
+
+
 
 	for(int j=0;j<times;j++)
     {
@@ -350,7 +390,7 @@ void FrontEnd::slotCombineFile(QStringList p)
 
 	for(int m=0;m<p.size();m++)
     {
-        if(!(p.at(m)=="./firsttest.gcode"))
+        if(!(p.at(m)==strPath))
             QFile::remove(p.at(m));
     }
 

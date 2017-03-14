@@ -20,11 +20,13 @@ class CPSerialPort : public QWidget
 public:
     explicit CPSerialPort(QWidget *parent = 0);
     ~CPSerialPort();
+    void languageUpdate();
 
 public slots:
     void Slot_ResponseUart();
     void WritePort(QString str);
     void ConnectPort(QString);
+    void slotSerialPortTranslate();
 private:
     Ui::CPSerialPort *ui;
     QSerialPort *mySerialport;

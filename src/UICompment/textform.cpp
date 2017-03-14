@@ -38,7 +38,8 @@ TextForm::TextForm(QWidget *parent) :
     psetting->endGroup();
     ui->fontComboBox->setCurrentIndex(pfont);
     ui->comboBoxFontSize->setCurrentIndex(psize);
-	
+    //更改comBoxFontSize显示数字颜色
+    ui->comboBoxFontSize->setStyleSheet("QComboBox{color:black;}");
     fonts = ui->fontComboBox->currentFont();
     int size = ui->comboBoxFontSize->currentIndex();
     int font_size = (int)font_size_tab[size];

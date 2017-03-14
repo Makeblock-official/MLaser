@@ -174,28 +174,14 @@ void GModel::filterGcode(QString filePath,QPointF pose,QPointF scope,QString out
     QString powerH = "M4 P"+QString::number(powerHigh)+"\n";
     QString powerL = "M4 P"+QString::number(powerLow)+"\n";
     QString speedPrint = "G1 F"+QString::number(laserspeed)+"\n";
-    qDebug()<<"Mark--type:"<<type<<"HoghPower:"<<powerH<<"LowPower:"<<powerLow;
-    QString lpath = QCoreApplication::applicationDirPath();
-    QString lname = "/mLaser.ini";
-    QString lallPath = QString("%1%2").arg(lpath).arg(lname);
-    QSettings* apsetting = new QSettings(lallPath,QSettings::IniFormat);
-    apsetting->beginGroup("mode");
-    QString uint = apsetting->value("unit").toString();
-    QPointF pos = pose/10.0;
-    if(uint=="inch")
-    {
-        _scale = _scale*1.0;
-        pos = pose/10.0;
-    }
+    qDebug()<<"Mark--type:"<<type<<"HighPower:"<<powerHigh<<"LowPower:"<<powerLow;
 
-    else if(uint=="mm")
-    {
-         _scale = _scale*1.0;
-         pos = pose/10.0;
-    }
+    QPointF pos = pose/10.0;
+
+    _scale = _scale*1.0;
 
     out<<QObject::tr("G0 F%1 \n").arg(laserTravelSpeed);
-    apsetting->endGroup();
+//    apsetting->endGroup();
 
     while(!in.atEnd())
     {
@@ -230,7 +216,8 @@ void GModel::filterGcode(QString filePath,QPointF pose,QPointF scope,QString out
             qreal dis = sqrt(d.x()*d.x()+d.y()*d.y());
 			
             qDebug()<<"regXY --- cur_pos.x():"<<cur_pos.x()<<"cur_pos.y():"<<cur_pos.y()<<"pos.x():"<< pos.x()<<"pos.y()"<<pos.y()<<"_scale:"<<_scale << "dis:"<<dis;
-            if(dis>0.5)
+//            if(dis>0.5)
+            if(dis>0.2)
             {
                 if(cur_speed==1)    //当等于1，代表前面的速度是快速，即之前走的是圆弧路线
                 {
@@ -258,7 +245,6 @@ void GModel::filterGcode(QString filePath,QPointF pose,QPointF scope,QString out
                 }
                 else if((su.x() >= (boundsMax.x()*_scale - boundvalue)) && (su.y() >= (boundsMax.y()*_scale - boundvalue)))
                 {
-                  
                   qDebug()<<"Ignore Gcode 2";
                 }
                 else

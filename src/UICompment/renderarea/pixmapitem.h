@@ -27,6 +27,9 @@ public:
 
     bool bFont;  //是否为字体图片
 
+public slots:
+    void slotLoadImageType(QString imageType);
+
 protected:
     QRectF boundingRect()const;
     //    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
@@ -51,6 +54,7 @@ private:
     qreal m_scale;
     int direction;
     float rescale;
+    QString flagImageType;
 
 signals:
     void Sig_PosTag(QPointF,QString);

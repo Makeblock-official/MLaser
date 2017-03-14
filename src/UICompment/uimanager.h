@@ -51,6 +51,9 @@ public slots:
     void slotLoadNext();
     void slotEndStopState(int);
 
+    void slotFrontEndComebine(QStringList fileList);
+    void slotSerialPortTranslate();
+
 private:
     AA_LoadForm* loadform;
     AB_SerialForm* serialform;
@@ -83,6 +86,7 @@ signals:
     void Sig_ConnectFirstFaile(bool);
     void Sig_Bounding(QRectF);
     void Sig_GCODE_ui(QString);
+    void Sig_SerialPortTranslate();
 };
 
 #endif // UIMANAGER_H

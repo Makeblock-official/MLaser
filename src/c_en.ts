@@ -1451,7 +1451,7 @@ Password has been updated！</translation>
     <message>
         <location filename="UICompment/postionform.ui" line="14"/>
         <source>Form</source>
-        <translation>Width</translation>
+        <translation>PositionEdit</translation>
     </message>
     <message>
         <location filename="UICompment/postionform.ui" line="93"/>

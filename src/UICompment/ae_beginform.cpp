@@ -45,7 +45,15 @@ void AE_BeginForm::languageUpdate()
 //开始测试，打印一个默认的模型
 void AE_BeginForm::on_pushButton_2_clicked()
 {
-    QStringList strlist;
-    strlist.append("./firsttest.gcode");
-    emit Sig_PrintTestFile(strlist);
+    QStringList strList;
+#if defined (Q_OS_MAC)
+    QString path = QCoreApplication::applicationDirPath();
+    QString name = "/firsttest.gcode";
+    QString strPath = QString("%1%2").arg(path).arg(name);
+#elif defined (Q_OS_WIN)
+    QString strPath = "./firsttest.gcode";
+#endif
+//    qDebug() << strPath << endl;
+    strList.append(strPath);
+    emit Sig_PrintTestFile(strList);
 }

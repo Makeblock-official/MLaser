@@ -39,7 +39,7 @@ public:
     void redrawPic();
 
 public slots:
-    void slotOpen(QString);
+    void slotOpen(QString file);
     void slotRect(QRect);
     void slotMAddFont(QString);
     void slotRoat90();
@@ -51,6 +51,8 @@ public slots:
     void slotSetHW(QPointF m);  //设置图片的长宽
     void slotShowPos(QRectF);
     void uintUpdate();
+
+    void slotLoadImageType(QString imageType);//链接qcptitle中Sig_LoadImageType-->用于处理缩放图片像素损失
 protected:
     void contextMenuEvent(QContextMenuEvent *event);
 private:
@@ -94,6 +96,8 @@ signals:
     void Sig_Carv(PGraphicsScene*);
     void Sig_Cut(PGraphicsScene*);
     void Sig_ShowPos(QRectF);
+
+    void Sig_LoadImageType(QString);//用于处理缩放图片像素损失
 
 };
 

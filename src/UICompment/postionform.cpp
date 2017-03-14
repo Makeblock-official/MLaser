@@ -11,7 +11,7 @@ PostionForm::PostionForm(QWidget *parent) :
     setWindowFlags(Qt::FramelessWindowHint | windowFlags());
     TitleBar *pTitleBar = new TitleBar(this);
     installEventFilter(pTitleBar);
-    setWindowTitle(tr("位置编辑"));
+    setWindowTitle(tr("PositionEdit"));
     setWindowIcon(QIcon(":/Source/icon/logo.png"));
 
     QVBoxLayout *pLayout = new QVBoxLayout();
@@ -49,14 +49,14 @@ void PostionForm::setUIElement(QRectF m)
 
     if (unit == "inch")
     {
-        ui->lineEditW->setText(QString::number(m.width()/25.4));
-        ui->lineEditH->setText(QString::number(m.height()/25.4));
+        ui->lineEditW->setText(QString::number(m.width()/254.0));
+        ui->lineEditH->setText(QString::number(m.height()/254.0));
     }
 
     if (unit == "mm")
     {
-        ui->lineEditW->setText(QString::number(m.width()/10));
-        ui->lineEditH->setText(QString::number(m.height()/10));
+        ui->lineEditW->setText(QString::number(m.width()/10.0));
+        ui->lineEditH->setText(QString::number(m.height()/10.0));
     }
 
 
@@ -68,9 +68,28 @@ void PostionForm::setUIElement(QRectF m)
 }
 void PostionForm::on_btnCertern_clicked()
 {
+    //mm和inch切换
+    QString path = QCoreApplication::applicationDirPath();
+    QString name = "/mLaser.ini";
+    QString allPath = QString("%1%2").arg(path).arg(name);
+    QSettings* psetting = new QSettings(allPath,QSettings::IniFormat);
+    psetting->beginGroup("mode");
+    QString unit = psetting->value("unit").toString();
+    psetting->endGroup();
+
     QPointF m;
-    m.setX(ui->lineEditW->text().toInt()*10);
-    m.setY(ui->lineEditH->text().toInt()*10);
+    if (unit == "inch")
+    {
+        m.setX(ui->lineEditW->text().toDouble()*254.0);
+        m.setY(ui->lineEditH->text().toDouble()*254.0);
+    }
+
+
+    if (unit == "mm")
+    {
+        m.setX(ui->lineEditW->text().toDouble()*10.0);
+        m.setY(ui->lineEditH->text().toDouble()*10.0);
+    }
     emit Sig_WH(m);
 }
 void PostionForm::on_lineEditW_returnPressed()
@@ -82,13 +101,13 @@ void PostionForm::on_lineEditH_editingFinished()
 {
     double scale = old_w/old_h;
 
-    int w  = (ui->lineEditH->text().toDouble())*scale;
+    double w  = (ui->lineEditH->text().toDouble())*scale;
     ui->lineEditW->setText(QString::number(w));
 }
 
 void PostionForm::on_lineEditW_editingFinished()
 {
     double scale = old_h/old_w;
-    int h  = scale*(ui->lineEditW->text().toDouble());
+    double h  = scale*(ui->lineEditW->text().toDouble());
     ui->lineEditH->setText(QString::number(h));
 }

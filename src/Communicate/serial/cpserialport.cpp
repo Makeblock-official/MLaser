@@ -9,7 +9,7 @@ CPSerialPort::CPSerialPort(QWidget *parent) :
     setWindowFlags(Qt::FramelessWindowHint | windowFlags());
     TitleBar *pTitleBar = new TitleBar(this);
     installEventFilter(pTitleBar);
-    setWindowTitle(tr("串口"));
+    setWindowTitle(tr("SerialPort"));
     QIcon fix(QPixmap(":/Source/icon/logo.png"));
     setWindowIcon(fix);
 
@@ -44,6 +44,11 @@ CPSerialPort::CPSerialPort(QWidget *parent) :
 CPSerialPort::~CPSerialPort()
 {
     delete ui;
+}
+
+void CPSerialPort::languageUpdate()
+{
+    ui->retranslateUi(this);
 }
 
 
@@ -176,4 +181,9 @@ void CPSerialPort::ConnectPort(QString m)
         }
     }
 
+}
+
+void CPSerialPort::slotSerialPortTranslate()
+{
+    this->languageUpdate();
 }

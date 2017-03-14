@@ -57,7 +57,7 @@ void  CreationClass::addLayer(const DL_LayerData& data) {
  * Sample implementation of the method which handles point entities.
  */
 void  CreationClass::addPoint(const DL_PointData& data) {
-    printf("POINT    (%6.3f, %6.3f, %6.3f)\n",
+   printf("POINT    (%6.3f, %6.3f, %6.3f)\n",
            data.x, data.y, data.z);
 
     printAttributes();

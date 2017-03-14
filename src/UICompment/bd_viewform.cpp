@@ -80,6 +80,9 @@ BD_ViewForm::BD_ViewForm(QWidget *parent) :
     //设置graphicesScene的背景颜色
     ui->graphicsView->setBackgroundBrush(QBrush(Qt::white, Qt::SolidPattern));
 
+    //this ----> pScene
+    connect(this,SIGNAL(Sig_LoadImageType(QString)),pScene,SLOT(slotLoadImageType(QString)));
+
 }
 
 BD_ViewForm::~BD_ViewForm()
@@ -110,14 +113,7 @@ void BD_ViewForm::resetAll()
 {
     fFileTag = -1;
     pScene->removeAllItems();
-    //    for(int i=0;i<pScene->m_picItems.size();i++)
-    //    {
-    //        pScene->removeItem(static_cast<QGraphicsItem*>(pScene->m_picItems.at(i)));
-    //    }
-    //    for(int j = 0;j<pScene->m_svgItems.size();j++)
-    //    {
-    //        pScene->removeItem(static_cast<QGraphicsItem*>(pScene->m_svgItems.at(j)));
-    //    }
+
     pScene->m_picItems.clear();
     pScene->m_svgItems.clear();
     pScene->m_svgfilenames.clear();
@@ -232,10 +228,10 @@ void BD_ViewForm::slotRoat90()
     QString path = QCoreApplication::applicationDirPath();
     if(fFileTag==BITMAPTYPE)
     {
-        //        QFile::remove("r_90.png");
-        fPos = pScene->m_picItems.at(0)->scenePos();
-        fScope = pScene->m_picItems.at(0)->getRect();
+        fPos = pScene->m_picItems.last()->scenePos();
+        fScope = pScene->m_picItems.last()->getRect();
         fScope.setRect(fPos.x()-30,fPos.y()-30,fScope.height(),fScope.width());
+        qDebug() << "fScope: " << fScope;
         //根据旋转的角度，来变换图片
         QImage* imgRatate = new QImage();
         QMatrix matrix;
@@ -249,7 +245,6 @@ void BD_ViewForm::slotRoat90()
         fFileTag = -1;
         pScene->setRect(fScope);
         slotOpen(path + "/r_90.png");
-
     }
 
 }
@@ -259,9 +254,8 @@ void BD_ViewForm::slotRoat180()
     QString path = QCoreApplication::applicationDirPath();
     if(fFileTag==BITMAPTYPE)
     {
-        //        QFile::remove("r_90.png");
-        fPos = pScene->m_picItems.at(0)->scenePos();
-        fScope = pScene->m_picItems.at(0)->getRect();
+        fPos = pScene->m_picItems.last()->scenePos();
+        fScope = pScene->m_picItems.last()->getRect();
         fScope.setRect(fPos.x()-30,fPos.y()-30,fScope.width(),fScope.height());
         //根据旋转的角度，来变换图片
         QImage* imgRatate = new QImage();
@@ -284,9 +278,8 @@ void BD_ViewForm::slotRoat270()
     QString path = QCoreApplication::applicationDirPath();
     if(fFileTag==BITMAPTYPE)
     {
-        //        QFile::remove("r_90.png");
-        fPos = pScene->m_picItems.at(0)->scenePos();
-        fScope = pScene->m_picItems.at(0)->getRect();
+        fPos = pScene->m_picItems.last()->scenePos();
+        fScope = pScene->m_picItems.last()->getRect();
         fScope.setRect(fPos.x()-30,fPos.y()-30,fScope.height(),fScope.width());
         //根据旋转的角度，来变换图片
         QImage* imgRatate = new QImage();
@@ -324,9 +317,6 @@ void BD_ViewForm::uintUpdate()
     QFile image(current_file_image);
     QString current_file_font =path+"/font1.jpg";
     QFile font(current_file_font);
-//    QString current_file_hg =path+"/hg.jpg";
-//    QFile hg(current_file_image);
-
 
     if (image.exists())
     {
@@ -363,10 +353,6 @@ void BD_ViewForm::slotShowPos(QRectF m)
 
 void BD_ViewForm::slotSaveAs(QString file)
 {
-    //    pScene->m_picItems.clear();
-    //    pScene->m_svgItems.clear();
-    //    pScene->m_svgfilenames.clear();
-    //    pScene->m_picfilenames.clear();
     //1.获取scene中的文件名
     QString projpath = QCoreApplication::applicationDirPath();
     QString projname = "/project/config.ini";
@@ -401,7 +387,7 @@ void BD_ViewForm::slotSaveAs(QString file)
 
         QString lastname = tr("/pic%1.%2").arg(j).arg(suffix);
         QString name = _projpath + lastname;
-        QFile::copy(filename,name);
+        QFile::copy(filename,name);//复制图片
         QSettings* psetting = new QSettings(projallPath,QSettings::IniFormat);
         psetting->beginGroup(tr("pic%1").arg(j));
         psetting->setValue("name",QFileInfo(name).fileName());
@@ -492,6 +478,11 @@ void BD_ViewForm::on_btnZoomIn_clicked()
         scale = 0.1;
     matrix.scale(scale,scale);
     ui->graphicsView->setMatrix(matrix);
+}
+
+void BD_ViewForm::slotLoadImageType(QString imageType)
+{
+    emit Sig_LoadImageType(imageType);
 }
 
 void BD_ViewForm::languageUpdate()

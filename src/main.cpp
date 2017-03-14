@@ -44,6 +44,9 @@ int main(int argc, char *argv[])
     QObject::connect(w,SIGNAL(Sig_Bounding(QRectF)),frontdoor,SLOT(slotDrawBounding(QRectF)));
     QObject::connect(w,SIGNAL(Sig_GCODE_ui(QString)),frontdoor,SLOT(gcodeMode(QString)));
 
+    //UI ----> CPSerialPort
+    QObject::connect(w,SIGNAL(Sig_SerialPortTranslate()),printport,SLOT(slotSerialPortTranslate()));
+
 
     //FrontEnd---->UI
     QObject::connect(frontdoor,SIGNAL(Sig_FinishPersent(unsigned int)),w,SLOT(slotFinishPersent(unsigned int)));

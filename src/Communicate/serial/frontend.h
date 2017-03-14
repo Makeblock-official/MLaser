@@ -46,6 +46,8 @@ private:
     QString toSend;
     bool isStop;
     bool isConnect;
+    bool isLaserTempClose;    //打印过程中激光暂时关闭信号
+//    int repeatTime;       //激光刚打开时的重复打印次数
 
     //draw the bounding
     bool bounddraw;

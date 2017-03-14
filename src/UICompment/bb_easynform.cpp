@@ -19,16 +19,16 @@ BB_EasynForm::~BB_EasynForm()
 void BB_EasynForm::setElementEnable(bool bEnable)
 {
 
-//    if(bEnable)
-//    {
-//        ui->btnDraw->setEnabled(true);
-//        ui->btnSlice->setEnabled(true);
-//    }
-//    else
-//    {
-//        ui->btnDraw->setEnabled(false);
-//        ui->btnSlice->setEnabled(false);
-//    }
+    if(bEnable)
+    {
+        ui->btnDraw->setEnabled(true);
+        ui->btnSlice->setEnabled(true);
+    }
+    else
+    {
+        ui->btnDraw->setEnabled(false);
+        ui->btnSlice->setEnabled(false);
+    }
 }
 void BB_EasynForm::on_btnPre_clicked()
 {

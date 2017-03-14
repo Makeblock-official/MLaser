@@ -9,7 +9,6 @@ PGraphicsScene::PGraphicsScene(QObject *parent) :
     tag->setVisible(false);
     this->addItem(tag);
     connect(this,SIGNAL(Sig_ReloadImage(QString)),this,SLOT(reloadImage(QString)));
-
 }
 void PGraphicsScene::setHW(QPointF m)
 {
@@ -58,10 +57,10 @@ void PGraphicsScene::removeAllItems()
 //    if(!f.open(QIODevice::ReadWrite))
 //        return ;
 //    QTextStream out(&f);
-////    for()
-////    {
+//    for()
+//    {
 
-////    }
+//    }
 //    f.close();
 //}
 
@@ -241,10 +240,12 @@ void PGraphicsScene::loadImage(QString pp,bool bFont)
         {
             m_picItem->setFont(true);
         }
-        else
-        {
-            connect(_pixmapItem,SIGNAL(Sig_ShowPos(QRectF)),this,SLOT(slotShowPos(QRectF)));
-        }
+//        else
+//        {
+//            connect(_pixmapItem,SIGNAL(Sig_ShowPos(QRectF)),this,SLOT(slotShowPos(QRectF)));
+//        }
+
+        connect(_pixmapItem,SIGNAL(Sig_ShowPos(QRectF)),this,SLOT(slotShowPos(QRectF)));
 
         _pixmapItem->setRect(currentQRectF);
         //动态显示坐标tag
@@ -297,6 +298,13 @@ void PGraphicsScene::reloadImage(QString pp)
         _pixmapItem->setPos(30,30);
     }
     this->update();
+}
+
+void PGraphicsScene::slotLoadImageType(QString imageType)
+{
+    //this ----> pixmap
+    connect(this,SIGNAL(Sig_LoadImageType(QString)),m_picItem,SLOT(slotLoadImageType(QString)));
+    emit Sig_LoadImageType(imageType);
 }
 
 

@@ -1435,7 +1435,7 @@
     <message>
         <location filename="UICompment/postionform.ui" line="14"/>
         <source>Form</source>
-        <translation>设置长宽</translation>
+        <translation>位置编辑</translation>
     </message>
     <message>
         <location filename="UICompment/postionform.ui" line="93"/>
@@ -1454,12 +1454,12 @@
     <message>
         <location filename="UICompment/postionform.ui" line="83"/>
         <source>Height</source>
-        <translation></translation>
+        <translation>高度</translation>
     </message>
     <message>
         <location filename="UICompment/postionform.ui" line="119"/>
         <source>Width</source>
-        <translation></translation>
+        <translation>宽度</translation>
     </message>
     <message>
         <location filename="UICompment/postionform.ui" line="106"/>

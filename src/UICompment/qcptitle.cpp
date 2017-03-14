@@ -21,10 +21,10 @@ QCPTitle::QCPTitle(QWidget *parent) :
     bPic = false;
     text    = new TextForm();
     control = new ControlForm();
-    postion = new PostionForm();
+//    postion = new PostionForm();
     rencode = new QrencodeForm();
     gcodeer = new GcodeForm();
-    mcreationClass = new CreationClass();
+//    mcreationClass = new CreationClass();
     hex = new HexLoadForm();
     posform = new PostionForm();
     fvupdatewindow = new FvUpdateWindow();
@@ -128,15 +128,15 @@ QCPTitle::QCPTitle(QWidget *parent) :
     qApp->installTranslator(m_ens);
 
     ui->retranslateUi(this);
-    easy->languageUpdate();
-    easyn->languageUpdate();
-    expert->languageUpdate();
-    text->languageUpdate();
-    control->languageUpdate();
-    gcodeer->languageUpdate();
-    rencode->languageUpdate();
-    postion->languageUpdate();
-    hex->languageUpdate();
+//    easy->languageUpdate();
+//    easyn->languageUpdate();
+//    expert->languageUpdate();
+//    text->languageUpdate();
+//    control->languageUpdate();
+//    gcodeer->languageUpdate();
+//    rencode->languageUpdate();
+//    postion->languageUpdate();
+//    hex->languageUpdate();
 
     languageGroup->addAction(zhAction);
     languageGroup->addAction(enAction);
@@ -299,14 +299,26 @@ QCPTitle::QCPTitle(QWidget *parent) :
 
     //This ----> Viewer
     //    connect(this,SIGNAL(Sig_ProcessBar(bool,unsigned int)),viewer,SLOT(setShow(bool,unsigned int)));
+    connect(this,SIGNAL(Sig_LoadImageType(QString)),viewer,SLOT(slotLoadImageType(QString)));
 
     //Gcode -----> This
     connect(gcodeer,SIGNAL(Sig_RCmds(QString)),this,SLOT(slotToLaser(QString)));
-    connect(gcodeer,SIGNAL(Sig_Gcode(QString)),this,SIGNAL(Sig_GCODE(QString)));
+//    connect(gcodeer,SIGNAL(Sig_Gcode(QString)),this,SIGNAL(Sig_GCODE(QString)));
+    connect(gcodeer,SIGNAL(Sig_Gcode(QString)),this,SLOT(slotPrintGcode(QString)));
 
-    setWindowTitle("mLaser");
+    QString vpath = QCoreApplication::applicationDirPath();
+    QString vname = "/Config.ini";
+    QString vallPath = QString("%1%2").arg(vpath).arg(vname);
+    QSettings* vsetting = new QSettings(vallPath,QSettings::IniFormat);
+    vsetting->beginGroup("update");
+    QString versionNo = vsetting->value("version").toString();
+    vsetting->endGroup();
+
+    QString version = "mLaserV" + versionNo;
+    setWindowTitle(version);
+    qDebug() << "window title: " << windowTitle();
 //     posform->show();
-    expert->setElementEnable(false);
+//    expert->setElementEnable(false);
 
 }
 
@@ -431,8 +443,11 @@ void QCPTitle::slotZhAction()
     rencode->languageUpdate();
     hex->languageUpdate();
     viewer->languageUpdate();
+
+    posform->languageUpdate();//添加位置对话框翻译
 //    fvupdate->languageUpdate();
     fvupdatewindow->languageUpdate();
+    emit Sig_SerialPortTranslate();
     languageMenu->setTitle("语言");
     uiChoose->setTitle("界面选择");
     scaleMenu->setTitle("刻度单位");
@@ -464,6 +479,8 @@ void QCPTitle::slotEnAction()
     hex->languageUpdate();
     viewer->languageUpdate();
     fvupdatewindow->languageUpdate();
+    emit Sig_SerialPortTranslate();
+    posform->languageUpdate();//添加位置对话框翻译
     languageMenu->setTitle("Language");
     uiChoose->setTitle("Select Interface");
     scaleMenu->setTitle("Scale Unit");
@@ -471,7 +488,14 @@ void QCPTitle::slotEnAction()
 //硬件设置
 void QCPTitle::slotFirmSetting()
 {
-//    firmform->show();
+    //    firmform->show();
+}
+
+void QCPTitle::slotPrintGcode(QString file)
+{
+    QStringList fileList;
+    fileList << file;
+    emit Sig_PrintGcode(fileList);
 }
 void QCPTitle::slotInchAction()
 {
@@ -780,8 +804,8 @@ void QCPTitle::slotAddFont(QString cmd)
     qDebug()<<"fuck"<<cmd;
     bLoadedfile = true;
     bPic = true;
-    easyn->setElementEnable(true);
-    expert->setElementEnable(true);
+//    easyn->setElementEnable(true);
+//    expert->setElementEnable(true);
     emit Sig_MAddFont(cmd);
 
 }
@@ -827,7 +851,7 @@ void QCPTitle::on_btnOpen_clicked()
     double scale = 1.0;
     if(!file.isNull())
     {
-        if(QFileInfo(file).suffix()=="svg")
+        if(QFileInfo(file).suffix()=="svg")             //svg
         {
             QSvgRenderer render(file);
             QSize p = render.defaultSize();
@@ -853,34 +877,78 @@ void QCPTitle::on_btnOpen_clicked()
         }
         else if(QFileInfo(file).suffix()=="dxf")
         {
-            DL_Dxf* dxf = new DL_Dxf();
-            if (!dxf->in(file.toStdString(), mcreationClass)) { // if file open failed
-                std::cerr << file.toStdString() << " could not be opened.\n";
-                return;
-            }
-            mcreationClass->setFile("dxf.svg");
-            QSvgRenderer render(QString("dxf.svg"));
-            QSize p = render.defaultSize();
-            w = p.width();
-            h = p.height();
-            scale = w/(h*1.0);
-            if(w>=1000||h>=1000)
+//            DL_Dxf* dxf = new DL_Dxf();
+//            if (!dxf->in(file.toStdString(), mcreationClass)) { // if file open failed
+//                std::cerr << file.toStdString() << " could not be opened.\n";
+//                return;
+//            }
+//            mcreationClass->setFile("dxf.svg");
+//            QSvgRenderer render(QString("dxf.svg"));
+
+//            QSvgRenderer render(QString("saveDXF.bmp"));
+//            QSize p = render.defaultSize();
+//            w = p.width();
+//            h = p.height();
+//            qDebug() << "w: " << w << endl;
+//            qDebug() << "h: " << h << endl;
+//            scale = w/(h*1.0);
+//            if(w>=1000||h>=1000)
+//            {
+//                if(scale>1.0)
+//                {
+//                    w = 1000;
+//                    h = 1000/scale;
+//                }
+//                else
+//                {
+//                    h = 1000;
+//                    w = 1000*scale;
+//                }
+//            }
+//            file = "dxf.svg";
+//            file = "saveDXF.bmp";
+//            emit Sig_BD_Rect(QRect(30,30,w,h));
+//            emit Sig_BD_Open("saveDXF.bmp");
+//            bPic = false;
+            QString newFile = "saveDXF.bmp";
+            QFile::remove(path + "/saveDXF.bmp");
+
+            mdxf2bmg.setFile(file.toStdString());
+            QImage ps(newFile);
+            if(ps.format()<=3)
             {
-                if(scale>1.0)
+                qDebug()<<"Your image is invalid!";
+                w = ps.width();
+                h = ps.height();
+            }
+            else
+            {
+                w = ps.width();
+                h = ps.height();
+                scale = w/(h*1.0);
+                if(w>=1000||h>=1000)
                 {
-                    w = 1000;
-                    h = 1000/scale;
-                }
-                else
-                {
-                    h = 1000;
-                    w = 1000*scale;
+                    if(scale>1.0)
+                    {
+                        w = 1000;
+                        h = 1000/scale;
+                    }
+                    else
+                    {
+                        h = 1000;
+                        w = 1000*scale;
+                    }
+
                 }
             }
-            file = "dxf.svg";
-            emit Sig_BD_Rect(QRect(30,30,w,h));
-            emit Sig_BD_Open(file);
-            bPic = false;
+            QFile::remove(path + "/24bit.jpg");
+            QImage ne(newFile);
+
+            QImage a = ne.convertToFormat(QImage::Format_RGB32);
+            a.save(path + "/24bit.jpg");
+            emit Sig_BD_Rect(QRect(0,0,w,h));
+            emit Sig_BD_Open(path + "/24bit.jpg");
+            bPic = true;
         }
         else if(QFileInfo(file).suffix()=="mbl")
         {
@@ -976,6 +1044,7 @@ void QCPTitle::on_btnOpen_clicked()
             if(ps.format()<=3)
             {
                 qDebug()<<"Your image is invalid!";
+                qDebug() << "ps.format(): " << ps.format();
                 w = ps.width();
                 h = ps.height();
             }
@@ -1009,9 +1078,28 @@ void QCPTitle::on_btnOpen_clicked()
             bPic = true;
         }
         bLoadedfile = true;
-        easyn->setElementEnable(true);
-        expert->setElementEnable(true);
+//        easyn->setElementEnable(true);
+//        expert->setElementEnable(true);
     }
+    //发送加载图片类型信号-->用于缩放图像时重新加载图片，防止像素损失
+
+/*
+ * Mac版本bug问题出处
+ */
+    if(!file.isNull() && QFileInfo(file).suffix()!="svg")
+    {
+        if(QFileInfo(file).suffix()=="mbl")
+        {
+            emit Sig_LoadImageType("mbl");
+        }
+        else
+        {
+            emit Sig_LoadImageType("24bit");
+        }
+    }
+
+
+
 }
 //删除按键
 void QCPTitle::on_btnDelet_clicked()
@@ -1031,8 +1119,8 @@ void QCPTitle::on_btnDelet_clicked()
     font.remove(current_file_font);
     //
 //    viewer->resetAll();
-    easyn->setElementEnable(false);
-    expert->setElementEnable(false);
+//    easyn->setElementEnable(false);
+//    expert->setElementEnable(false);
 }
 //串口
 void QCPTitle::on_comboBoxSerial_activated(const QString &arg1)
@@ -1079,7 +1167,7 @@ void QCPTitle::slotProcessBar(bool s, quint64 m)
         expert->setButtonIcon(true);
         STATUS = IDLE;
         emit Sig_Cancle();
-        expert->setElementEnable(true);
+//        expert->setElementEnable(true);
 
     }
     else
@@ -1092,7 +1180,7 @@ void QCPTitle::slotConnectFaile(bool b)
     bConnected = b;
     if(b)
     {
-        expert->setElementEnable(true);
+//        expert->setElementEnable(true);
     }
 }
 //显示二维码
@@ -1110,17 +1198,14 @@ void QCPTitle::on_btnSave_clicked()
     QString proname = "/project/config.ini";
     QString proallPath = QString("%1%2").arg(propath).arg(proname);
     QString _propath = propath + "/project";
-    QDir *temp = new QDir();
-    bool exist = temp->exists(_propath);
+//    QDir *temp = new QDir();
+//    bool exist = temp->exists(_propath);
     removeDirWithContent((_propath));
     //    QMessageBox::warning(this,tr("创建文件夹"),tr("文件夹已经存在！"));
-    bool ok = temp->mkdir(_propath);
+//    bool ok = temp->mkdir(_propath);
     QFile config(proallPath);
     config.open(QIODevice::ReadWrite);
     config.close();
-
-    //保存位置参数以及图片相关的参数
-    viewer->slotSaveAs("rr");
 
     //保存当前打印相关的参数
     int type = viewer->getPrintKind();
@@ -1128,6 +1213,19 @@ void QCPTitle::on_btnSave_clicked()
     {
         //获取材料相关的参数设置
         QString material = expert->getMaterialType();
+        qDebug() << "material: " << material;
+        if(material == "纸张")
+        {
+            material = "Paper";
+        }
+        if(material == "木头")
+        {
+            material = "Wood";
+        }
+        if(material == "皮革")
+        {
+            material = "Leather";
+        }
 		QString mpath = QCoreApplication::applicationDirPath(); 
 	    QString mname = "/material.ini";
         QString mallPath = QString("%1%2").arg(mpath).arg(mname);
@@ -1142,8 +1240,13 @@ void QCPTitle::on_btnSave_clicked()
         QSettings * config = new QSettings(proallPath,QSettings::IniFormat);
         config->beginGroup("laser");
         config->setValue("type",0);
+//        qDebug() << "material: " << material;
+        config->setValue("material", material);//增加material属性
+//        qDebug() << "times: " << times;
         config->setValue("times",times);
+//        qDebug() << "laserPowerHigh: " << laserPowerHigh;
         config->setValue("laserPowerHigh",laserPowerHigh);
+//        qDebug() << "laserPowerLow: " << laserPowerLow;
         config->setValue("laserPowerLow",laserPowerLow);
         config->setValue("laserSpeed",laserSpeed);
         config->setValue("laserTravelSpeed",laserTravelSpeed);
@@ -1175,70 +1278,58 @@ void QCPTitle::on_btnSave_clicked()
         config->setValue("r_per_pixcel",r_per_pixcel);
         config->endGroup();
     }
+    //保存位置参数以及图片相关的参数
+    viewer->slotSaveAs("rr");
     QString storeName = QFileDialog::getSaveFileName(this,tr("保存工程"),".","Project (*.mbl)");
     zip->zip(_propath,storeName);
 
 }
 
-//删除某一目录
-bool QCPTitle::removeDirWithContent(QString dirName)
+////删除某一目录
+bool QCPTitle::removeDirWithContent(const QString &folderDir)
 {
-    static QVector<QString> dirNames;
-    //    static QString funcErrMsg="删除[%1]失败.";
-    //    static QString funcInfFndMsg="发现[%1].";
-    //    static QString funcInfDelMsg="删除[%1]成功.";
-    QDir dir;
-    QFileInfoList filst;
-    QFileInfoList::iterator curFi;
-
-    //初始化
-    dirNames.clear();
-    if(dir.exists()){
-        dirNames<<dirName;
-    }
-    else{
-        return true;
-    }
-
-    //遍历各级文件夹，并将这些文件夹中的文件删除
-    for(int i=0;i<dirNames.size();++i)
+    QDir dir(folderDir);
+    QFileInfoList fileList;
+    QFileInfo curFile;
+    if(!dir.exists())  {return false;}//文件不存，则返回false
+    fileList=dir.entryInfoList(QDir::Dirs|QDir::Files
+                               |QDir::Readable|QDir::Writable
+                               |QDir::Hidden|QDir::NoDotAndDotDot
+                               ,QDir::Name);
+    while(fileList.size()>0)//跳出条件
     {
-        dir.setPath(dirNames[i]);
-        filst=dir.entryInfoList(QDir::Dirs|QDir::Files
-                                |QDir::Readable|QDir::Writable
-                                |QDir::Hidden|QDir::NoDotAndDotDot
-                                ,QDir::Name);
-        if(filst.size()>0)
+        int infoNum=fileList.size();
+        for(int i=infoNum-1;i>=0;i--)
         {
-            curFi=filst.begin();
-            while(curFi!=filst.end())
+            curFile=fileList[i];
+            if(curFile.isFile())//如果是文件，删除文件
             {
-                //遇到文件夹,则添加至文件夹列表dirs尾部
-                if(curFi->isDir())
+                QFile fileTemp(curFile.filePath());
+                fileTemp.remove();
+                fileList.removeAt(i);
+            }
+            if(curFile.isDir())//如果是文件夹
+            {
+                QDir dirTemp(curFile.filePath());
+                QFileInfoList fileList1=dirTemp.entryInfoList(QDir::Dirs|QDir::Files
+                                                              |QDir::Readable|QDir::Writable
+                                                              |QDir::Hidden|QDir::NoDotAndDotDot
+                                                              ,QDir::Name);
+                if(fileList1.size()==0)//下层没有文件或文件夹
                 {
-                    dirNames.push_back(curFi->filePath());
+                    dirTemp.rmdir(".");
+                    fileList.removeAt(i);
                 }
-                else if(curFi->isFile())
+                else//下层有文件夹或文件
                 {
-                    //遇到文件,则删除之
-                    if(!dir.remove(curFi->fileName()))
+                    for(int j=0;j<fileList1.size();j++)
                     {
-                        return false;
+                        if(!(fileList.contains(fileList1[j])))
+                            fileList.append(fileList1[j]);
                     }
                 }
-                curFi++;
-            }//end of while
+            }
         }
     }
-
-    //删除文件夹
-    for(int i=dirNames.size()-1;i>=0;--i)
-    {
-        dir.setPath(dirNames[i]);
-        if(!dir.rmdir(".")){
-            return false;
-        }
-    }
-
-    return true;
+   return true;
 }

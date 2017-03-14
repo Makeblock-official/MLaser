@@ -43,15 +43,15 @@ BC_ExpertForm::~BC_ExpertForm()
 
 void BC_ExpertForm::setElementEnable(bool bEnable)
 {
-//    ui->btnSlicer->setEnabled(bEnable);
-//    ui->btnCarve->setEnabled(bEnable);
-//    ui->btnOpenPanel->setEnabled(bEnable);
-//    ui->frameCarving->setEnabled(bEnable);
-//    ui->frameControl->setEnabled(bEnable);
-//    ui->btnSetHome->setEnabled(bEnable);
-//    ui->btnPreview->setEnabled(bEnable);
-//    ui->btnPointLaser->setEnabled(bEnable);
-//    ui->btnPower->setEnabled(bEnable);
+    ui->btnSlicer->setEnabled(bEnable);
+    ui->btnCarve->setEnabled(bEnable);
+    ui->btnOpenPanel->setEnabled(bEnable);
+    ui->frameCarving->setEnabled(bEnable);
+    ui->frameControl->setEnabled(bEnable);
+    ui->btnSetHome->setEnabled(bEnable);
+    ui->btnPreview->setEnabled(bEnable);
+    ui->btnPointLaser->setEnabled(bEnable);
+    ui->btnPower->setEnabled(bEnable);
 }
 QString BC_ExpertForm::getMaterialType()
 {
@@ -380,6 +380,7 @@ void BC_ExpertForm::slotUpdateParmeter()
         QSettings * pset = new QSettings(dsallPath,QSettings::IniFormat);
         pset->beginGroup("laser");
         QString times = pset->value("times").toString();
+        QString material = pset->value("material").toString();//增加material属性
         QString laserPowerHigh=pset->value("laserPowerHigh").toString();
         QString laserPowerLow=pset->value("laserPowerLow").toString();
         QString laserSpeed=pset->value("laserSpeed").toString();
@@ -396,6 +397,7 @@ void BC_ExpertForm::slotUpdateParmeter()
         config->setValue("laserSpeed",laserSpeed);
         config->setValue("laserTravelSpeed",laserTravelSpeed);
         config->endGroup();
+        ui->comboMaterial->setCurrentText(material);
         ui->lineEditPower->setText(laserPowerHigh);
         ui->lineEditRepeat->setText(times);
         ui->lineEditSpaceSpeed->setText(laserTravelSpeed);
@@ -428,6 +430,7 @@ void BC_ExpertForm::slotUpdateParmeter()
         config->setValue("r_per_pixcel",r_per_pixcel);
         config->endGroup();
 
+        ui->comboBoxPicType->setCurrentIndex(carv_type);
         ui->lineEditCarvTime->setText(p_power_time);
         ui->lineEditCarvSpeed->setText(p_move_speed);
         ui->lineEditCarvPiwer->setText(p_power);

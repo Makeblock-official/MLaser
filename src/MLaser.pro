@@ -104,7 +104,9 @@ SOURCES += main.cpp \
     UICompment/ag_lastform.cpp \
     Zipunzip/zipunzip.cpp \
     UICompment/ah_hexform.cpp \
-    UICompment/firmsettingform.cpp
+    UICompment/firmsettingform.cpp \
+    FileProcessor/dxf2svg/test_creationclass.cpp \
+    FileProcessor/dxf2svg/dxf2bmg.cpp
 
 FORMS += \
     Communicate/serial/cpserialport.ui \
@@ -219,7 +221,10 @@ HEADERS += \
     UICompment/ag_lastform.h \
     Zipunzip/zipunzip.h \
     UICompment/ah_hexform.h \
-    UICompment/firmsettingform.h
+    UICompment/firmsettingform.h \
+    FileProcessor/dxf2svg/block_obj.h \
+    FileProcessor/dxf2svg/test_creationclass.h \
+    FileProcessor/dxf2svg/dxf2bmg.h
 
 RESOURCES += \
     icon.qrc \
@@ -229,3 +234,31 @@ RC_FILE = lp.rc
 
 TRANSLATIONS = c_zh.ts \
                c_en.ts
+win32{
+INCLUDEPATH += D:\opencv\build\include\opencv2\
+               D:\opencv\build\include\opencv\
+               D:\opencv\build\include
+
+LIBS += D:\OpenCVMinGW\lib\libopencv_calib3d2413.dll.a\
+        D:\OpenCVMinGW\lib\libopencv_contrib2413.dll.a\
+        D:\OpenCVMinGW\lib\libopencv_core2413.dll.a\
+        D:\OpenCVMinGW\lib\libopencv_features2d2413.dll.a\
+        D:\OpenCVMinGW\lib\libopencv_flann2413.dll.a\
+        D:\OpenCVMinGW\lib\libopencv_gpu2413.dll.a\
+        D:\OpenCVMinGW\lib\libopencv_highgui2413.dll.a\
+        D:\OpenCVMinGW\lib\libopencv_imgproc2413.dll.a\
+        D:\OpenCVMinGW\lib\libopencv_legacy2413.dll.a\
+        D:\OpenCVMinGW\lib\libopencv_ml2413.dll.a\
+        D:\OpenCVMinGW\lib\libopencv_objdetect2413.dll.a\
+        D:\OpenCVMinGW\lib\libopencv_video2413.dll.a
+}
+unix{
+INCLUDEPATH += /usr/local/include
+INCLUDEPATH += /usr/local/include/opencv/
+INCLUDEPATH += /usr/local/include/opencv2/
+
+LIBS += -L/usr/local/lib \
+        -lopencv_core \
+        -lopencv_imgproc \
+        -lopencv_highgui \
+}

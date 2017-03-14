@@ -34,7 +34,7 @@ void FileProcessThread::slotCuttingFile(PGraphicsScene*pScene)
         qDebug()<<"m_svgItems filename:" << filename;
         filelist.append(outname);
         s2g->SetCloseLine(false);
-        s2g->SvgToGcode(filename,p);
+        s2g->SvgToGcode(filename,p);//将filename转化为gcode,即printsvg_i.gcode
         QPointF k(m.width(),m.height());
 		qDebug()<<"m_svgItems.size():" << pScene->m_picItems.size();
         qDebug()<<"m.width():" << m.width()<<"m.height():" << m.height()<<"m.x():" << m.x()<<"m.y():" << m.y()<<"f.x():" << f.x()<<"f.y():" << f.y();

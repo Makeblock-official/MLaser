@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>mLaser</string>
+   <string notr="true">mLaser</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget#QCPTitle

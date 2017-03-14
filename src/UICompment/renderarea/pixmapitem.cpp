@@ -33,6 +33,29 @@ void PixmapItem::ResetRect(QRectF rect)
     update(boundingRect());
 }
 
+void PixmapItem::slotLoadImageType(QString imageType)
+{
+    if(imageType=="svg")
+    {
+        flagImageType = "svg";
+    }
+    else if(imageType=="mbl")
+    {
+        flagImageType = "mbl";
+    }
+    else if(imageType=="24bit")
+    {
+        if(bFont==0)
+        {
+            flagImageType = "24bit";
+        }
+        else if(bFont==1)
+        {
+            flagImageType = "font1";
+        }
+    }
+}
+
 QRectF PixmapItem::boundingRect()const
 {
     return QRectF(m_rect.x(),m_rect.y(),m_rect.width()+20,m_rect.height()+20);
@@ -171,8 +194,30 @@ void PixmapItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     if(cScale)
     {
         cScale=false;
-        qDebug()<<"mouse release checked!";
-        QPixmap nf = this->pixmap().scaled(m_rect.width(),m_rect.height(),Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
+        qDebug()<<"mouse release checked!";       
+
+        QPixmap srcImage;
+        QString imagepath = QCoreApplication::applicationDirPath();
+
+        if(flagImageType=="mbl")
+        {
+            srcImage.load(imagepath + "/ds/pic0.jpg");
+        }
+        else if(flagImageType=="24bit")
+        {
+            srcImage.load(imagepath + "/24bit.jpg");
+        }
+        else if(flagImageType=="font1")
+        {
+            srcImage.load(imagepath + "/font1.jpg");
+        }
+        else
+        {
+            srcImage = this->pixmap();
+            qDebug() << "function run!";
+        }
+
+        QPixmap nf = srcImage.scaled(m_rect.width(),m_rect.height(),Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
         this->setPixmap(nf);
         QString mpath = QCoreApplication::applicationDirPath();
         QString mname = "/Config.ini";
