@@ -1,7 +1,7 @@
-#1. Version Description
+# 1. Version Description
  The mlaser version is V2.4
 
-#2. Release Note
+# 2. Release Note
 
 ## V2.4
   1.fix the issue that uneven cutting on the corner.
@@ -54,7 +54,7 @@
   1.Organize the code structure, the first open source in the git
 
 
-#3. Revision of history
+# 3. Revision of history
 |Author      |       Time      |   Version    |    Descr     |
 |:-------    |      :-----:    |   :----:     |    :-----    |
 |happybird   |     2016/08/07  |   V1.0       |    Initial commit.|
@@ -65,11 +65,11 @@
 |Yang Xu     |     2017/03/20  |   V2.4       |    fix some issue and support DXF|
 
 
-#4. Official website
+# 4. Official website
 Learn more from Makeblock official website
 [http://learn.makeblock.com/en/laserbot/](http://learn.makeblock.com/en/laserbot/)
 
-#5. Detailed instructions of mLaser
+# 5. Detailed instructions of mLaser
 ## (1) Software installation
 
 Click to download the installation of the compressed package
