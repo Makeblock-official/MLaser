@@ -1,8 +1,26 @@
 #1. Version Description
- The mlaser version is V2.3
+ The mlaser version is V2.4
 
 #2. Release Note
 
+## V2.4
+  1.fix the issue that uneven cutting on the corner.
+
+  2.fix the issue that the position form isn't openned when double-click it.
+
+  3.fix the issue that the unit isn't displayed synchronously when double-click a position form. 
+
+  4.fix the issue that the DXF file isn't displayed normally.
+
+  5.fix the issue that the DXF file isn't cutted normally.
+
+  6.add the version number of mLaser.
+
+  7.fix the issue that the parameter of mbl files isn't loaded.
+
+  8.fix the issue that lossing pixel when zoomming in or out.
+
+  9.fix the issue that the position form isn't translated normally. 
 ## V2.3
   1.fix the issue that some English interface is displayed in Chinese.
 
@@ -44,6 +62,7 @@
 |wangleilei  |     2016/10/31  |   V2.1       |    fix JIRA issue MLAS-1.MLAS-2,MLAS-3.|
 |wangleilei  |     2016/11/11  |   V2.2       |    fix the issue that unexpectedly prints the anchor point|
 |Mark Yan    |     2016/12/12  |   V2.3       |    fix some issue|
+|Yang Xu     |     2017/03/20  |   V2.4       |    fix some issue and support DXF |
 
 
 #4. Official website
@@ -58,7 +77,7 @@ Click to download the installation of the compressed package
 |Version    |System     |DownLoad from Git|DownLoad from Makeblock|
 |:----      |:----      |:----            |:----                  |
 |V2.3       |Mac OS     |[Download Link 1](https://raw.githubusercontent.com/Makeblock-official/mlaser_resources/master/distribution/mac/mLaser.dmg)|[Download Link 2](http://download.makeblock.com/laserbot/software/mLaserV2.3.dmg)|
-|V2.3       |Windows    |[Download Link 1](https://raw.githubusercontent.com/Makeblock-official/mlaser_resources/master/distribution/windows/mLaserSetup.rar)|[Download Link 2](http://download.makeblock.com/laserbot/mLaserSetup.rar)|
+|V2.4       |Windows    |[Download Link 1](https://raw.githubusercontent.com/Makeblock-official/mlaser_resources/master/distribution/windows/mLaserSetup.rar)|[Download Link 2](http://download.makeblock.com/laser/software/mLaserSetup%20V2.4.zip)|
 
 Then follow the instructions to install it. (Note: Please use English characters in the installation address.)
 

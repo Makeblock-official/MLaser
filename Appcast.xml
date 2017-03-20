@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss
-    version="2.3"
+    version="2.4"
     xmlns:atom="http://learn.makeblock.com/"
     xmlns:sparkle="http://www.makeblock.com/"
     xmlns:fervor="https://github.com/Makeblock-official/mlaser_resources"
@@ -14,7 +14,7 @@
         <atom:link href="https://github.com/Makeblock-official/MLaser/blob/master/Appcast.xml" rel="self" type="application/rss+xml" />
 
         <item>
-            <title>Version 2.3 </title>
+            <title>Version 2.4 </title>
             <pubDate>Tues, 25 Oct 2016 19:20:11 +0000</pubDate>
             <guid isPermaLink="true">https://github.com/Makeblock-official/MLaser</guid>
 
@@ -28,16 +28,16 @@
 
             <!-- Windows version. -->
             <enclosure
-                url="http://download.makeblock.com/laser/software/mLaserSetup%20V2.3.rar"
-                fervor:version="2.3"
+                url="http://download.makeblock.com/laser/software/mLaserSetup%20V2.4.zip"
+                fervor:version="2.4"
                 fervor:platform="Q_OS_WIN32"
-                length="43343527"
+                length="44697025"
                 type="application/octet-stream" />
 
             <!-- Linux version. -->
             <enclosure
                 url="https://codeload.github.com/Makeblock-official/mlaser_resources/zip/master"
-                fervor:version="2.3"
+                fervor:version="2.4"
                 fervor:platform="Q_OS_LINUX"
                 length="86189351"
                 type="application/octet-stream" />
