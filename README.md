@@ -56,13 +56,13 @@
 
 #3. Revision of history
 |Author      |       Time      |   Version    |    Descr     |
-| --------   |      :-----:    |   :----:     |    :-----    |
+|:-------    |      :-----:    |   :----:     |    :-----    |
 |happybird   |     2016/08/07  |   V1.0       |    Initial commit.|
 |happybird   |     2016/10/25  |   V2.0       |    open source release in git|
 |wangleilei  |     2016/10/31  |   V2.1       |    fix JIRA issue MLAS-1.MLAS-2,MLAS-3.|
 |wangleilei  |     2016/11/11  |   V2.2       |    fix the issue that unexpectedly prints the anchor point|
 |Mark Yan    |     2016/12/12  |   V2.3       |    fix some issue|
-|Yang Xu     |     2017/03/20  |   V2.4       |    fix some issue and support DXF |
+|Yang Xu     |     2017/03/20  |   V2.4       |    fix some issue and support DXF|
 
 
 #4. Official website
